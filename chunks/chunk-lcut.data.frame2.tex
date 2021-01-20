@@ -22,24 +22,30 @@ R> employees <- lcut(data,
 R> print(employees)
 \end{Sinput}
 \begin{Soutput}
-     position=accountant position=manager position=worker ve.sm.age sm.age
-[1,]                   0                0               1         0      0
-[2,]                   0                1               0         0      0
-[3,]                   0                0               1         0      0
-[4,]                   0                0               1         0      0
-[5,]                   1                0               0         0      0
-     ro.sm.age    me.age ro.me.age ve.bi.age bi.age ro.bi.age employed
-[1,]         0 1.0000000         1         0      0         0        1
-[2,]         0 0.3914128         1         0      0         0        0
-[3,]         0 0.9859853         1         0      0         0        0
-[4,]         0 1.0000000         1         0      0         0        1
-[5,]         0 1.0000000         1         0      0         0        1
-     not.employed ex.sm.salary ve.sm.salary sm.salary ro.sm.salary ex.bi.salary
-[1,]            0    0.0000000    0.0693853 0.7016150  1.000000000            0
-[2,]            1    0.0000000    0.0000000 0.0000000  0.000000000            0
-[3,]            1    0.0000000    0.0000000 0.0000000  0.005816572            0
-[4,]            0    0.0000000    0.3560801 0.9010937  1.000000000            0
-[5,]            0    0.9019527    1.0000000 1.0000000  1.000000000            0
+     position=accountant position=manager position=worker
+[1,]                   0                0               1
+[2,]                   0                1               0
+[3,]                   0                0               1
+[4,]                   0                0               1
+[5,]                   1                0               0
+     ve.sm.age sm.age ro.sm.age    me.age ro.me.age ve.bi.age
+[1,]         0      0         0 1.0000000         1         0
+[2,]         0      0         0 0.3914128         1         0
+[3,]         0      0         0 0.9859853         1         0
+[4,]         0      0         0 1.0000000         1         0
+[5,]         0      0         0 1.0000000         1         0
+     bi.age ro.bi.age employed not.employed ex.sm.salary
+[1,]      0         0        1            0    0.0000000
+[2,]      0         0        0            1    0.0000000
+[3,]      0         0        0            1    0.0000000
+[4,]      0         0        1            0    0.0000000
+[5,]      0         0        1            0    0.9019527
+     ve.sm.salary sm.salary ro.sm.salary ex.bi.salary
+[1,]    0.0693853 0.7016150  1.000000000            0
+[2,]    0.0000000 0.0000000  0.000000000            0
+[3,]    0.0000000 0.0000000  0.005816572            0
+[4,]    0.3560801 0.9010937  1.000000000            0
+[5,]    1.0000000 1.0000000  1.000000000            0
      ve.bi.salary bi.salary ro.bi.salary
 [1,]            0         0            0
 [2,]            0         0            0

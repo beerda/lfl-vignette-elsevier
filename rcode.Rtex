@@ -3,9 +3,9 @@
 
 \begin{document}
 <<setup, include=FALSE>>=
-  options(prompt='R> ', continue='+  ')
+  options(prompt='R> ', continue='+  ', width=65)
   knitr::opts_chunk$set(tidy=TRUE,
-                        tidy.opts = list(width.cutoff = 70),
+                        tidy.opts = list(width.cutoff = 65),
                         comment='',
                         prompt=TRUE,
                         highlight=FALSE)

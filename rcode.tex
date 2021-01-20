@@ -133,14 +133,14 @@ R> a2$t(NA, 0.3)
 
 \begin{Schunk}
 \begin{Sinput}
-R> S <- matrix(c(1, 0.9, 0, 1, 1, 0.2, 1, 0, 0.1, 0.9, 0, 0.7, 0.9, 0, 1, 
-+      0.1, 0, 1, 1, 0.9), nrow = 4)
+R> S <- matrix(c(1, 0.9, 0, 1, 1, 0.2, 1, 0, 0.1, 0.9, 0, 0.7, 0.9, 0, 
++      1, 0.1, 0, 1, 1, 0.9), nrow = 4)
 R> colnames(S) <- c("pulm.hypertens", "sleeping.sickn", "malaria", "hangover", 
 +      "influenza")
 R> rownames(S) <- c("tiredness", "cough", "fever", "blurred.vision")
 R> 
-R> R <- matrix(c(0.9, 0, 0, 0, 1, 0.9, 0.8, 0, 0.8, 0.8, 0.9, 1, 0, 0.1, 0, 
-+      0.9), nrow = 4)
+R> R <- matrix(c(0.9, 0, 0, 0, 1, 0.9, 0.8, 0, 0.8, 0.8, 0.9, 1, 0, 0.1, 
++      0, 0.9), nrow = 4)
 R> colnames(R) <- rownames(S)
 R> rownames(R) <- paste0("patient", 1:4)
 \end{Sinput}
@@ -162,11 +162,16 @@ patient4       0.0   0.0   1.0            0.9
 R> print(S)
 \end{Sinput}
 \begin{Soutput}
-               pulm.hypertens sleeping.sickn malaria hangover influenza
-tiredness                 1.0            1.0     0.1      0.9       0.0
-cough                     0.9            0.2     0.9      0.0       1.0
-fever                     0.0            1.0     0.0      1.0       1.0
-blurred.vision            1.0            0.0     0.7      0.1       0.9
+               pulm.hypertens sleeping.sickn malaria hangover
+tiredness                 1.0            1.0     0.1      0.9
+cough                     0.9            0.2     0.9      0.0
+fever                     0.0            1.0     0.0      1.0
+blurred.vision            1.0            0.0     0.7      0.1
+               influenza
+tiredness            0.0
+cough                1.0
+fever                1.0
+blurred.vision       0.9
 \end{Soutput}
 %
 % --end: "comp.data"
@@ -179,11 +184,16 @@ R> a <- algebra("lukasiewicz")
 R> compose(R, S, alg = a, type = "basic")
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1            0.9            0.9     0.9      0.8       1.0
-patient2            0.8            0.8     0.8      0.8       0.9
-patient3            0.7            0.9     0.7      0.9       0.9
-patient4            0.9            1.0     0.6      1.0       1.0
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1            0.9            0.9     0.9      0.8
+patient2            0.8            0.8     0.8      0.8
+patient3            0.7            0.9     0.7      0.9
+patient4            0.9            1.0     0.6      1.0
+         influenza
+patient1       1.0
+patient2       0.9
+patient3       0.9
+patient4       1.0
 \end{Soutput}
 %
 % --end: "comp.basic"
@@ -197,11 +207,16 @@ R> mult(R, S, function(r, s) {
 +  })
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1            0.9            0.9     0.9      0.8       1.0
-patient2            0.8            0.8     0.8      0.8       0.9
-patient3            0.7            0.9     0.7      0.9       0.9
-patient4            0.9            1.0     0.6      1.0       1.0
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1            0.9            0.9     0.9      0.8
+patient2            0.8            0.8     0.8      0.8
+patient3            0.7            0.9     0.7      0.9
+patient4            0.9            1.0     0.6      1.0
+         influenza
+patient1       1.0
+patient2       0.9
+patient3       0.9
+patient4       1.0
 \end{Soutput}
 %
 % --end: "comp.mult"
@@ -213,31 +228,46 @@ patient4            0.9            1.0     0.6      1.0       1.0
 R> compose(R, S, alg = "lukasiewicz", type = "sub")
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1            0.2            0.2     0.2      0.0       0.1
-patient2            0.2            0.3     0.2      0.1       1.0
-patient3            0.1            0.4     0.1      0.2       1.0
-patient4            0.0            0.1     0.0      0.2       1.0
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1            0.2            0.2     0.2      0.0
+patient2            0.2            0.3     0.2      0.1
+patient3            0.1            0.4     0.1      0.2
+patient4            0.0            0.1     0.0      0.2
+         influenza
+patient1       0.1
+patient2       1.0
+patient3       1.0
+patient4       1.0
 \end{Soutput}
 \begin{Sinput}
 R> compose(R, S, alg = "lukasiewicz", type = "super")
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1              0            0.8     0.3      0.8       0.1
-patient2              0            0.0     0.4      0.1       0.2
-patient3              0            0.0     0.3      0.1       0.1
-patient4              0            0.0     0.1      0.1       0.0
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1              0            0.8     0.3      0.8
+patient2              0            0.0     0.4      0.1
+patient3              0            0.0     0.3      0.1
+patient4              0            0.0     0.1      0.1
+         influenza
+patient1       0.1
+patient2       0.2
+patient3       0.1
+patient4       0.0
 \end{Soutput}
 \begin{Sinput}
 R> compose(R, S, alg = "lukasiewicz", type = "square")
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1              0            0.2     0.2      0.0       0.1
-patient2              0            0.0     0.2      0.1       0.2
-patient3              0            0.0     0.1      0.1       0.1
-patient4              0            0.0     0.0      0.1       0.0
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1              0            0.2     0.2      0.0
+patient2              0            0.0     0.2      0.1
+patient3              0            0.0     0.1      0.1
+patient4              0            0.0     0.0      0.1
+         influenza
+patient1       0.1
+patient2       0.2
+patient3       0.1
+patient4       0.0
 \end{Soutput}
 %
 % --end: "comp.subsupsquare"
@@ -245,13 +275,13 @@ patient4              0            0.0     0.0      0.1       0.0
 
 \begin{Schunk}
 \begin{Sinput}
-R> E <- matrix(c(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 
-+      0), nrow = 4)
+R> E <- matrix(c(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 
++      0, 0), nrow = 4)
 R> colnames(E) <- colnames(S)
 R> rownames(E) <- rownames(S)
 R> 
-R> U <- matrix(c(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 
-+      0), nrow = 4)
+R> U <- matrix(c(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
++      0, 0), nrow = 4)
 R> colnames(U) <- colnames(S)
 R> rownames(U) <- rownames(S)
 \end{Sinput}
@@ -263,11 +293,16 @@ R> rownames(U) <- rownames(S)
 R> print(E)
 \end{Sinput}
 \begin{Soutput}
-               pulm.hypertens sleeping.sickn malaria hangover influenza
-tiredness                   0              0       0        0         0
-cough                       0              0       0        1         0
-fever                       1              0       0        0         0
-blurred.vision              0              0       0        0         0
+               pulm.hypertens sleeping.sickn malaria hangover
+tiredness                   0              0       0        0
+cough                       0              0       0        1
+fever                       1              0       0        0
+blurred.vision              0              0       0        0
+               influenza
+tiredness              0
+cough                  0
+fever                  0
+blurred.vision         0
 \end{Soutput}
 %
 % --end: "comp.e"
@@ -279,11 +314,16 @@ blurred.vision              0              0       0        0         0
 R> print(U)
 \end{Sinput}
 \begin{Soutput}
-               pulm.hypertens sleeping.sickn malaria hangover influenza
-tiredness                   0              0       0        0         0
-cough                       0              0       0        0         1
-fever                       0              0       0        0         0
-blurred.vision              1              0       0        0         0
+               pulm.hypertens sleeping.sickn malaria hangover
+tiredness                   0              0       0        0
+cough                       0              0       0        0
+fever                       0              0       0        0
+blurred.vision              1              0       0        0
+               influenza
+tiredness              0
+cough                  1
+fever                  0
+blurred.vision         0
 \end{Soutput}
 %
 % --end: "comp.u"
@@ -298,11 +338,16 @@ R> RE <- compose(R, E, alg = a, type = "basic")
 R> a$pt(RS, a$n(RE))
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1            0.1            0.9     0.9      0.0       1.0
-patient2            0.0            0.8     0.8      0.0       0.9
-patient3            0.0            0.9     0.7      0.1       0.9
-patient4            0.0            1.0     0.6      1.0       1.0
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1            0.1            0.9     0.9      0.0
+patient2            0.0            0.8     0.8      0.0
+patient3            0.0            0.9     0.7      0.1
+patient4            0.0            1.0     0.6      1.0
+         influenza
+patient1       1.0
+patient2       0.9
+patient3       0.9
+patient4       1.0
 \end{Soutput}
 %
 % --end: "comp.circ.excl"
@@ -315,11 +360,16 @@ R> RU <- compose(R, U, alg = a, type = "super")
 R> a$pt(RS, RU)
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1            0.0            0.9     0.9      0.8       1.0
-patient2            0.0            0.8     0.8      0.8       0.8
-patient3            0.0            0.9     0.7      0.9       0.7
-patient4            0.8            1.0     0.6      1.0       0.0
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1            0.0            0.9     0.9      0.8
+patient2            0.0            0.8     0.8      0.8
+patient3            0.0            0.9     0.7      0.9
+patient4            0.8            1.0     0.6      1.0
+         influenza
+patient1       1.0
+patient2       0.8
+patient3       0.7
+patient4       0.0
 \end{Soutput}
 %
 % --end: "comp.circ.unavoid"
@@ -331,11 +381,16 @@ patient4            0.8            1.0     0.6      1.0       0.0
 R> a$pt(RS, a$n(RE), RU)
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1              0            0.9     0.9      0.0       1.0
-patient2              0            0.8     0.8      0.0       0.8
-patient3              0            0.9     0.7      0.1       0.7
-patient4              0            1.0     0.6      1.0       0.0
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1              0            0.9     0.9      0.0
+patient2              0            0.8     0.8      0.0
+patient3              0            0.9     0.7      0.1
+patient4              0            1.0     0.6      1.0
+         influenza
+patient1       1.0
+patient2       0.8
+patient3       0.7
+patient4       0.0
 \end{Soutput}
 %
 % --end: "comp.circ.excl.unavoid"
@@ -398,11 +453,16 @@ R> qRS <- mult(R, S, function(r, s) {
 R> print(qRS)
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1            0.9            0.8       0      0.8       0.8
-patient2            0.1            0.1       0      0.0       0.8
-patient3            0.0            0.0       0      0.0       0.8
-patient4            0.0            0.0       0      0.0       0.8
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1            0.9            0.8       0      0.8
+patient2            0.1            0.1       0      0.0
+patient3            0.0            0.0       0      0.0
+patient4            0.0            0.0       0      0.0
+         influenza
+patient1       0.8
+patient2       0.8
+patient3       0.8
+patient4       0.8
 \end{Soutput}
 %
 % --end: "comp.quant.atleast"
@@ -414,11 +474,16 @@ patient4            0.0            0.0       0      0.0       0.8
 R> a$pt(qRS, a$n(RE), RU)
 \end{Sinput}
 \begin{Soutput}
-         pulm.hypertens sleeping.sickn malaria hangover influenza
-patient1              0            0.8       0        0       0.8
-patient2              0            0.1       0        0       0.7
-patient3              0            0.0       0        0       0.6
-patient4              0            0.0       0        0       0.0
+         pulm.hypertens sleeping.sickn malaria hangover
+patient1              0            0.8       0        0
+patient2              0            0.1       0        0
+patient3              0            0.0       0        0
+patient4              0            0.0       0        0
+         influenza
+patient1       0.8
+patient2       0.7
+patient3       0.6
+patient4       0.0
 \end{Soutput}
 %
 % --end: "comp.quant.combined"
@@ -455,20 +520,24 @@ R> ctx5bilat()
 \end{Sinput}
 \begin{Soutput}
 Linguistic context: bilateral pentachotomy (ctx5bilat)
-        negMax negUpperCenter      negCenter negLowerCenter         origin 
-         -1.00          -0.75          -0.50          -0.25           0.00 
-   lowerCenter         center    upperCenter            max 
-          0.25           0.50           0.75           1.00 
+        negMax negUpperCenter      negCenter negLowerCenter 
+         -1.00          -0.75          -0.50          -0.25 
+        origin    lowerCenter         center    upperCenter 
+          0.00           0.25           0.50           0.75 
+           max 
+          1.00 
 \end{Soutput}
 \begin{Sinput}
 R> ctx5bilat(negMax = -100, max = 200)
 \end{Sinput}
 \begin{Soutput}
 Linguistic context: bilateral pentachotomy (ctx5bilat)
-        negMax negUpperCenter      negCenter negLowerCenter         origin 
-          -100            -75            -50            -25              0 
-   lowerCenter         center    upperCenter            max 
-            50            100            150            200 
+        negMax negUpperCenter      negCenter negLowerCenter 
+          -100            -75            -50            -25 
+        origin    lowerCenter         center    upperCenter 
+             0             50            100            150 
+           max 
+           200 
 \end{Soutput}
 %
 % --end: "ctx"
@@ -600,7 +669,8 @@ R> createListOfExpressions <- function(context, atomic, hedges) {
 +      res
 +  }
 R> 
-R> createPlot <- function(l, xlims = c(0, 1), legendName = "expression", legendBottom = FALSE) {
+R> createPlot <- function(l, xlims = c(0, 1), legendName = "expression", 
++      legendBottom = FALSE) {
 +      g <- ggplot(data = data.frame(x = 0), mapping = aes(x = x))
 +      for (n in names(l)) {
 +          f <- l[[n]]
@@ -614,12 +684,12 @@ R> createPlot <- function(l, xlims = c(0, 1), legendName = "expression", legendB
 +  }
 R> 
 R> ctx <- ctx3()
-R> smList <- createListOfExpressions(ctx, "sm", c("ex", "si", "ve", "-", "ml", 
-+      "ro", "qr", "vr"))
-R> meList <- createListOfExpressions(ctx, "me", c("ty", "-", "ml", "ro", "qr", 
-+      "vr"))
-R> biList <- createListOfExpressions(ctx, "bi", c("ex", "si", "ve", "-", "ml", 
-+      "ro", "qr", "vr"))
+R> smList <- createListOfExpressions(ctx, "sm", c("ex", "si", "ve", "-", 
++      "ml", "ro", "qr", "vr"))
+R> meList <- createListOfExpressions(ctx, "me", c("ty", "-", "ml", "ro", 
++      "qr", "vr"))
+R> biList <- createListOfExpressions(ctx, "bi", c("ex", "si", "ve", "-", 
++      "ml", "ro", "qr", "vr"))
 R> 
 R> createPlot(smList)
 \end{Sinput}
@@ -660,32 +730,32 @@ R> rcos(seq(from = 0, to = 1, by = 0.2))
 \begin{Schunk}
 \begin{Sinput}
 R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
-+      fun = triangular(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
-+      theme(legend.position = "none")
++      fun = triangular(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", 
++      y = "") + theme(legend.position = "none")
 \end{Sinput}
 \end{Schunk}
 
 \begin{Schunk}
 \begin{Sinput}
 R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
-+      fun = triangular(-Inf, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
-+      theme(legend.position = "none")
++      fun = triangular(-Inf, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", 
++      y = "") + theme(legend.position = "none")
 \end{Sinput}
 \end{Schunk}
 
 \begin{Schunk}
 \begin{Sinput}
 R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
-+      fun = raisedcosine(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
-+      theme(legend.position = "none")
++      fun = raisedcosine(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", 
++      y = "") + theme(legend.position = "none")
 \end{Sinput}
 \end{Schunk}
 
 \begin{Schunk}
 \begin{Sinput}
 R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
-+      fun = raisedcosine(0, 0.5, Inf)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
-+      theme(legend.position = "none")
++      fun = raisedcosine(0, 0.5, Inf)) + xlim(-0.2, 1.2) + labs(x = "", 
++      y = "") + theme(legend.position = "none")
 \end{Sinput}
 \end{Schunk}
 
@@ -749,30 +819,30 @@ R> print(age)
 R> lcut(age, context = ctx3(low = 0, high = 100))
 \end{Sinput}
 \begin{Soutput}
-     ex.sm.age si.sm.age ve.sm.age sm.age ml.sm.age ro.sm.age qr.sm.age
-[1,]         0         0         0      0         0         0 0.0000000
-[2,]         0         0         0      0         0         0 0.1315789
-[3,]         0         0         0      0         0         0 0.0000000
-[4,]         0         0         0      0         0         0 0.0000000
-[5,]         0         0         0      0         0         0 0.0000000
-     vr.sm.age  ty.me.age    me.age ml.me.age ro.me.age qr.me.age vr.me.age
-[1,] 0.0000000 0.04761905 1.0000000 1.0000000         1         1         1
-[2,] 0.9475480 0.00000000 0.3914128 0.7993319         1         1         1
-[3,] 0.1993769 0.00000000 0.9859853 1.0000000         1         1         1
-[4,] 0.0000000 0.73333333 1.0000000 1.0000000         1         1         1
-[5,] 0.0000000 0.93333333 1.0000000 1.0000000         1         1         1
-     ex.bi.age si.bi.age ve.bi.age bi.age ml.bi.age ro.bi.age qr.bi.age
-[1,]         0         0         0      0         0         0         0
-[2,]         0         0         0      0         0         0         0
-[3,]         0         0         0      0         0         0         0
-[4,]         0         0         0      0         0         0         0
-[5,]         0         0         0      0         0         0         0
-     vr.bi.age
-[1,]         0
-[2,]         0
-[3,]         0
-[4,]         0
-[5,]         0
+     ex.sm.age si.sm.age ve.sm.age sm.age ml.sm.age ro.sm.age
+[1,]         0         0         0      0         0         0
+[2,]         0         0         0      0         0         0
+[3,]         0         0         0      0         0         0
+[4,]         0         0         0      0         0         0
+[5,]         0         0         0      0         0         0
+     qr.sm.age vr.sm.age  ty.me.age    me.age ml.me.age
+[1,] 0.0000000 0.0000000 0.04761905 1.0000000 1.0000000
+[2,] 0.1315789 0.9475480 0.00000000 0.3914128 0.7993319
+[3,] 0.0000000 0.1993769 0.00000000 0.9859853 1.0000000
+[4,] 0.0000000 0.0000000 0.73333333 1.0000000 1.0000000
+[5,] 0.0000000 0.0000000 0.93333333 1.0000000 1.0000000
+     ro.me.age qr.me.age vr.me.age ex.bi.age si.bi.age ve.bi.age
+[1,]         1         1         1         0         0         0
+[2,]         1         1         1         0         0         0
+[3,]         1         1         1         0         0         0
+[4,]         1         1         1         0         0         0
+[5,]         1         1         1         0         0         0
+     bi.age ml.bi.age ro.bi.age qr.bi.age vr.bi.age
+[1,]      0         0         0         0         0
+[2,]      0         0         0         0         0
+[3,]      0         0         0         0         0
+[4,]      0         0         0         0         0
+[5,]      0         0         0         0         0
 \end{Soutput}
 %
 % --end: "lcut.numeric"
@@ -802,24 +872,24 @@ R> employees <- lcut(data,
 R> print(employees)
 \end{Sinput}
 \begin{Soutput}
-     position=accountant position=manager position=worker ve.sm.age sm.age
-[1,]                   0                0               1         0      0
-[2,]                   0                1               0         0      0
-[3,]                   0                0               1         0      0
-[4,]                   0                0               1         0      0
-[5,]                   1                0               0         0      0
-     ro.sm.age    me.age ro.me.age ve.bi.age bi.age ro.bi.age employed
-[1,]         0 1.0000000         1         0      0         0        1
-[2,]         0 0.3914128         1         0      0         0        0
-[3,]         0 0.9859853         1         0      0         0        0
-[4,]         0 1.0000000         1         0      0         0        1
-[5,]         0 1.0000000         1         0      0         0        1
-     not.employed
-[1,]            0
-[2,]            1
-[3,]            1
-[4,]            0
-[5,]            0
+     position=accountant position=manager position=worker
+[1,]                   0                0               1
+[2,]                   0                1               0
+[3,]                   0                0               1
+[4,]                   0                0               1
+[5,]                   1                0               0
+     ve.sm.age sm.age ro.sm.age    me.age ro.me.age ve.bi.age
+[1,]         0      0         0 1.0000000         1         0
+[2,]         0      0         0 0.3914128         1         0
+[3,]         0      0         0 0.9859853         1         0
+[4,]         0      0         0 1.0000000         1         0
+[5,]         0      0         0 1.0000000         1         0
+     bi.age ro.bi.age employed not.employed
+[1,]      0         0        1            0
+[2,]      0         0        0            1
+[3,]      0         0        0            1
+[4,]      0         0        1            0
+[5,]      0         0        1            0
 \end{Soutput}
 %
 % --end: "lcut.data.frame"
@@ -849,24 +919,30 @@ R> employees <- lcut(data,
 R> print(employees)
 \end{Sinput}
 \begin{Soutput}
-     position=accountant position=manager position=worker ve.sm.age sm.age
-[1,]                   0                0               1         0      0
-[2,]                   0                1               0         0      0
-[3,]                   0                0               1         0      0
-[4,]                   0                0               1         0      0
-[5,]                   1                0               0         0      0
-     ro.sm.age    me.age ro.me.age ve.bi.age bi.age ro.bi.age employed
-[1,]         0 1.0000000         1         0      0         0        1
-[2,]         0 0.3914128         1         0      0         0        0
-[3,]         0 0.9859853         1         0      0         0        0
-[4,]         0 1.0000000         1         0      0         0        1
-[5,]         0 1.0000000         1         0      0         0        1
-     not.employed ex.sm.salary ve.sm.salary sm.salary ro.sm.salary ex.bi.salary
-[1,]            0    0.0000000    0.0693853 0.7016150  1.000000000            0
-[2,]            1    0.0000000    0.0000000 0.0000000  0.000000000            0
-[3,]            1    0.0000000    0.0000000 0.0000000  0.005816572            0
-[4,]            0    0.0000000    0.3560801 0.9010937  1.000000000            0
-[5,]            0    0.9019527    1.0000000 1.0000000  1.000000000            0
+     position=accountant position=manager position=worker
+[1,]                   0                0               1
+[2,]                   0                1               0
+[3,]                   0                0               1
+[4,]                   0                0               1
+[5,]                   1                0               0
+     ve.sm.age sm.age ro.sm.age    me.age ro.me.age ve.bi.age
+[1,]         0      0         0 1.0000000         1         0
+[2,]         0      0         0 0.3914128         1         0
+[3,]         0      0         0 0.9859853         1         0
+[4,]         0      0         0 1.0000000         1         0
+[5,]         0      0         0 1.0000000         1         0
+     bi.age ro.bi.age employed not.employed ex.sm.salary
+[1,]      0         0        1            0    0.0000000
+[2,]      0         0        0            1    0.0000000
+[3,]      0         0        0            1    0.0000000
+[4,]      0         0        1            0    0.0000000
+[5,]      0         0        1            0    0.9019527
+     ve.sm.salary sm.salary ro.sm.salary ex.bi.salary
+[1,]    0.0693853 0.7016150  1.000000000            0
+[2,]    0.0000000 0.0000000  0.000000000            0
+[3,]    0.0000000 0.0000000  0.005816572            0
+[4,]    0.3560801 0.9010937  1.000000000            0
+[5,]    1.0000000 1.0000000  1.000000000            0
      ve.bi.salary bi.salary ro.bi.salary
 [1,]            0         0            0
 [2,]            0         0            0
@@ -884,10 +960,11 @@ R> print(employees)
 R> vars(employees)
 \end{Sinput}
 \begin{Soutput}
- [1] "position" "position" "position" "age"      "age"      "age"     
- [7] "age"      "age"      "age"      "age"      "age"      "employed"
-[13] "employed" "salary"   "salary"   "salary"   "salary"   "salary"  
-[19] "salary"   "salary"   "salary"  
+ [1] "position" "position" "position" "age"      "age"     
+ [6] "age"      "age"      "age"      "age"      "age"     
+[11] "age"      "employed" "employed" "salary"   "salary"  
+[16] "salary"   "salary"   "salary"   "salary"   "salary"  
+[21] "salary"  
 \end{Soutput}
 %
 % --end: "lcut.vars"
@@ -919,12 +996,18 @@ R> position <- factor(c("worker", "manager", "worker", "worker", "accountant"))
 R> fcut(data.frame(employed = logvec, position = position))
 \end{Sinput}
 \begin{Soutput}
-     employed not.employed position=accountant position=manager position=worker
-[1,]        1            0                   0                0               1
-[2,]        0            1                   0                1               0
-[3,]        0            1                   0                0               1
-[4,]        1            0                   0                0               1
-[5,]        1            0                   1                0               0
+     employed not.employed position=accountant position=manager
+[1,]        1            0                   0                0
+[2,]        0            1                   0                1
+[3,]        0            1                   0                0
+[4,]        1            0                   0                0
+[5,]        1            0                   1                0
+     position=worker
+[1,]               1
+[2,]               0
+[3,]               1
+[4,]               1
+[5,]               0
 \end{Soutput}
 %
 % --end: "fcut.logfact"
@@ -1040,26 +1123,26 @@ R> fcut(numvec,
 +       type="triangle")
 \end{Sinput}
 \begin{Soutput}
-      numvec=1 numvec=2 numvec=3 numvec=1|numvec=2 numvec=2|numvec=3
- [1,]      0.0      0.0      0.0               0.0               0.0
- [2,]      0.5      0.0      0.0               0.5               0.0
- [3,]      1.0      0.0      0.0               1.0               0.0
- [4,]      0.5      0.5      0.0               1.0               0.5
- [5,]      0.0      1.0      0.0               1.0               1.0
- [6,]      0.0      0.5      0.5               0.5               1.0
- [7,]      0.0      0.0      1.0               0.0               1.0
- [8,]      0.0      0.0      0.5               0.0               0.5
- [9,]      0.0      0.0      0.0               0.0               0.0
-      numvec=1|numvec=2|numvec=3
- [1,]                        0.0
- [2,]                        0.5
- [3,]                        1.0
- [4,]                        1.0
- [5,]                        1.0
- [6,]                        1.0
- [7,]                        1.0
- [8,]                        0.5
- [9,]                        0.0
+      numvec=1 numvec=2 numvec=3 numvec=1|numvec=2
+ [1,]      0.0      0.0      0.0               0.0
+ [2,]      0.5      0.0      0.0               0.5
+ [3,]      1.0      0.0      0.0               1.0
+ [4,]      0.5      0.5      0.0               1.0
+ [5,]      0.0      1.0      0.0               1.0
+ [6,]      0.0      0.5      0.5               0.5
+ [7,]      0.0      0.0      1.0               0.0
+ [8,]      0.0      0.0      0.5               0.0
+ [9,]      0.0      0.0      0.0               0.0
+      numvec=2|numvec=3 numvec=1|numvec=2|numvec=3
+ [1,]               0.0                        0.0
+ [2,]               0.0                        0.5
+ [3,]               0.0                        1.0
+ [4,]               0.5                        1.0
+ [5,]               1.0                        1.0
+ [6,]               1.0                        1.0
+ [7,]               1.0                        1.0
+ [8,]               0.5                        0.5
+ [9,]               0.0                        0.0
 \end{Soutput}
 %
 % --end: "fcut.merge2"
@@ -1131,8 +1214,8 @@ R> mrg2 <- function(f1, f2, f3) {
 +          plukas.tconorm(f1(x), f2(x), f3(x))
 +      }
 +  }
-R> l <- list(`numvec=1|numvec=2|numvec=3` = mrg2(triangular(1, 3, 5), triangular(3, 
-+      5, 7), triangular(5, 7, 9)))
+R> l <- list(`numvec=1|numvec=2|numvec=3` = mrg2(triangular(1, 3, 5), 
++      triangular(3, 5, 7), triangular(5, 7, 9)))
 R> createPlot(l, xlims = c(0, 10), legendName = "", legendBottom = TRUE)
 \end{Sinput}
 \end{Schunk}
@@ -1223,7 +1306,8 @@ R> most(A)
 \end{Sinput}
 \begin{Soutput}
 [1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 0.000000000 0.000000000 0.000000000 0.000000000 0.001340707 1.000000000
+[1] 0.000000000 0.000000000 0.000000000 0.000000000 0.001340707
+[6] 1.000000000
 \end{Soutput}
 \begin{Soutput}
 [1] 0.001340707
@@ -1299,21 +1383,36 @@ R> rb <- searchrules(employees,
 R> print(rb)
 \end{Sinput}
 \begin{Soutput}
-                                       support lhsSupport rhsSupport confidence
-sm.salary => me.age                  0.5205418  0.5205418  0.8754796  1.0000000
- => ro.me.age                        1.0000000  1.0000000  1.0000000  1.0000000
-employed => me.age                   0.6000000  0.6000000  0.8754796  1.0000000
-employed => ro.sm.salary             0.6000000  0.6000000  0.6011633  1.0000000
-sm.salary => employed                0.5205418  0.5205418  0.6000000  1.0000000
-ro.sm.salary => me.age               0.6011633  0.6011633  0.8754796  1.0000000
-me.age & ro.sm.salary => employed    0.6000000  0.6011633  0.6000000  0.9980650
-ro.sm.salary => employed             0.6000000  0.6011633  0.6000000  0.9980650
-ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633  0.6000000  0.9980650
-position=worker => me.age            0.5971971  0.6000000  0.8754796  0.9953284
- => me.age                           0.8754796  1.0000000  0.8754796  0.8754796
-ro.me.age & employed => sm.salary    0.5205418  0.6000000  0.5205418  0.8675696
-me.age & employed => sm.salary       0.5205418  0.6000000  0.5205418  0.8675696
-employed => sm.salary                0.5205418  0.6000000  0.5205418  0.8675696
+                                       support lhsSupport
+sm.salary => me.age                  0.5205418  0.5205418
+ => ro.me.age                        1.0000000  1.0000000
+employed => me.age                   0.6000000  0.6000000
+employed => ro.sm.salary             0.6000000  0.6000000
+sm.salary => employed                0.5205418  0.5205418
+ro.sm.salary => me.age               0.6011633  0.6011633
+me.age & ro.sm.salary => employed    0.6000000  0.6011633
+ro.sm.salary => employed             0.6000000  0.6011633
+ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633
+position=worker => me.age            0.5971971  0.6000000
+ => me.age                           0.8754796  1.0000000
+ro.me.age & employed => sm.salary    0.5205418  0.6000000
+me.age & employed => sm.salary       0.5205418  0.6000000
+employed => sm.salary                0.5205418  0.6000000
+                                     rhsSupport confidence
+sm.salary => me.age                   0.8754796  1.0000000
+ => ro.me.age                         1.0000000  1.0000000
+employed => me.age                    0.8754796  1.0000000
+employed => ro.sm.salary              0.6011633  1.0000000
+sm.salary => employed                 0.6000000  1.0000000
+ro.sm.salary => me.age                0.8754796  1.0000000
+me.age & ro.sm.salary => employed     0.6000000  0.9980650
+ro.sm.salary => employed              0.6000000  0.9980650
+ro.me.age & ro.sm.salary => employed  0.6000000  0.9980650
+position=worker => me.age             0.8754796  0.9953284
+ => me.age                            0.8754796  0.8754796
+ro.me.age & employed => sm.salary     0.5205418  0.8675696
+me.age & employed => sm.salary        0.5205418  0.8675696
+employed => sm.salary                 0.5205418  0.8675696
 \end{Soutput}
 %
 % --end: "searchrules"
@@ -1357,21 +1456,36 @@ List of 2
 R> as.data.frame(rb)
 \end{Sinput}
 \begin{Soutput}
-                                       support lhsSupport rhsSupport confidence
-sm.salary => me.age                  0.5205418  0.5205418  0.8754796  1.0000000
- => ro.me.age                        1.0000000  1.0000000  1.0000000  1.0000000
-employed => me.age                   0.6000000  0.6000000  0.8754796  1.0000000
-employed => ro.sm.salary             0.6000000  0.6000000  0.6011633  1.0000000
-sm.salary => employed                0.5205418  0.5205418  0.6000000  1.0000000
-ro.sm.salary => me.age               0.6011633  0.6011633  0.8754796  1.0000000
-me.age & ro.sm.salary => employed    0.6000000  0.6011633  0.6000000  0.9980650
-ro.sm.salary => employed             0.6000000  0.6011633  0.6000000  0.9980650
-ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633  0.6000000  0.9980650
-position=worker => me.age            0.5971971  0.6000000  0.8754796  0.9953284
- => me.age                           0.8754796  1.0000000  0.8754796  0.8754796
-ro.me.age & employed => sm.salary    0.5205418  0.6000000  0.5205418  0.8675696
-me.age & employed => sm.salary       0.5205418  0.6000000  0.5205418  0.8675696
-employed => sm.salary                0.5205418  0.6000000  0.5205418  0.8675696
+                                       support lhsSupport
+sm.salary => me.age                  0.5205418  0.5205418
+ => ro.me.age                        1.0000000  1.0000000
+employed => me.age                   0.6000000  0.6000000
+employed => ro.sm.salary             0.6000000  0.6000000
+sm.salary => employed                0.5205418  0.5205418
+ro.sm.salary => me.age               0.6011633  0.6011633
+me.age & ro.sm.salary => employed    0.6000000  0.6011633
+ro.sm.salary => employed             0.6000000  0.6011633
+ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633
+position=worker => me.age            0.5971971  0.6000000
+ => me.age                           0.8754796  1.0000000
+ro.me.age & employed => sm.salary    0.5205418  0.6000000
+me.age & employed => sm.salary       0.5205418  0.6000000
+employed => sm.salary                0.5205418  0.6000000
+                                     rhsSupport confidence
+sm.salary => me.age                   0.8754796  1.0000000
+ => ro.me.age                         1.0000000  1.0000000
+employed => me.age                    0.8754796  1.0000000
+employed => ro.sm.salary              0.6011633  1.0000000
+sm.salary => employed                 0.6000000  1.0000000
+ro.sm.salary => me.age                0.8754796  1.0000000
+me.age & ro.sm.salary => employed     0.6000000  0.9980650
+ro.sm.salary => employed              0.6000000  0.9980650
+ro.me.age & ro.sm.salary => employed  0.6000000  0.9980650
+position=worker => me.age             0.8754796  0.9953284
+ => me.age                            0.8754796  0.8754796
+ro.me.age & employed => sm.salary     0.5205418  0.8675696
+me.age & employed => sm.salary        0.5205418  0.8675696
+employed => sm.salary                 0.5205418  0.8675696
 \end{Soutput}
 %
 % --end: "searchrules3"
@@ -1457,26 +1571,36 @@ R> d <- lcut(CO2, context = list(uptake = uptakeContext))
 R> colnames(d)
 \end{Sinput}
 \begin{Soutput}
- [1] "Plant=Qn1"            "Plant=Qn2"            "Plant=Qn3"           
- [4] "Plant=Qc1"            "Plant=Qc3"            "Plant=Qc2"           
- [7] "Plant=Mn3"            "Plant=Mn2"            "Plant=Mn1"           
-[10] "Plant=Mc2"            "Plant=Mc3"            "Plant=Mc1"           
-[13] "Type=Quebec"          "Type=Mississippi"     "Treatment=nonchilled"
-[16] "Treatment=chilled"    "ex.sm.conc"           "si.sm.conc"          
-[19] "ve.sm.conc"           "sm.conc"              "ml.sm.conc"          
-[22] "ro.sm.conc"           "qr.sm.conc"           "vr.sm.conc"          
-[25] "ty.me.conc"           "me.conc"              "ml.me.conc"          
-[28] "ro.me.conc"           "qr.me.conc"           "vr.me.conc"          
-[31] "ex.bi.conc"           "si.bi.conc"           "ve.bi.conc"          
-[34] "bi.conc"              "ml.bi.conc"           "ro.bi.conc"          
-[37] "qr.bi.conc"           "vr.bi.conc"           "ex.sm.uptake"        
-[40] "si.sm.uptake"         "ve.sm.uptake"         "sm.uptake"           
-[43] "ml.sm.uptake"         "ro.sm.uptake"         "qr.sm.uptake"        
-[46] "vr.sm.uptake"         "ty.me.uptake"         "me.uptake"           
-[49] "ml.me.uptake"         "ro.me.uptake"         "qr.me.uptake"        
-[52] "vr.me.uptake"         "ex.bi.uptake"         "si.bi.uptake"        
-[55] "ve.bi.uptake"         "bi.uptake"            "ml.bi.uptake"        
-[58] "ro.bi.uptake"         "qr.bi.uptake"         "vr.bi.uptake"        
+ [1] "Plant=Qn1"            "Plant=Qn2"           
+ [3] "Plant=Qn3"            "Plant=Qc1"           
+ [5] "Plant=Qc3"            "Plant=Qc2"           
+ [7] "Plant=Mn3"            "Plant=Mn2"           
+ [9] "Plant=Mn1"            "Plant=Mc2"           
+[11] "Plant=Mc3"            "Plant=Mc1"           
+[13] "Type=Quebec"          "Type=Mississippi"    
+[15] "Treatment=nonchilled" "Treatment=chilled"   
+[17] "ex.sm.conc"           "si.sm.conc"          
+[19] "ve.sm.conc"           "sm.conc"             
+[21] "ml.sm.conc"           "ro.sm.conc"          
+[23] "qr.sm.conc"           "vr.sm.conc"          
+[25] "ty.me.conc"           "me.conc"             
+[27] "ml.me.conc"           "ro.me.conc"          
+[29] "qr.me.conc"           "vr.me.conc"          
+[31] "ex.bi.conc"           "si.bi.conc"          
+[33] "ve.bi.conc"           "bi.conc"             
+[35] "ml.bi.conc"           "ro.bi.conc"          
+[37] "qr.bi.conc"           "vr.bi.conc"          
+[39] "ex.sm.uptake"         "si.sm.uptake"        
+[41] "ve.sm.uptake"         "sm.uptake"           
+[43] "ml.sm.uptake"         "ro.sm.uptake"        
+[45] "qr.sm.uptake"         "vr.sm.uptake"        
+[47] "ty.me.uptake"         "me.uptake"           
+[49] "ml.me.uptake"         "ro.me.uptake"        
+[51] "qr.me.uptake"         "vr.me.uptake"        
+[53] "ex.bi.uptake"         "si.bi.uptake"        
+[55] "ve.bi.uptake"         "bi.uptake"           
+[57] "ml.bi.uptake"         "ro.bi.uptake"        
+[59] "qr.bi.uptake"         "vr.bi.uptake"        
 \end{Soutput}
 %
 % --end: "pbld2"
@@ -1525,34 +1649,48 @@ R> head(v)
 R> head(p)
 \end{Sinput}
 \begin{Soutput}
-     ex.sm.uptake si.sm.uptake ve.sm.uptake sm.uptake ml.sm.uptake ro.sm.uptake
-[1,]            1            1            1         1            1            1
-[2,]            1            1            1         1            1            1
-[3,]            1            1            1         1            1            1
-[4,]            1            1            1         1            1            1
-[5,]            1            1            1         1            1            1
-[6,]            1            1            1         1            1            1
-     qr.sm.uptake vr.sm.uptake ty.me.uptake me.uptake ml.me.uptake ro.me.uptake
-[1,]            1            1            0         0            0            0
-[2,]            1            1            0         0            0            0
-[3,]            1            1            0         0            0            0
-[4,]            1            1            0         0            0            0
-[5,]            1            1            0         0            0            0
-[6,]            1            1            0         0            0            0
-     qr.me.uptake vr.me.uptake ex.bi.uptake si.bi.uptake ve.bi.uptake bi.uptake
-[1,]            0            0            0            0            0         0
-[2,]            0            0            0            0            0         0
-[3,]            0            0            0            0            0         0
-[4,]            0            0            0            0            0         0
-[5,]            0            0            0            0            0         0
-[6,]            0            0            0            0            0         0
-     ml.bi.uptake ro.bi.uptake qr.bi.uptake vr.bi.uptake
+     ex.sm.uptake si.sm.uptake ve.sm.uptake sm.uptake
+[1,]            1            1            1         1
+[2,]            1            1            1         1
+[3,]            1            1            1         1
+[4,]            1            1            1         1
+[5,]            1            1            1         1
+[6,]            1            1            1         1
+     ml.sm.uptake ro.sm.uptake qr.sm.uptake vr.sm.uptake
+[1,]            1            1            1            1
+[2,]            1            1            1            1
+[3,]            1            1            1            1
+[4,]            1            1            1            1
+[5,]            1            1            1            1
+[6,]            1            1            1            1
+     ty.me.uptake me.uptake ml.me.uptake ro.me.uptake
+[1,]            0         0            0            0
+[2,]            0         0            0            0
+[3,]            0         0            0            0
+[4,]            0         0            0            0
+[5,]            0         0            0            0
+[6,]            0         0            0            0
+     qr.me.uptake vr.me.uptake ex.bi.uptake si.bi.uptake
 [1,]            0            0            0            0
 [2,]            0            0            0            0
 [3,]            0            0            0            0
 [4,]            0            0            0            0
 [5,]            0            0            0            0
 [6,]            0            0            0            0
+     ve.bi.uptake bi.uptake ml.bi.uptake ro.bi.uptake
+[1,]            0         0            0            0
+[2,]            0         0            0            0
+[3,]            0         0            0            0
+[4,]            0         0            0            0
+[5,]            0         0            0            0
+[6,]            0         0            0            0
+     qr.bi.uptake vr.bi.uptake
+[1,]            0            0
+[2,]            0            0
+[3,]            0            0
+[4,]            0            0
+[5,]            0            0
+[6,]            0            0
 \end{Soutput}
 %
 % --end: "pbld5"
@@ -1564,8 +1702,8 @@ R> head(p)
 R> pbld(testing, rb, p, v, type = "global")
 \end{Sinput}
 \begin{Soutput}
- [1] 27.26126  7.00000 22.22523  7.00000 22.22523  7.00000 21.79580 15.43243
- [9] 19.29730 19.29730
+ [1] 27.26126  7.00000 22.22523  7.00000 22.22523  7.00000
+ [7] 21.79580 15.43243 19.29730 19.29730
 \end{Soutput}
 %
 % --end: "pbld6"
@@ -1580,8 +1718,8 @@ R> rules <- list(c("me.uptake", "Plant=Mc1", "sm.conc"),
 R> pbld(testing, rules, p, v)
 \end{Sinput}
 \begin{Soutput}
- [1]  7.00000  7.00000 10.16216 10.16216 10.16216  7.00000 10.16216 10.16216
- [9] 10.16216 10.16216
+ [1]  7.00000  7.00000 10.16216 10.16216 10.16216  7.00000
+ [7] 10.16216 10.16216 10.16216 10.16216
 \end{Soutput}
 %
 % --end: "pbld_custom"
@@ -1630,8 +1768,8 @@ R> fit <- frbe(myts, h=10)
 R> fit$mean
 \end{Sinput}
 \begin{Soutput}
- [1] 100.6985 101.5266 102.4545 103.3453 104.0120 105.0145 105.8917 106.7647
- [9] 107.6654 108.4846
+ [1] 100.6985 101.5266 102.4545 103.3453 104.0120 105.0145
+ [7] 105.8917 106.7647 107.6654 108.4846
 \end{Soutput}
 %
 % --end: "frbe"
@@ -1659,27 +1797,33 @@ locale:
 [11] LC_MEASUREMENT=cs_CZ.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] stats     graphics  grDevices utils     datasets  methods  
+[7] base     
 
 other attached packages:
-[1] lfl_2.1.1        ggplot2_3.3.2    knitr_1.30       testthat_3.0.0  
-[5] assertthat_0.2.1 usethis_1.6.3   
+[1] lfl_2.1.1        ggplot2_3.3.2    knitr_1.30      
+[4] testthat_3.0.0   assertthat_0.2.1 usethis_1.6.3   
 
 loaded via a namespace (and not attached):
- [1] zoo_1.8-8         tidyselect_1.1.0  xfun_0.19         purrr_0.3.4      
- [5] urca_1.3-0        lattice_0.20-41   colorspace_2.0-0  vctrs_0.3.5      
- [9] generics_0.1.0    rlang_0.4.9       e1071_1.7-4       pillar_1.4.7     
-[13] glue_1.4.2        withr_2.3.0       forecast_8.13     TTR_0.24.2       
-[17] foreach_1.5.1     lifecycle_0.2.0   plyr_1.8.6        quantmod_0.4.17  
-[21] stringr_1.4.0     timeDate_3043.102 munsell_0.5.0     gtable_0.3.0     
-[25] codetools_0.2-18  evaluate_0.14     labeling_0.4.2    tseries_0.10-47  
-[29] lmtest_0.9-38     parallel_4.0.3    curl_4.3          class_7.3-17     
-[33] xts_0.12.1        Rcpp_1.0.5        scales_1.1.1      formatR_1.7      
-[37] farver_2.0.3      fs_1.5.0          fracdiff_1.5-1    digest_0.6.27    
-[41] stringi_1.5.3     dplyr_1.0.2       grid_4.0.3        quadprog_1.5-8   
-[45] tools_4.0.3       magrittr_2.0.1    tibble_3.0.4      crayon_1.3.4     
-[49] pkgconfig_2.0.3   ellipsis_0.3.1    iterators_1.0.13  R6_2.5.0         
-[53] nnet_7.3-14       nlme_3.1-150      compiler_4.0.3   
+ [1] zoo_1.8-8         tidyselect_1.1.0  xfun_0.19        
+ [4] purrr_0.3.4       urca_1.3-0        lattice_0.20-41  
+ [7] colorspace_2.0-0  vctrs_0.3.5       generics_0.1.0   
+[10] rlang_0.4.9       e1071_1.7-4       pillar_1.4.7     
+[13] glue_1.4.2        withr_2.3.0       forecast_8.13    
+[16] TTR_0.24.2        foreach_1.5.1     lifecycle_0.2.0  
+[19] plyr_1.8.6        quantmod_0.4.17   stringr_1.4.0    
+[22] timeDate_3043.102 munsell_0.5.0     gtable_0.3.0     
+[25] codetools_0.2-18  evaluate_0.14     labeling_0.4.2   
+[28] tseries_0.10-47   lmtest_0.9-38     parallel_4.0.3   
+[31] curl_4.3          class_7.3-17      xts_0.12.1       
+[34] Rcpp_1.0.5        scales_1.1.1      formatR_1.7      
+[37] farver_2.0.3      fs_1.5.0          fracdiff_1.5-1   
+[40] digest_0.6.27     stringi_1.5.3     dplyr_1.0.2      
+[43] grid_4.0.3        quadprog_1.5-8    tools_4.0.3      
+[46] magrittr_2.0.1    tibble_3.0.4      crayon_1.3.4     
+[49] pkgconfig_2.0.3   ellipsis_0.3.1    iterators_1.0.13 
+[52] R6_2.5.0          nnet_7.3-14       nlme_3.1-150     
+[55] compiler_4.0.3   
 \end{Soutput}
 \end{Schunk}
 

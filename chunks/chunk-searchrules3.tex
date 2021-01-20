@@ -4,21 +4,36 @@
 R> as.data.frame(rb)
 \end{Sinput}
 \begin{Soutput}
-                                       support lhsSupport rhsSupport confidence
-sm.salary => me.age                  0.5205418  0.5205418  0.8754796  1.0000000
- => ro.me.age                        1.0000000  1.0000000  1.0000000  1.0000000
-employed => me.age                   0.6000000  0.6000000  0.8754796  1.0000000
-employed => ro.sm.salary             0.6000000  0.6000000  0.6011633  1.0000000
-sm.salary => employed                0.5205418  0.5205418  0.6000000  1.0000000
-ro.sm.salary => me.age               0.6011633  0.6011633  0.8754796  1.0000000
-me.age & ro.sm.salary => employed    0.6000000  0.6011633  0.6000000  0.9980650
-ro.sm.salary => employed             0.6000000  0.6011633  0.6000000  0.9980650
-ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633  0.6000000  0.9980650
-position=worker => me.age            0.5971971  0.6000000  0.8754796  0.9953284
- => me.age                           0.8754796  1.0000000  0.8754796  0.8754796
-ro.me.age & employed => sm.salary    0.5205418  0.6000000  0.5205418  0.8675696
-me.age & employed => sm.salary       0.5205418  0.6000000  0.5205418  0.8675696
-employed => sm.salary                0.5205418  0.6000000  0.5205418  0.8675696
+                                       support lhsSupport
+sm.salary => me.age                  0.5205418  0.5205418
+ => ro.me.age                        1.0000000  1.0000000
+employed => me.age                   0.6000000  0.6000000
+employed => ro.sm.salary             0.6000000  0.6000000
+sm.salary => employed                0.5205418  0.5205418
+ro.sm.salary => me.age               0.6011633  0.6011633
+me.age & ro.sm.salary => employed    0.6000000  0.6011633
+ro.sm.salary => employed             0.6000000  0.6011633
+ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633
+position=worker => me.age            0.5971971  0.6000000
+ => me.age                           0.8754796  1.0000000
+ro.me.age & employed => sm.salary    0.5205418  0.6000000
+me.age & employed => sm.salary       0.5205418  0.6000000
+employed => sm.salary                0.5205418  0.6000000
+                                     rhsSupport confidence
+sm.salary => me.age                   0.8754796  1.0000000
+ => ro.me.age                         1.0000000  1.0000000
+employed => me.age                    0.8754796  1.0000000
+employed => ro.sm.salary              0.6011633  1.0000000
+sm.salary => employed                 0.6000000  1.0000000
+ro.sm.salary => me.age                0.8754796  1.0000000
+me.age & ro.sm.salary => employed     0.6000000  0.9980650
+ro.sm.salary => employed              0.6000000  0.9980650
+ro.me.age & ro.sm.salary => employed  0.6000000  0.9980650
+position=worker => me.age             0.8754796  0.9953284
+ => me.age                            0.8754796  0.8754796
+ro.me.age & employed => sm.salary     0.5205418  0.8675696
+me.age & employed => sm.salary        0.5205418  0.8675696
+employed => sm.salary                 0.5205418  0.8675696
 \end{Soutput}
 %
 % --end: "searchrules3"

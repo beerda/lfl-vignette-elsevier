@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{makecell}
+\usepackage{verbatim}
 
 \usepackage{lineno,hyperref}
 \modulolinenumbers[5]
@@ -48,11 +49,12 @@
 % \bibliographystyle{elsarticle-harv}\biboptions{authoryear}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-
-\newtheorem{rem}{Remark}
-
+\newenvironment{Schunk}{}{}
+\newenvironment{Sinput}{\endgraf\verbatim}{\endverbatim}
+\newenvironment{Soutput}{\endgraf\verbatim}{\endverbatim}
 \newcommand{\pkg}[1]{\textbf{#1}}
 \newcommand{\proglang}[1]{#1}
+\newcommand{\code}[1]{\texttt{#1}}
 
 \newcommand{\lfl}{\pkg{lfl}}
 \newcommand{\R}{\proglang{R}}
@@ -82,6 +84,7 @@
 
 \def\lh{\mathop{\le_{\rm H} }\nolimits}
 
+\newtheorem{rem}{Remark}
 
 \newcommand{\T}{\text{\it T}}
 \newcommand{\LD}{\text{\it LD}}

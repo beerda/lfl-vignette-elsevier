@@ -1,0 +1,31 @@
+\begin{Schunk}
+% --begin: "searchrules2"
+\begin{Sinput}
+R> str(rb)
+\end{Sinput}
+\begin{Soutput}
+List of 2
+ $ rules     :List of 14
+  ..$ : chr [1:2] "me.age" "sm.salary"
+  ..$ : chr "ro.me.age"
+  ..$ : chr [1:2] "me.age" "employed"
+  ..$ : chr [1:2] "ro.sm.salary" "employed"
+  ..$ : chr [1:2] "employed" "sm.salary"
+  ..$ : chr [1:2] "me.age" "ro.sm.salary"
+  ..$ : chr [1:3] "employed" "me.age" "ro.sm.salary"
+  ..$ : chr [1:2] "employed" "ro.sm.salary"
+  ..$ : chr [1:3] "employed" "ro.me.age" "ro.sm.salary"
+  ..$ : chr [1:2] "me.age" "position=worker"
+  ..$ : chr "me.age"
+  ..$ : chr [1:3] "sm.salary" "ro.me.age" "employed"
+  ..$ : chr [1:3] "sm.salary" "me.age" "employed"
+  ..$ : chr [1:2] "sm.salary" "employed"
+ $ statistics: num [1:14, 1:4] 0.521 1 0.6 0.6 0.521 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : NULL
+  .. ..$ : chr [1:4] "support" "lhsSupport" "rhsSupport" "confidence"
+ - attr(*, "class")= chr [1:2] "farules" "list"
+\end{Soutput}
+%
+% --end: "searchrules2"
+\end{Schunk}

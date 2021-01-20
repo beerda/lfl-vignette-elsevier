@@ -1,0 +1,49 @@
+\begin{Schunk}
+% --begin: "ctx"
+\begin{Sinput}
+R> ctx3(5, 100, 1000)
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: unilateral trichotomy (ctx3)
+   low center   high 
+     5    100   1000 
+\end{Soutput}
+\begin{Sinput}
+R> ctx3()
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: unilateral trichotomy (ctx3)
+   low center   high 
+   0.0    0.5    1.0 
+\end{Soutput}
+\begin{Sinput}
+R> ctx3(high = 100)
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: unilateral trichotomy (ctx3)
+   low center   high 
+     0     50    100 
+\end{Soutput}
+\begin{Sinput}
+R> ctx5bilat()
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: bilateral pentachotomy (ctx5bilat)
+        negMax negUpperCenter      negCenter negLowerCenter         origin 
+         -1.00          -0.75          -0.50          -0.25           0.00 
+   lowerCenter         center    upperCenter            max 
+          0.25           0.50           0.75           1.00 
+\end{Soutput}
+\begin{Sinput}
+R> ctx5bilat(negMax = -100, max = 200)
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: bilateral pentachotomy (ctx5bilat)
+        negMax negUpperCenter      negCenter negLowerCenter         origin 
+          -100            -75            -50            -25              0 
+   lowerCenter         center    upperCenter            max 
+            50            100            150            200 
+\end{Soutput}
+%
+% --end: "ctx"
+\end{Schunk}

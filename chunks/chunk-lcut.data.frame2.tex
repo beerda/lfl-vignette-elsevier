@@ -1,0 +1,52 @@
+\begin{Schunk}
+% --begin: "lcut.data.frame2"
+\begin{Sinput}
+R> data$salary <- round(runif(n=5, min=1000, max=20000))
+R> print(data)
+\end{Sinput}
+\begin{Soutput}
+    position age employed salary
+1     worker  55     TRUE   7728
+2    manager  32    FALSE  16279
+3     worker  41    FALSE  15044
+4     worker  52     TRUE   6226
+5 accountant  51     TRUE   1838
+\end{Soutput}
+\begin{Sinput}
+R> employees <- lcut(data,
++                    context=list(age=ctx3(low=0, high=100),
++                                 salary=ctx3(low=500, high=50000)),
++                    atomic=list(salary=c("sm", "bi")), # age is default
++                    hedges=list(age=c("ve", "-", "ro"),
++                                salary=c("ex", "ve", "-", "ro")))
+R> print(employees)
+\end{Sinput}
+\begin{Soutput}
+     position=accountant position=manager position=worker ve.sm.age sm.age
+[1,]                   0                0               1         0      0
+[2,]                   0                1               0         0      0
+[3,]                   0                0               1         0      0
+[4,]                   0                0               1         0      0
+[5,]                   1                0               0         0      0
+     ro.sm.age    me.age ro.me.age ve.bi.age bi.age ro.bi.age employed
+[1,]         0 1.0000000         1         0      0         0        1
+[2,]         0 0.3914128         1         0      0         0        0
+[3,]         0 0.9859853         1         0      0         0        0
+[4,]         0 1.0000000         1         0      0         0        1
+[5,]         0 1.0000000         1         0      0         0        1
+     not.employed ex.sm.salary ve.sm.salary sm.salary ro.sm.salary ex.bi.salary
+[1,]            0    0.0000000    0.0693853 0.7016150  1.000000000            0
+[2,]            1    0.0000000    0.0000000 0.0000000  0.000000000            0
+[3,]            1    0.0000000    0.0000000 0.0000000  0.005816572            0
+[4,]            0    0.0000000    0.3560801 0.9010937  1.000000000            0
+[5,]            0    0.9019527    1.0000000 1.0000000  1.000000000            0
+     ve.bi.salary bi.salary ro.bi.salary
+[1,]            0         0            0
+[2,]            0         0            0
+[3,]            0         0            0
+[4,]            0         0            0
+[5,]            0         0            0
+\end{Soutput}
+%
+% --end: "lcut.data.frame2"
+\end{Schunk}

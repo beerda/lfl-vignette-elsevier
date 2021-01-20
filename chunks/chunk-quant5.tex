@@ -1,0 +1,38 @@
+\begin{Schunk}
+% --begin: "quant5"
+\begin{Sinput}
+R> almost <- quantifier("almost.all")
+R> most <- quantifier("most")
+R> many <- quantifier("many")
+R> almost(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0 0 0 0 0 1
+\end{Soutput}
+\begin{Soutput}
+[1] 0
+\end{Soutput}
+\begin{Sinput}
+R> most(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0.000000000 0.000000000 0.000000000 0.000000000 0.001340707 1.000000000
+\end{Soutput}
+\begin{Soutput}
+[1] 0.001340707
+\end{Soutput}
+\begin{Sinput}
+R> many(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0.4910068 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+\end{Soutput}
+\begin{Soutput}
+[1] 1
+\end{Soutput}
+%
+% --end: "quant5"
+\end{Schunk}

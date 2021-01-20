@@ -1,0 +1,1686 @@
+\documentclass{article}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\usepackage{Sweave}
+
+
+\usepackage[utf8]{inputenc}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+
+\begin{Schunk}
+% --begin: "cran.lfl"
+\begin{Sinput}
+R> install.packages("lfl")
+\end{Sinput}
+%
+% --end: "cran.lfl"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "git.lfl"
+\begin{Sinput}
+R> install.packages("devtools")
+R> devtools::install_github("beerda/lfl")
+\end{Sinput}
+%
+% --end: "git.lfl"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "load.lfl"
+\begin{Sinput}
+R> library(lfl)
+\end{Sinput}
+%
+% --end: "load.lfl"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "goedel.algebra"
+\begin{Sinput}
+R> a <- algebra("goedel")
+\end{Sinput}
+%
+% --end: "goedel.algebra"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "goedel.algebra.examples"
+\begin{Sinput}
+R> a$n(c(0.5, 0.8, 0, 1))
+\end{Sinput}
+\begin{Soutput}
+[1] 0 0 1 0
+\end{Soutput}
+\begin{Sinput}
+R> a$ni(c(0.5, 0.8, 0, 1))
+\end{Sinput}
+\begin{Soutput}
+[1] 0.5 0.2 1.0 0.0
+\end{Soutput}
+\begin{Sinput}
+R> a$t(c(0.8, 0.3), c(0.2, 1), c(1, 0))
+\end{Sinput}
+\begin{Soutput}
+[1] 0
+\end{Soutput}
+\begin{Sinput}
+R> a$pt(c(0.8, 0.3), c(0.2, 1), c(1, 0))
+\end{Sinput}
+\begin{Soutput}
+[1] 0.2 0.0
+\end{Soutput}
+\begin{Sinput}
+R> a$r(c(0.8, 0.3), c(0.2, 1))
+\end{Sinput}
+\begin{Soutput}
+[1] 0.2 1.0
+\end{Soutput}
+%
+% --end: "goedel.algebra.examples"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "goguen.algebra"
+\begin{Sinput}
+R> a <- algebra("goguen")
+\end{Sinput}
+%
+% --end: "goguen.algebra"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "lukasiewicz.algebra"
+\begin{Sinput}
+R> a <- algebra("lukasiewicz")
+\end{Sinput}
+%
+% --end: "lukasiewicz.algebra"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "na.algebra"
+\begin{Sinput}
+R> a <- algebra("goedel")
+R> a2 <- sobocinski(a)
+R> a$t(NA, 0.3)
+\end{Sinput}
+\begin{Soutput}
+[1] NA
+\end{Soutput}
+\begin{Sinput}
+R> a2$t(NA, 0.3)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.3
+\end{Soutput}
+%
+% --end: "na.algebra"
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> S <- matrix(c(1, 0.9, 0, 1, 1, 0.2, 1, 0, 0.1, 0.9, 0, 0.7, 0.9, 0, 1, 
++      0.1, 0, 1, 1, 0.9), nrow = 4)
+R> colnames(S) <- c("pulm.hypertens", "sleeping.sickn", "malaria", "hangover", 
++      "influenza")
+R> rownames(S) <- c("tiredness", "cough", "fever", "blurred.vision")
+R> 
+R> R <- matrix(c(0.9, 0, 0, 0, 1, 0.9, 0.8, 0, 0.8, 0.8, 0.9, 1, 0, 0.1, 0, 
++      0.9), nrow = 4)
+R> colnames(R) <- rownames(S)
+R> rownames(R) <- paste0("patient", 1:4)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.data"
+\begin{Sinput}
+R> print(R)
+\end{Sinput}
+\begin{Soutput}
+         tiredness cough fever blurred.vision
+patient1       0.9   1.0   0.8            0.0
+patient2       0.0   0.9   0.8            0.1
+patient3       0.0   0.8   0.9            0.0
+patient4       0.0   0.0   1.0            0.9
+\end{Soutput}
+\begin{Sinput}
+R> print(S)
+\end{Sinput}
+\begin{Soutput}
+               pulm.hypertens sleeping.sickn malaria hangover influenza
+tiredness                 1.0            1.0     0.1      0.9       0.0
+cough                     0.9            0.2     0.9      0.0       1.0
+fever                     0.0            1.0     0.0      1.0       1.0
+blurred.vision            1.0            0.0     0.7      0.1       0.9
+\end{Soutput}
+%
+% --end: "comp.data"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.basic"
+\begin{Sinput}
+R> a <- algebra("lukasiewicz")
+R> compose(R, S, alg = a, type = "basic")
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1            0.9            0.9     0.9      0.8       1.0
+patient2            0.8            0.8     0.8      0.8       0.9
+patient3            0.7            0.9     0.7      0.9       0.9
+patient4            0.9            1.0     0.6      1.0       1.0
+\end{Soutput}
+%
+% --end: "comp.basic"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.mult"
+\begin{Sinput}
+R> mult(R, S, function(r, s) {
++      a$s(a$pt(r, s))
++  })
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1            0.9            0.9     0.9      0.8       1.0
+patient2            0.8            0.8     0.8      0.8       0.9
+patient3            0.7            0.9     0.7      0.9       0.9
+patient4            0.9            1.0     0.6      1.0       1.0
+\end{Soutput}
+%
+% --end: "comp.mult"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.subsupsquare"
+\begin{Sinput}
+R> compose(R, S, alg = "lukasiewicz", type = "sub")
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1            0.2            0.2     0.2      0.0       0.1
+patient2            0.2            0.3     0.2      0.1       1.0
+patient3            0.1            0.4     0.1      0.2       1.0
+patient4            0.0            0.1     0.0      0.2       1.0
+\end{Soutput}
+\begin{Sinput}
+R> compose(R, S, alg = "lukasiewicz", type = "super")
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1              0            0.8     0.3      0.8       0.1
+patient2              0            0.0     0.4      0.1       0.2
+patient3              0            0.0     0.3      0.1       0.1
+patient4              0            0.0     0.1      0.1       0.0
+\end{Soutput}
+\begin{Sinput}
+R> compose(R, S, alg = "lukasiewicz", type = "square")
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1              0            0.2     0.2      0.0       0.1
+patient2              0            0.0     0.2      0.1       0.2
+patient3              0            0.0     0.1      0.1       0.1
+patient4              0            0.0     0.0      0.1       0.0
+\end{Soutput}
+%
+% --end: "comp.subsupsquare"
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> E <- matrix(c(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 
++      0), nrow = 4)
+R> colnames(E) <- colnames(S)
+R> rownames(E) <- rownames(S)
+R> 
+R> U <- matrix(c(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 
++      0), nrow = 4)
+R> colnames(U) <- colnames(S)
+R> rownames(U) <- rownames(S)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.e"
+\begin{Sinput}
+R> print(E)
+\end{Sinput}
+\begin{Soutput}
+               pulm.hypertens sleeping.sickn malaria hangover influenza
+tiredness                   0              0       0        0         0
+cough                       0              0       0        1         0
+fever                       1              0       0        0         0
+blurred.vision              0              0       0        0         0
+\end{Soutput}
+%
+% --end: "comp.e"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.u"
+\begin{Sinput}
+R> print(U)
+\end{Sinput}
+\begin{Soutput}
+               pulm.hypertens sleeping.sickn malaria hangover influenza
+tiredness                   0              0       0        0         0
+cough                       0              0       0        0         1
+fever                       0              0       0        0         0
+blurred.vision              1              0       0        0         0
+\end{Soutput}
+%
+% --end: "comp.u"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.circ.excl"
+\begin{Sinput}
+R> a <- algebra("lukasiewicz")
+R> RS <- compose(R, S, alg = a, type = "basic")
+R> RE <- compose(R, E, alg = a, type = "basic")
+R> a$pt(RS, a$n(RE))
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1            0.1            0.9     0.9      0.0       1.0
+patient2            0.0            0.8     0.8      0.0       0.9
+patient3            0.0            0.9     0.7      0.1       0.9
+patient4            0.0            1.0     0.6      1.0       1.0
+\end{Soutput}
+%
+% --end: "comp.circ.excl"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.circ.unavoid"
+\begin{Sinput}
+R> RU <- compose(R, U, alg = a, type = "super")
+R> a$pt(RS, RU)
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1            0.0            0.9     0.9      0.8       1.0
+patient2            0.0            0.8     0.8      0.8       0.8
+patient3            0.0            0.9     0.7      0.9       0.7
+patient4            0.8            1.0     0.6      1.0       0.0
+\end{Soutput}
+%
+% --end: "comp.circ.unavoid"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.circ.excl.unavoid"
+\begin{Sinput}
+R> a$pt(RS, a$n(RE), RU)
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1              0            0.9     0.9      0.0       1.0
+patient2              0            0.8     0.8      0.0       0.8
+patient3              0            0.9     0.7      0.1       0.7
+patient4              0            1.0     0.6      1.0       0.0
+\end{Soutput}
+%
+% --end: "comp.circ.excl.unavoid"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.quant.atleast"
+\begin{Sinput}
+R> qatleast <- sugeno(measure=function(x) as.numeric(x >= 2),
++                     relative=FALSE,
++                     strong=TRUE,
++                     alg="goedel")
+R> qRS <- mult(R, S, function(r, s) {
++    qatleast(a$pt(r, s))
++  })
+\end{Sinput}
+\begin{Soutput}
+[1] 0.9 0.9 0.0 0.0
+[1] 0 1 1 1
+[1] 0.9 0.8 0.2 0.0
+[1] 0 1 1 1
+[1] 0.9 0.0 0.0 0.0
+[1] 0 1 1 1
+[1] 0.8 0.8 0.0 0.0
+[1] 0 1 1 1
+[1] 1.0 0.8 0.0 0.0
+[1] 0 1 1 1
+[1] 0.8 0.1 0.0 0.0
+[1] 0 1 1 1
+[1] 0.8 0.1 0.0 0.0
+[1] 0 1 1 1
+[1] 0.8 0.0 0.0 0.0
+[1] 0 1 1 1
+[1] 0.8 0.0 0.0 0.0
+[1] 0 1 1 1
+[1] 0.9 0.8 0.0 0.0
+[1] 0 1 1 1
+[1] 0.7 0.0 0.0 0.0
+[1] 0 1 1 1
+[1] 0.9 0.0 0.0 0.0
+[1] 0 1 1 1
+[1] 0.7 0.0 0.0 0.0
+[1] 0 1 1 1
+[1] 0.9 0.0 0.0 0.0
+[1] 0 1 1 1
+[1] 0.9 0.8 0.0 0.0
+[1] 0 1 1 1
+[1] 0.9 0.0 0.0 0.0
+[1] 0 1 1 1
+[1] 1 0 0 0
+[1] 0 1 1 1
+[1] 0.6 0.0 0.0 0.0
+[1] 0 1 1 1
+[1] 1 0 0 0
+[1] 0 1 1 1
+[1] 1.0 0.8 0.0 0.0
+[1] 0 1 1 1
+\end{Soutput}
+\begin{Sinput}
+R> print(qRS)
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1            0.9            0.8       0      0.8       0.8
+patient2            0.1            0.1       0      0.0       0.8
+patient3            0.0            0.0       0      0.0       0.8
+patient4            0.0            0.0       0      0.0       0.8
+\end{Soutput}
+%
+% --end: "comp.quant.atleast"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "comp.quant.combined"
+\begin{Sinput}
+R> a$pt(qRS, a$n(RE), RU)
+\end{Sinput}
+\begin{Soutput}
+         pulm.hypertens sleeping.sickn malaria hangover influenza
+patient1              0            0.8       0        0       0.8
+patient2              0            0.1       0        0       0.7
+patient3              0            0.0       0        0       0.6
+patient4              0            0.0       0        0       0.0
+\end{Soutput}
+%
+% --end: "comp.quant.combined"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "ctx"
+\begin{Sinput}
+R> ctx3(5, 100, 1000)
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: unilateral trichotomy (ctx3)
+   low center   high 
+     5    100   1000 
+\end{Soutput}
+\begin{Sinput}
+R> ctx3()
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: unilateral trichotomy (ctx3)
+   low center   high 
+   0.0    0.5    1.0 
+\end{Soutput}
+\begin{Sinput}
+R> ctx3(high = 100)
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: unilateral trichotomy (ctx3)
+   low center   high 
+     0     50    100 
+\end{Soutput}
+\begin{Sinput}
+R> ctx5bilat()
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: bilateral pentachotomy (ctx5bilat)
+        negMax negUpperCenter      negCenter negLowerCenter         origin 
+         -1.00          -0.75          -0.50          -0.25           0.00 
+   lowerCenter         center    upperCenter            max 
+          0.25           0.50           0.75           1.00 
+\end{Soutput}
+\begin{Sinput}
+R> ctx5bilat(negMax = -100, max = 200)
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: bilateral pentachotomy (ctx5bilat)
+        negMax negUpperCenter      negCenter negLowerCenter         origin 
+          -100            -75            -50            -25              0 
+   lowerCenter         center    upperCenter            max 
+            50            100            150            200 
+\end{Soutput}
+%
+% --end: "ctx"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "minmax"
+\begin{Sinput}
+R> data <- runif(n = 100, min = 20, max = 5000)
+R> summary(data)
+\end{Sinput}
+\begin{Soutput}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  118.6  1306.3  2539.8  2580.3  3794.6  4997.8 
+\end{Soutput}
+\begin{Sinput}
+R> minmax(data, type = "ctx3")
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: unilateral trichotomy (ctx3)
+     low   center     high 
+ 118.573 2558.195 4997.816 
+\end{Soutput}
+%
+% --end: "minmax"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "minmax2"
+\begin{Sinput}
+R> minmax(data, type = "ctx3", center = 1000)
+\end{Sinput}
+\begin{Soutput}
+Linguistic context: unilateral trichotomy (ctx3)
+     low   center     high 
+ 118.573 1000.000 4997.816 
+\end{Soutput}
+%
+% --end: "minmax2"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "horizon"
+\begin{Sinput}
+R> ctx <- ctx3()
+R> smHoriz <- horizon(ctx, atomic = "sm")
+R> smHoriz(seq(from = 0, to = 1, by = 0.2))
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 0.6 0.2 0.0 0.0 0.0
+\end{Soutput}
+%
+% --end: "horizon"
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> meHoriz <- horizon(ctx, atomic = "me")
+R> biHoriz <- horizon(ctx, atomic = "bi")
+R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
++      fun = smHoriz) + stat_function(aes(color = "me"), fun = meHoriz) + 
++      stat_function(aes(color = "bi"), fun = biHoriz) + xlim(-0.5, 1.5) + 
++      labs(x = "", y = "", colour = "atomic\nexpression")
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "hedge"
+\begin{Sinput}
+R> veHedge <- hedge("ve")
+R> ve.sm <- function(x) veHedge(smHoriz(x))
+R> ve.sm(seq(from = 0, to = 0.5, by = 0.1))
+\end{Sinput}
+\begin{Soutput}
+[1] 1.000000 0.585098 0.000000 0.000000 0.000000 0.000000
+\end{Soutput}
+%
+% --end: "hedge"
+\end{Schunk}
+
+
+\begin{Schunk}
+% --begin: "lingexpr"
+\begin{Sinput}
+R> ve.sm2 <- lingexpr(ctx, atomic = "sm", hedge = "ve")
+R> ve.sm2(seq(from = 0, to = 0.5, by = 0.1))
+\end{Sinput}
+\begin{Soutput}
+[1] 1.000000 0.585098 0.000000 0.000000 0.000000 0.000000
+\end{Soutput}
+%
+% --end: "lingexpr"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "emptyhedge1"
+\begin{Sinput}
+R> emptyHedge <- hedge("-")
+R> sm <- function(x) emptyHedge(smHoriz(x))
+R> sm(seq(from = 0, to = 0.5, by = 0.1))
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0000000 0.9620685 0.2439553 0.0000000 0.0000000 0.0000000
+\end{Soutput}
+%
+% --end: "emptyhedge1"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "emptyhedge2"
+\begin{Sinput}
+R> sm2 <- lingexpr(ctx, atomic = "sm", hedge = "-")
+R> sm2(seq(from = 0, to = 0.5, by = 0.1))
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0000000 0.9620685 0.2439553 0.0000000 0.0000000 0.0000000
+\end{Soutput}
+%
+% --end: "emptyhedge2"
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> createListOfExpressions <- function(context, atomic, hedges) {
++      res <- lapply(hedges, function(h) {
++          lingexpr(context, atomic = atomic, hedge = h)
++      })
++      names(res) <- paste(hedges, atomic, sep = ".")
++      res
++  }
+R> 
+R> createPlot <- function(l, xlims = c(0, 1), legendName = "expression", legendBottom = FALSE) {
++      g <- ggplot(data = data.frame(x = 0), mapping = aes(x = x))
++      for (n in names(l)) {
++          f <- l[[n]]
++          g <- g + stat_function(aes_(color = n), fun = f)
++      }
++      g <- g + xlim(xlims[1], xlims[2]) + labs(x = "", y = "", colour = legendName)
++      if (legendBottom) {
++          g <- g + theme(legend.position = "bottom", legend.direction = "vertical")
++      }
++      g
++  }
+R> 
+R> ctx <- ctx3()
+R> smList <- createListOfExpressions(ctx, "sm", c("ex", "si", "ve", "-", "ml", 
++      "ro", "qr", "vr"))
+R> meList <- createListOfExpressions(ctx, "me", c("ty", "-", "ml", "ro", "qr", 
++      "vr"))
+R> biList <- createListOfExpressions(ctx, "bi", c("ex", "si", "ve", "-", "ml", 
++      "ro", "qr", "vr"))
+R> 
+R> createPlot(smList)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> createPlot(meList)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> createPlot(biList)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "triangular"
+\begin{Sinput}
+R> tri <- triangular(0, 0.5, 1)
+R> tri(seq(from = 0, to = 1, by = 0.2))
+\end{Sinput}
+\begin{Soutput}
+[1] 0.0 0.4 0.8 0.8 0.4 0.0
+\end{Soutput}
+\begin{Sinput}
+R> rcos <- raisedcosine(0, 0.5, 1)
+R> rcos(seq(from = 0, to = 1, by = 0.2))
+\end{Sinput}
+\begin{Soutput}
+[1] 0.0000000 0.3454915 0.9045085 0.9045085 0.3454915 0.0000000
+\end{Soutput}
+%
+% --end: "triangular"
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
++      fun = triangular(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
++      theme(legend.position = "none")
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
++      fun = triangular(-Inf, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
++      theme(legend.position = "none")
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
++      fun = raisedcosine(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
++      theme(legend.position = "none")
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
++      fun = raisedcosine(0, 0.5, Inf)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
++      theme(legend.position = "none")
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "lcut.logical"
+\begin{Sinput}
+R> logvec <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+R> lcut(logvec)
+\end{Sinput}
+\begin{Soutput}
+     logvec not.logvec
+[1,]      1          0
+[2,]      0          1
+[3,]      0          1
+[4,]      1          0
+[5,]      1          0
+\end{Soutput}
+\begin{Sinput}
+R> lcut(logvec, name = "employed")
+\end{Sinput}
+\begin{Soutput}
+     employed not.employed
+[1,]        1            0
+[2,]        0            1
+[3,]        0            1
+[4,]        1            0
+[5,]        1            0
+\end{Soutput}
+%
+% --end: "lcut.logical"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "lcut.factor"
+\begin{Sinput}
+R> position <- factor(c("worker", "manager", "worker", "worker", "accountant"))
+R> lcut(position)
+\end{Sinput}
+\begin{Soutput}
+     position=accountant position=manager position=worker
+[1,]                   0                0               1
+[2,]                   0                1               0
+[3,]                   0                0               1
+[4,]                   0                0               1
+[5,]                   1                0               0
+\end{Soutput}
+%
+% --end: "lcut.factor"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "lcut.numeric"
+\begin{Sinput}
+R> age <- round(runif(n = 5, min = 18, max = 65))
+R> print(age)
+\end{Sinput}
+\begin{Soutput}
+[1] 55 32 41 52 51
+\end{Soutput}
+\begin{Sinput}
+R> lcut(age, context = ctx3(low = 0, high = 100))
+\end{Sinput}
+\begin{Soutput}
+     ex.sm.age si.sm.age ve.sm.age sm.age ml.sm.age ro.sm.age qr.sm.age
+[1,]         0         0         0      0         0         0 0.0000000
+[2,]         0         0         0      0         0         0 0.1315789
+[3,]         0         0         0      0         0         0 0.0000000
+[4,]         0         0         0      0         0         0 0.0000000
+[5,]         0         0         0      0         0         0 0.0000000
+     vr.sm.age  ty.me.age    me.age ml.me.age ro.me.age qr.me.age vr.me.age
+[1,] 0.0000000 0.04761905 1.0000000 1.0000000         1         1         1
+[2,] 0.9475480 0.00000000 0.3914128 0.7993319         1         1         1
+[3,] 0.1993769 0.00000000 0.9859853 1.0000000         1         1         1
+[4,] 0.0000000 0.73333333 1.0000000 1.0000000         1         1         1
+[5,] 0.0000000 0.93333333 1.0000000 1.0000000         1         1         1
+     ex.bi.age si.bi.age ve.bi.age bi.age ml.bi.age ro.bi.age qr.bi.age
+[1,]         0         0         0      0         0         0         0
+[2,]         0         0         0      0         0         0         0
+[3,]         0         0         0      0         0         0         0
+[4,]         0         0         0      0         0         0         0
+[5,]         0         0         0      0         0         0         0
+     vr.bi.age
+[1,]         0
+[2,]         0
+[3,]         0
+[4,]         0
+[5,]         0
+\end{Soutput}
+%
+% --end: "lcut.numeric"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "lcut.data.frame"
+\begin{Sinput}
+R> data <- data.frame(position=position,
++                     age=age,
++                     employed=logvec)
+R> print(data)
+\end{Sinput}
+\begin{Soutput}
+    position age employed
+1     worker  55     TRUE
+2    manager  32    FALSE
+3     worker  41    FALSE
+4     worker  52     TRUE
+5 accountant  51     TRUE
+\end{Soutput}
+\begin{Sinput}
+R> employees <- lcut(data,
++       context=ctx3(low=0, high=100),
++       atomic=c("sm", "me", "bi"),
++       hedges=c("ve", "-", "ro"))
+R> print(employees)
+\end{Sinput}
+\begin{Soutput}
+     position=accountant position=manager position=worker ve.sm.age sm.age
+[1,]                   0                0               1         0      0
+[2,]                   0                1               0         0      0
+[3,]                   0                0               1         0      0
+[4,]                   0                0               1         0      0
+[5,]                   1                0               0         0      0
+     ro.sm.age    me.age ro.me.age ve.bi.age bi.age ro.bi.age employed
+[1,]         0 1.0000000         1         0      0         0        1
+[2,]         0 0.3914128         1         0      0         0        0
+[3,]         0 0.9859853         1         0      0         0        0
+[4,]         0 1.0000000         1         0      0         0        1
+[5,]         0 1.0000000         1         0      0         0        1
+     not.employed
+[1,]            0
+[2,]            1
+[3,]            1
+[4,]            0
+[5,]            0
+\end{Soutput}
+%
+% --end: "lcut.data.frame"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "lcut.data.frame2"
+\begin{Sinput}
+R> data$salary <- round(runif(n=5, min=1000, max=20000))
+R> print(data)
+\end{Sinput}
+\begin{Soutput}
+    position age employed salary
+1     worker  55     TRUE   7728
+2    manager  32    FALSE  16279
+3     worker  41    FALSE  15044
+4     worker  52     TRUE   6226
+5 accountant  51     TRUE   1838
+\end{Soutput}
+\begin{Sinput}
+R> employees <- lcut(data,
++                    context=list(age=ctx3(low=0, high=100),
++                                 salary=ctx3(low=500, high=50000)),
++                    atomic=list(salary=c("sm", "bi")), # age is default
++                    hedges=list(age=c("ve", "-", "ro"),
++                                salary=c("ex", "ve", "-", "ro")))
+R> print(employees)
+\end{Sinput}
+\begin{Soutput}
+     position=accountant position=manager position=worker ve.sm.age sm.age
+[1,]                   0                0               1         0      0
+[2,]                   0                1               0         0      0
+[3,]                   0                0               1         0      0
+[4,]                   0                0               1         0      0
+[5,]                   1                0               0         0      0
+     ro.sm.age    me.age ro.me.age ve.bi.age bi.age ro.bi.age employed
+[1,]         0 1.0000000         1         0      0         0        1
+[2,]         0 0.3914128         1         0      0         0        0
+[3,]         0 0.9859853         1         0      0         0        0
+[4,]         0 1.0000000         1         0      0         0        1
+[5,]         0 1.0000000         1         0      0         0        1
+     not.employed ex.sm.salary ve.sm.salary sm.salary ro.sm.salary ex.bi.salary
+[1,]            0    0.0000000    0.0693853 0.7016150  1.000000000            0
+[2,]            1    0.0000000    0.0000000 0.0000000  0.000000000            0
+[3,]            1    0.0000000    0.0000000 0.0000000  0.005816572            0
+[4,]            0    0.0000000    0.3560801 0.9010937  1.000000000            0
+[5,]            0    0.9019527    1.0000000 1.0000000  1.000000000            0
+     ve.bi.salary bi.salary ro.bi.salary
+[1,]            0         0            0
+[2,]            0         0            0
+[3,]            0         0            0
+[4,]            0         0            0
+[5,]            0         0            0
+\end{Soutput}
+%
+% --end: "lcut.data.frame2"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "lcut.vars"
+\begin{Sinput}
+R> vars(employees)
+\end{Sinput}
+\begin{Soutput}
+ [1] "position" "position" "position" "age"      "age"      "age"     
+ [7] "age"      "age"      "age"      "age"      "age"      "employed"
+[13] "employed" "salary"   "salary"   "salary"   "salary"   "salary"  
+[19] "salary"   "salary"   "salary"  
+\end{Soutput}
+%
+% --end: "lcut.vars"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "lcut.specs"
+\begin{Sinput}
+R> specs(employees)[1:6, 1:6]
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    0    0    0    0    0    0
+[2,]    0    0    0    0    0    0
+[3,]    0    0    0    0    0    0
+[4,]    0    0    0    0    1    1
+[5,]    0    0    0    0    0    1
+[6,]    0    0    0    0    0    0
+\end{Soutput}
+%
+% --end: "lcut.specs"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "fcut.logfact"
+\begin{Sinput}
+R> logvec <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+R> position <- factor(c("worker", "manager", "worker", "worker", "accountant"))
+R> fcut(data.frame(employed = logvec, position = position))
+\end{Sinput}
+\begin{Soutput}
+     employed not.employed position=accountant position=manager position=worker
+[1,]        1            0                   0                0               1
+[2,]        0            1                   0                1               0
+[3,]        0            1                   0                0               1
+[4,]        1            0                   0                0               1
+[5,]        1            0                   1                0               0
+\end{Soutput}
+%
+% --end: "fcut.logfact"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "fcut.numeric1"
+\begin{Sinput}
+R> numvec <- 1:9
+R> fcut(numvec,
++       breaks=c(1, 5, 9),
++       type="triangle")
+\end{Sinput}
+\begin{Soutput}
+      numvec=1
+ [1,]     0.00
+ [2,]     0.25
+ [3,]     0.50
+ [4,]     0.75
+ [5,]     1.00
+ [6,]     0.75
+ [7,]     0.50
+ [8,]     0.25
+ [9,]     0.00
+\end{Soutput}
+%
+% --end: "fcut.numeric1"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "fcut.triangular"
+\begin{Sinput}
+R> triangular(1, 5, 9)(numvec)
+\end{Sinput}
+\begin{Soutput}
+[1] 0.00 0.25 0.50 0.75 1.00 0.75 0.50 0.25 0.00
+\end{Soutput}
+%
+% --end: "fcut.triangular"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "fcut.numeric2"
+\begin{Sinput}
+R> fcut(numvec,
++       breaks=c(1, 3, 5, 7, 9),
++       type="triangle")
+\end{Sinput}
+\begin{Soutput}
+      numvec=1 numvec=2 numvec=3
+ [1,]      0.0      0.0      0.0
+ [2,]      0.5      0.0      0.0
+ [3,]      1.0      0.0      0.0
+ [4,]      0.5      0.5      0.0
+ [5,]      0.0      1.0      0.0
+ [6,]      0.0      0.5      0.5
+ [7,]      0.0      0.0      1.0
+ [8,]      0.0      0.0      0.5
+ [9,]      0.0      0.0      0.0
+\end{Soutput}
+%
+% --end: "fcut.numeric2"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "fcut.merge"
+\begin{Sinput}
+R> fcut(numvec,
++       breaks=c(1, 3, 5, 7, 9),
++       merge=2,
++       type="triangle")
+\end{Sinput}
+\begin{Soutput}
+      numvec=1|numvec=2 numvec=2|numvec=3
+ [1,]               0.0               0.0
+ [2,]               0.5               0.0
+ [3,]               1.0               0.0
+ [4,]               1.0               0.5
+ [5,]               1.0               1.0
+ [6,]               0.5               1.0
+ [7,]               0.0               1.0
+ [8,]               0.0               0.5
+ [9,]               0.0               0.0
+\end{Soutput}
+\begin{Sinput}
+R> fcut(numvec,
++       breaks=c(1, 3, 5, 7, 9),
++       merge=3,
++       type="triangle")
+\end{Sinput}
+\begin{Soutput}
+      numvec=1|numvec=2|numvec=3
+ [1,]                        0.0
+ [2,]                        0.5
+ [3,]                        1.0
+ [4,]                        1.0
+ [5,]                        1.0
+ [6,]                        1.0
+ [7,]                        1.0
+ [8,]                        0.5
+ [9,]                        0.0
+\end{Soutput}
+%
+% --end: "fcut.merge"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "fcut.merge2"
+\begin{Sinput}
+R> fcut(numvec,
++       breaks=c(1, 3, 5, 7, 9),
++       merge=c(1, 2, 3),
++       type="triangle")
+\end{Sinput}
+\begin{Soutput}
+      numvec=1 numvec=2 numvec=3 numvec=1|numvec=2 numvec=2|numvec=3
+ [1,]      0.0      0.0      0.0               0.0               0.0
+ [2,]      0.5      0.0      0.0               0.5               0.0
+ [3,]      1.0      0.0      0.0               1.0               0.0
+ [4,]      0.5      0.5      0.0               1.0               0.5
+ [5,]      0.0      1.0      0.0               1.0               1.0
+ [6,]      0.0      0.5      0.5               0.5               1.0
+ [7,]      0.0      0.0      1.0               0.0               1.0
+ [8,]      0.0      0.0      0.5               0.0               0.5
+ [9,]      0.0      0.0      0.0               0.0               0.0
+      numvec=1|numvec=2|numvec=3
+ [1,]                        0.0
+ [2,]                        0.5
+ [3,]                        1.0
+ [4,]                        1.0
+ [5,]                        1.0
+ [6,]                        1.0
+ [7,]                        1.0
+ [8,]                        0.5
+ [9,]                        0.0
+\end{Soutput}
+%
+% --end: "fcut.merge2"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "fcut.varsspecs"
+\begin{Sinput}
+R> fd <- fcut(numvec,
++             breaks=c(1, 3, 5, 7, 9),
++             merge=c(1, 2, 3),
++             type="triangle")
+R> colnames(fd)
+\end{Sinput}
+\begin{Soutput}
+[1] "numvec=1"                   "numvec=2"                  
+[3] "numvec=3"                   "numvec=1|numvec=2"         
+[5] "numvec=2|numvec=3"          "numvec=1|numvec=2|numvec=3"
+\end{Soutput}
+\begin{Sinput}
+R> vars(fd)
+\end{Sinput}
+\begin{Soutput}
+[1] "numvec" "numvec" "numvec" "numvec" "numvec" "numvec"
+\end{Soutput}
+\begin{Sinput}
+R> specs(fd)
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    0    0    0    1    0    1
+[2,]    0    0    0    1    1    1
+[3,]    0    0    0    0    1    1
+[4,]    0    0    0    0    0    1
+[5,]    0    0    0    0    0    1
+[6,]    0    0    0    0    0    0
+\end{Soutput}
+%
+% --end: "fcut.varsspecs"
+\end{Schunk}
+
+
+\begin{Schunk}
+\begin{Sinput}
+R> l <- list(`numvec=1` = triangular(1, 3, 5), `numvec=2` = triangular(3, 
++      5, 7), `numvec=3` = triangular(5, 7, 9))
+R> createPlot(l, xlims = c(0, 10), legendName = "", legendBottom = TRUE)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> mrg <- function(f1, f2) {
++      function(x) {
++          plukas.tconorm(f1(x), f2(x))
++      }
++  }
+R> l <- list(`numvec=1|numvec=2` = mrg(triangular(1, 3, 5), triangular(3, 
++      5, 7)), `numvec=2|numvec=3` = mrg(triangular(3, 5, 7), triangular(5, 
++      7, 9)))
+R> createPlot(l, xlims = c(0, 10), legendName = "", legendBottom = TRUE)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> mrg2 <- function(f1, f2, f3) {
++      function(x) {
++          plukas.tconorm(f1(x), f2(x), f3(x))
++      }
++  }
+R> l <- list(`numvec=1|numvec=2|numvec=3` = mrg2(triangular(1, 3, 5), triangular(3, 
++      5, 7), triangular(5, 7, 9)))
+R> createPlot(l, xlims = c(0, 10), legendName = "", legendBottom = TRUE)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "quant1"
+\begin{Sinput}
+R> atLeast5 <- sugeno(measure=function(x) as.numeric(x >= 5),
++                     relative=FALSE,
++                     alg="lukasiewicz")
+R> args(atLeast5)
+\end{Sinput}
+\begin{Soutput}
+function (x, w = 1) 
+NULL
+\end{Soutput}
+%
+% --end: "quant1"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "quant2"
+\begin{Sinput}
+R> A <- c(1, 0.8, 1, 1, 1, 0)
+R> atLeast5(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0 0 0 0 1 1
+\end{Soutput}
+\begin{Soutput}
+[1] 0.8
+\end{Soutput}
+%
+% --end: "quant2"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "quant3"
+\begin{Sinput}
+R> B <- c(0.5, 1, 1, 1, 0.9, 1)
+R> atLeast5(lukas.residuum(B, A))
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0 0 0 0 1 1
+\end{Soutput}
+\begin{Soutput}
+[1] 0.8
+\end{Soutput}
+%
+% --end: "quant3"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "quant4"
+\begin{Sinput}
+R> atLeast5(lukas.residuum(B, A), w = B)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0 0 0 0 0 1
+\end{Soutput}
+\begin{Soutput}
+[1] 0
+\end{Soutput}
+%
+% --end: "quant4"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "quant5"
+\begin{Sinput}
+R> almost <- quantifier("almost.all")
+R> most <- quantifier("most")
+R> many <- quantifier("many")
+R> almost(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0 0 0 0 0 1
+\end{Soutput}
+\begin{Soutput}
+[1] 0
+\end{Soutput}
+\begin{Sinput}
+R> most(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0.000000000 0.000000000 0.000000000 0.000000000 0.001340707 1.000000000
+\end{Soutput}
+\begin{Soutput}
+[1] 0.001340707
+\end{Soutput}
+\begin{Sinput}
+R> many(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0.4910068 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+\end{Soutput}
+\begin{Soutput}
+[1] 1
+\end{Soutput}
+%
+% --end: "quant5"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "quant6"
+\begin{Sinput}
+R> allq <- quantifier("all")
+R> some <- quantifier("some")
+R> allq(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0 0 0 0 0 1
+\end{Soutput}
+\begin{Soutput}
+[1] 0
+\end{Soutput}
+\begin{Sinput}
+R> some(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 1 1 1 1 1 1
+\end{Soutput}
+\begin{Soutput}
+[1] 1
+\end{Soutput}
+%
+% --end: "quant6"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "quant7"
+\begin{Sinput}
+R> atLeast4 <- quantifier("at.least", n = 4)
+R> atLeast4(A)
+\end{Sinput}
+\begin{Soutput}
+[1] 1.0 1.0 1.0 1.0 0.8 0.0
+[1] 0 0 0 1 1 1
+\end{Soutput}
+\begin{Soutput}
+[1] 1
+\end{Soutput}
+%
+% --end: "quant7"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "searchrules"
+\begin{Sinput}
+R> rb <- searchrules(employees,
++                    lhs=seq_len(ncol(employees)),
++                    rhs=seq_len(ncol(employees)),
++                    minSupport=0.5,
++                    minConfidence=0.8,
++                    maxLength=3)
+R> print(rb)
+\end{Sinput}
+\begin{Soutput}
+                                       support lhsSupport rhsSupport confidence
+sm.salary => me.age                  0.5205418  0.5205418  0.8754796  1.0000000
+ => ro.me.age                        1.0000000  1.0000000  1.0000000  1.0000000
+employed => me.age                   0.6000000  0.6000000  0.8754796  1.0000000
+employed => ro.sm.salary             0.6000000  0.6000000  0.6011633  1.0000000
+sm.salary => employed                0.5205418  0.5205418  0.6000000  1.0000000
+ro.sm.salary => me.age               0.6011633  0.6011633  0.8754796  1.0000000
+me.age & ro.sm.salary => employed    0.6000000  0.6011633  0.6000000  0.9980650
+ro.sm.salary => employed             0.6000000  0.6011633  0.6000000  0.9980650
+ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633  0.6000000  0.9980650
+position=worker => me.age            0.5971971  0.6000000  0.8754796  0.9953284
+ => me.age                           0.8754796  1.0000000  0.8754796  0.8754796
+ro.me.age & employed => sm.salary    0.5205418  0.6000000  0.5205418  0.8675696
+me.age & employed => sm.salary       0.5205418  0.6000000  0.5205418  0.8675696
+employed => sm.salary                0.5205418  0.6000000  0.5205418  0.8675696
+\end{Soutput}
+%
+% --end: "searchrules"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "searchrules2"
+\begin{Sinput}
+R> str(rb)
+\end{Sinput}
+\begin{Soutput}
+List of 2
+ $ rules     :List of 14
+  ..$ : chr [1:2] "me.age" "sm.salary"
+  ..$ : chr "ro.me.age"
+  ..$ : chr [1:2] "me.age" "employed"
+  ..$ : chr [1:2] "ro.sm.salary" "employed"
+  ..$ : chr [1:2] "employed" "sm.salary"
+  ..$ : chr [1:2] "me.age" "ro.sm.salary"
+  ..$ : chr [1:3] "employed" "me.age" "ro.sm.salary"
+  ..$ : chr [1:2] "employed" "ro.sm.salary"
+  ..$ : chr [1:3] "employed" "ro.me.age" "ro.sm.salary"
+  ..$ : chr [1:2] "me.age" "position=worker"
+  ..$ : chr "me.age"
+  ..$ : chr [1:3] "sm.salary" "ro.me.age" "employed"
+  ..$ : chr [1:3] "sm.salary" "me.age" "employed"
+  ..$ : chr [1:2] "sm.salary" "employed"
+ $ statistics: num [1:14, 1:4] 0.521 1 0.6 0.6 0.521 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : NULL
+  .. ..$ : chr [1:4] "support" "lhsSupport" "rhsSupport" "confidence"
+ - attr(*, "class")= chr [1:2] "farules" "list"
+\end{Soutput}
+%
+% --end: "searchrules2"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "searchrules3"
+\begin{Sinput}
+R> as.data.frame(rb)
+\end{Sinput}
+\begin{Soutput}
+                                       support lhsSupport rhsSupport confidence
+sm.salary => me.age                  0.5205418  0.5205418  0.8754796  1.0000000
+ => ro.me.age                        1.0000000  1.0000000  1.0000000  1.0000000
+employed => me.age                   0.6000000  0.6000000  0.8754796  1.0000000
+employed => ro.sm.salary             0.6000000  0.6000000  0.6011633  1.0000000
+sm.salary => employed                0.5205418  0.5205418  0.6000000  1.0000000
+ro.sm.salary => me.age               0.6011633  0.6011633  0.8754796  1.0000000
+me.age & ro.sm.salary => employed    0.6000000  0.6011633  0.6000000  0.9980650
+ro.sm.salary => employed             0.6000000  0.6011633  0.6000000  0.9980650
+ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633  0.6000000  0.9980650
+position=worker => me.age            0.5971971  0.6000000  0.8754796  0.9953284
+ => me.age                           0.8754796  1.0000000  0.8754796  0.8754796
+ro.me.age & employed => sm.salary    0.5205418  0.6000000  0.5205418  0.8675696
+me.age & employed => sm.salary       0.5205418  0.6000000  0.5205418  0.8675696
+employed => sm.salary                0.5205418  0.6000000  0.5205418  0.8675696
+\end{Soutput}
+%
+% --end: "searchrules3"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "searchrules4"
+\begin{Sinput}
+R> antecedents(rb)[1:3]
+\end{Sinput}
+\begin{Soutput}
+[[1]]
+[1] "sm.salary"
+
+[[2]]
+character(0)
+
+[[3]]
+[1] "employed"
+\end{Soutput}
+\begin{Sinput}
+R> consequents(rb)[1:3]
+\end{Sinput}
+\begin{Soutput}
+[[1]]
+[1] "me.age"
+
+[[2]]
+[1] "ro.me.age"
+
+[[3]]
+[1] "me.age"
+\end{Soutput}
+%
+% --end: "searchrules4"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "reduce"
+\begin{Sinput}
+R> rb <- searchrules(employees, lhs = 1:13, rhs = 14:21, minSupport = 0.2, 
++      minConfidence = 0.6, maxLength = 3)
+R> nrow(as.data.frame(rb))
+\end{Sinput}
+\begin{Soutput}
+[1] 14
+\end{Soutput}
+\begin{Sinput}
+R> reduced <- reduce(employees, rb, 0.9)
+R> nrow(as.data.frame(reduced))
+\end{Sinput}
+\begin{Soutput}
+[1] 3
+\end{Soutput}
+%
+% --end: "reduce"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "pbld1"
+\begin{Sinput}
+R> head(CO2)
+\end{Sinput}
+\begin{Soutput}
+Grouped Data: uptake ~ conc | Plant
+  Plant   Type  Treatment conc uptake
+1   Qn1 Quebec nonchilled   95   16.0
+2   Qn1 Quebec nonchilled  175   30.4
+3   Qn1 Quebec nonchilled  250   34.8
+4   Qn1 Quebec nonchilled  350   37.2
+5   Qn1 Quebec nonchilled  500   35.3
+6   Qn1 Quebec nonchilled  675   39.2
+\end{Soutput}
+%
+% --end: "pbld1"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "pbld2"
+\begin{Sinput}
+R> uptakeContext <- ctx3(7, 28.3, 46)
+R> d <- lcut(CO2, context = list(uptake = uptakeContext))
+R> colnames(d)
+\end{Sinput}
+\begin{Soutput}
+ [1] "Plant=Qn1"            "Plant=Qn2"            "Plant=Qn3"           
+ [4] "Plant=Qc1"            "Plant=Qc3"            "Plant=Qc2"           
+ [7] "Plant=Mn3"            "Plant=Mn2"            "Plant=Mn1"           
+[10] "Plant=Mc2"            "Plant=Mc3"            "Plant=Mc1"           
+[13] "Type=Quebec"          "Type=Mississippi"     "Treatment=nonchilled"
+[16] "Treatment=chilled"    "ex.sm.conc"           "si.sm.conc"          
+[19] "ve.sm.conc"           "sm.conc"              "ml.sm.conc"          
+[22] "ro.sm.conc"           "qr.sm.conc"           "vr.sm.conc"          
+[25] "ty.me.conc"           "me.conc"              "ml.me.conc"          
+[28] "ro.me.conc"           "qr.me.conc"           "vr.me.conc"          
+[31] "ex.bi.conc"           "si.bi.conc"           "ve.bi.conc"          
+[34] "bi.conc"              "ml.bi.conc"           "ro.bi.conc"          
+[37] "qr.bi.conc"           "vr.bi.conc"           "ex.sm.uptake"        
+[40] "si.sm.uptake"         "ve.sm.uptake"         "sm.uptake"           
+[43] "ml.sm.uptake"         "ro.sm.uptake"         "qr.sm.uptake"        
+[46] "vr.sm.uptake"         "ty.me.uptake"         "me.uptake"           
+[49] "ml.me.uptake"         "ro.me.uptake"         "qr.me.uptake"        
+[52] "vr.me.uptake"         "ex.bi.uptake"         "si.bi.uptake"        
+[55] "ve.bi.uptake"         "bi.uptake"            "ml.bi.uptake"        
+[58] "ro.bi.uptake"         "qr.bi.uptake"         "vr.bi.uptake"        
+\end{Soutput}
+%
+% --end: "pbld2"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "pbld3"
+\begin{Sinput}
+R> testingIndices <- sort(sample(seq_len(nrow(d)), 10))
+R> print(testingIndices)
+\end{Sinput}
+\begin{Soutput}
+ [1]  8 32 44 46 51 61 67 78 81 84
+\end{Soutput}
+\begin{Sinput}
+R> training <- d[-testingIndices, ]
+R> testing <- d[testingIndices, ]
+\end{Sinput}
+%
+% --end: "pbld3"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "pbld4"
+\begin{Sinput}
+R> rb <- searchrules(training,
++                    lhs=which(vars(d) != "uptake"),
++                    rhs=which(vars(d) == "uptake"),
++                    minConfidence=0.5)
+\end{Sinput}
+%
+% --end: "pbld4"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "pbld5"
+\begin{Sinput}
+R> v <- seq(uptakeContext[1], uptakeContext[3], length.out = 1000)
+R> p <- lcut(v, name = "uptake", context = uptakeContext)
+R> head(v)
+\end{Sinput}
+\begin{Soutput}
+[1] 7.000000 7.039039 7.078078 7.117117 7.156156 7.195195
+\end{Soutput}
+\begin{Sinput}
+R> head(p)
+\end{Sinput}
+\begin{Soutput}
+     ex.sm.uptake si.sm.uptake ve.sm.uptake sm.uptake ml.sm.uptake ro.sm.uptake
+[1,]            1            1            1         1            1            1
+[2,]            1            1            1         1            1            1
+[3,]            1            1            1         1            1            1
+[4,]            1            1            1         1            1            1
+[5,]            1            1            1         1            1            1
+[6,]            1            1            1         1            1            1
+     qr.sm.uptake vr.sm.uptake ty.me.uptake me.uptake ml.me.uptake ro.me.uptake
+[1,]            1            1            0         0            0            0
+[2,]            1            1            0         0            0            0
+[3,]            1            1            0         0            0            0
+[4,]            1            1            0         0            0            0
+[5,]            1            1            0         0            0            0
+[6,]            1            1            0         0            0            0
+     qr.me.uptake vr.me.uptake ex.bi.uptake si.bi.uptake ve.bi.uptake bi.uptake
+[1,]            0            0            0            0            0         0
+[2,]            0            0            0            0            0         0
+[3,]            0            0            0            0            0         0
+[4,]            0            0            0            0            0         0
+[5,]            0            0            0            0            0         0
+[6,]            0            0            0            0            0         0
+     ml.bi.uptake ro.bi.uptake qr.bi.uptake vr.bi.uptake
+[1,]            0            0            0            0
+[2,]            0            0            0            0
+[3,]            0            0            0            0
+[4,]            0            0            0            0
+[5,]            0            0            0            0
+[6,]            0            0            0            0
+\end{Soutput}
+%
+% --end: "pbld5"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "pbld6"
+\begin{Sinput}
+R> pbld(testing, rb, p, v, type = "global")
+\end{Sinput}
+\begin{Soutput}
+ [1] 27.26126  7.00000 22.22523  7.00000 22.22523  7.00000 21.79580 15.43243
+ [9] 19.29730 19.29730
+\end{Soutput}
+%
+% --end: "pbld6"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "pbld_custom"
+\begin{Sinput}
+R> rules <- list(c("me.uptake", "Plant=Mc1", "sm.conc"),
++                c("sm.uptake", "Type=Mississippi"),
++                c("bi.uptake", "Treatment=nonchilled", "ro.me.conc"))
+R> pbld(testing, rules, p, v)
+\end{Sinput}
+\begin{Soutput}
+ [1]  7.00000  7.00000 10.16216 10.16216 10.16216  7.00000 10.16216 10.16216
+ [9] 10.16216 10.16216
+\end{Soutput}
+%
+% --end: "pbld_custom"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "fire"
+\begin{Sinput}
+R> x <- 1:10 / 10
+R> names(x) <- letters[1:10]
+R> print(x)
+\end{Sinput}
+\begin{Soutput}
+  a   b   c   d   e   f   g   h   i   j 
+0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0 
+\end{Soutput}
+\begin{Sinput}
+R> rules <- list(c("a", "c", "e"),
++                c("b"),
++                c("d", "a"),
++                c("c", "a", "b"))
+R> fire(x, rules, tnorm="goguen", onlyAnte=FALSE)
+\end{Sinput}
+\begin{Soutput}
+[[1]]
+[1] 0.015
+
+[[2]]
+[1] 0.2
+
+[[3]]
+[1] 0.04
+
+[[4]]
+[1] 0.006
+\end{Soutput}
+%
+% --end: "fire"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "frbe"
+\begin{Sinput}
+R> myts <- ts(1:100 + rnorm(100), frequency=24)   # hourly frequency
+R> fit <- frbe(myts, h=10)
+R> fit$mean
+\end{Sinput}
+\begin{Soutput}
+ [1] 100.6985 101.5266 102.4545 103.3453 104.0120 105.0145 105.8917 106.7647
+ [9] 107.6654 108.4846
+\end{Soutput}
+%
+% --end: "frbe"
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+R> sessionInfo()
+\end{Sinput}
+\begin{Soutput}
+R version 4.0.3 (2020-10-10)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.1 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=cs_CZ.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=cs_CZ.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=cs_CZ.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=cs_CZ.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] lfl_2.1.1        ggplot2_3.3.2    knitr_1.30       testthat_3.0.0  
+[5] assertthat_0.2.1 usethis_1.6.3   
+
+loaded via a namespace (and not attached):
+ [1] zoo_1.8-8         tidyselect_1.1.0  xfun_0.19         purrr_0.3.4      
+ [5] urca_1.3-0        lattice_0.20-41   colorspace_2.0-0  vctrs_0.3.5      
+ [9] generics_0.1.0    rlang_0.4.9       e1071_1.7-4       pillar_1.4.7     
+[13] glue_1.4.2        withr_2.3.0       forecast_8.13     TTR_0.24.2       
+[17] foreach_1.5.1     lifecycle_0.2.0   plyr_1.8.6        quantmod_0.4.17  
+[21] stringr_1.4.0     timeDate_3043.102 munsell_0.5.0     gtable_0.3.0     
+[25] codetools_0.2-18  evaluate_0.14     labeling_0.4.2    tseries_0.10-47  
+[29] lmtest_0.9-38     parallel_4.0.3    curl_4.3          class_7.3-17     
+[33] xts_0.12.1        Rcpp_1.0.5        scales_1.1.1      formatR_1.7      
+[37] farver_2.0.3      fs_1.5.0          fracdiff_1.5-1    digest_0.6.27    
+[41] stringi_1.5.3     dplyr_1.0.2       grid_4.0.3        quadprog_1.5-8   
+[45] tools_4.0.3       magrittr_2.0.1    tibble_3.0.4      crayon_1.3.4     
+[49] pkgconfig_2.0.3   ellipsis_0.3.1    iterators_1.0.13  R6_2.5.0         
+[53] nnet_7.3-14       nlme_3.1-150      compiler_4.0.3   
+\end{Soutput}
+\end{Schunk}
+
+\end{document}

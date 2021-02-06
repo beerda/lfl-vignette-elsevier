@@ -1241,30 +1241,7 @@ Grouped Data: uptake ~ conc | Plant
 \begin{Sinput}
 R> uptakeContext <- ctx3(7, 28.3, 46)
 R> d <- lcut(CO2, context = list(uptake = uptakeContext))
-R> colnames(d)
 \end{Sinput}
-\begin{Soutput}
- [1] "Plant=Qn1"            "Plant=Qn2"            "Plant=Qn3"           
- [4] "Plant=Qc1"            "Plant=Qc3"            "Plant=Qc2"           
- [7] "Plant=Mn3"            "Plant=Mn2"            "Plant=Mn1"           
-[10] "Plant=Mc2"            "Plant=Mc3"            "Plant=Mc1"           
-[13] "Type=Quebec"          "Type=Mississippi"     "Treatment=nonchilled"
-[16] "Treatment=chilled"    "ex.sm.conc"           "si.sm.conc"          
-[19] "ve.sm.conc"           "sm.conc"              "ml.sm.conc"          
-[22] "ro.sm.conc"           "qr.sm.conc"           "vr.sm.conc"          
-[25] "ty.me.conc"           "me.conc"              "ml.me.conc"          
-[28] "ro.me.conc"           "qr.me.conc"           "vr.me.conc"          
-[31] "ex.bi.conc"           "si.bi.conc"           "ve.bi.conc"          
-[34] "bi.conc"              "ml.bi.conc"           "ro.bi.conc"          
-[37] "qr.bi.conc"           "vr.bi.conc"           "ex.sm.uptake"        
-[40] "si.sm.uptake"         "ve.sm.uptake"         "sm.uptake"           
-[43] "ml.sm.uptake"         "ro.sm.uptake"         "qr.sm.uptake"        
-[46] "vr.sm.uptake"         "ty.me.uptake"         "me.uptake"           
-[49] "ml.me.uptake"         "ro.me.uptake"         "qr.me.uptake"        
-[52] "vr.me.uptake"         "ex.bi.uptake"         "si.bi.uptake"        
-[55] "ve.bi.uptake"         "bi.uptake"            "ml.bi.uptake"        
-[58] "ro.bi.uptake"         "qr.bi.uptake"         "vr.bi.uptake"        
-\end{Soutput}
 %
 % --end: "pbld2"
 \end{Schunk}

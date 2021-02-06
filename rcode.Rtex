@@ -507,7 +507,6 @@ head(CO2, n=4)
 <<export='pbld2'>>=
 uptakeContext <- ctx3(7, 28.3, 46)
 d <- lcut(CO2, context=list(uptake=uptakeContext))
-colnames(d)
 @
 
 <<export='pbld3'>>=

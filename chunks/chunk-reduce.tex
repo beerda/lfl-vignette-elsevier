@@ -6,14 +6,14 @@ R> rb <- searchrules(employees, lhs = 1:13, rhs = 14:21, minSupport = 0.2,
 R> nrow(as.data.frame(rb))
 \end{Sinput}
 \begin{Soutput}
-[1] 14
+[1] 2
 \end{Soutput}
 \begin{Sinput}
 R> reduced <- reduce(employees, rb, 0.9)
 R> nrow(as.data.frame(reduced))
 \end{Sinput}
 \begin{Soutput}
-[1] 3
+[1] 1
 \end{Soutput}
 %
 % --end: "reduce"

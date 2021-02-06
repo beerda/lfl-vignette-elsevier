@@ -133,14 +133,13 @@ R> a2$t(NA, 0.3)
 
 \begin{Schunk}
 \begin{Sinput}
-R> S <- matrix(c(1, 0.9, 0, 1, 1, 0.2, 1, 0, 0.1, 0.9, 0, 0.7, 0.9, 0, 
-+      1, 0.1, 0, 1, 1, 0.9), nrow = 4)
-R> colnames(S) <- c("pulm.hyp", "sleep.sick", "malaria", "hangover", 
-+      "influenza")
+R> S <- matrix(c(1, 0.9, 0, 1, 1, 0.2, 1, 0, 0.1, 0.9, 0, 0.7, 0.9, 0, 1, 
++      0.1, 0, 1, 1, 0.9), nrow = 4)
+R> colnames(S) <- c("pulm.hyp", "sleep.sick", "malaria", "hangover", "influenza")
 R> rownames(S) <- c("tired", "cough", "fever", "blur.vis")
 R> 
-R> R <- matrix(c(0.9, 0, 0, 0, 1, 0.9, 0.8, 0, 0.8, 0.8, 0.9, 1, 0, 0.1, 
-+      0, 0.9), nrow = 4)
+R> R <- matrix(c(0.9, 0, 0, 0, 1, 0.9, 0.8, 0, 0.8, 0.8, 0.9, 1, 0, 0.1, 0, 
++      0.9), nrow = 4)
 R> colnames(R) <- rownames(S)
 R> rownames(R) <- paste0("patient", 1:4)
 \end{Sinput}
@@ -245,13 +244,13 @@ patient4        0        0.0     0.0      0.1       0.0
 
 \begin{Schunk}
 \begin{Sinput}
-R> E <- matrix(c(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 
-+      0, 0), nrow = 4)
+R> E <- matrix(c(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 
++      0), nrow = 4)
 R> colnames(E) <- colnames(S)
 R> rownames(E) <- rownames(S)
 R> 
-R> U <- matrix(c(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
-+      0, 0), nrow = 4)
+R> U <- matrix(c(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 
++      0), nrow = 4)
 R> colnames(U) <- colnames(S)
 R> rownames(U) <- rownames(S)
 \end{Sinput}
@@ -364,7 +363,6 @@ patient4      0.0        0.0       0      0.0       0.8
 % --end: "comp.quant.atleast"
 \end{Schunk}
 
-
 \begin{Schunk}
 % --begin: "comp.quant.combined"
 \begin{Sinput}
@@ -406,30 +404,6 @@ R> ctx3(high = 100)
 Linguistic context: unilateral trichotomy (ctx3)
    low center   high 
      0     50    100 
-\end{Soutput}
-\begin{Sinput}
-R> ctx5bilat()
-\end{Sinput}
-\begin{Soutput}
-Linguistic context: bilateral pentachotomy (ctx5bilat)
-        negMax negUpperCenter      negCenter negLowerCenter 
-         -1.00          -0.75          -0.50          -0.25 
-        origin    lowerCenter         center    upperCenter 
-          0.00           0.25           0.50           0.75 
-           max 
-          1.00 
-\end{Soutput}
-\begin{Sinput}
-R> ctx5bilat(negMax = -100, max = 200)
-\end{Sinput}
-\begin{Soutput}
-Linguistic context: bilateral pentachotomy (ctx5bilat)
-        negMax negUpperCenter      negCenter negLowerCenter 
-          -100            -75            -50            -25 
-        origin    lowerCenter         center    upperCenter 
-             0             50            100            150 
-           max 
-           200 
 \end{Soutput}
 %
 % --end: "ctx"
@@ -561,8 +535,7 @@ R> createListOfExpressions <- function(context, atomic, hedges) {
 +      res
 +  }
 R> 
-R> createPlot <- function(l, xlims = c(0, 1), legendName = "expression", 
-+      legendBottom = FALSE) {
+R> createPlot <- function(l, xlims = c(0, 1), legendName = "expression", legendBottom = FALSE) {
 +      g <- ggplot(data = data.frame(x = 0), mapping = aes(x = x))
 +      for (n in names(l)) {
 +          f <- l[[n]]
@@ -576,12 +549,12 @@ R> createPlot <- function(l, xlims = c(0, 1), legendName = "expression",
 +  }
 R> 
 R> ctx <- ctx3()
-R> smList <- createListOfExpressions(ctx, "sm", c("ex", "si", "ve", "-", 
-+      "ml", "ro", "qr", "vr"))
-R> meList <- createListOfExpressions(ctx, "me", c("ty", "-", "ml", "ro", 
-+      "qr", "vr"))
-R> biList <- createListOfExpressions(ctx, "bi", c("ex", "si", "ve", "-", 
-+      "ml", "ro", "qr", "vr"))
+R> smList <- createListOfExpressions(ctx, "sm", c("ex", "si", "ve", "-", "ml", 
++      "ro", "qr", "vr"))
+R> meList <- createListOfExpressions(ctx, "me", c("ty", "-", "ml", "ro", "qr", 
++      "vr"))
+R> biList <- createListOfExpressions(ctx, "bi", c("ex", "si", "ve", "-", "ml", 
++      "ro", "qr", "vr"))
 R> 
 R> createPlot(smList)
 \end{Sinput}
@@ -622,48 +595,47 @@ R> rcos(seq(from = 0, to = 1, by = 0.2))
 \begin{Schunk}
 \begin{Sinput}
 R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
-+      fun = triangular(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", 
-+      y = "") + theme(legend.position = "none")
++      fun = triangular(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
++      theme(legend.position = "none")
 \end{Sinput}
 \end{Schunk}
 
 \begin{Schunk}
 \begin{Sinput}
 R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
-+      fun = triangular(-Inf, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", 
-+      y = "") + theme(legend.position = "none")
++      fun = triangular(-Inf, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
++      theme(legend.position = "none")
 \end{Sinput}
 \end{Schunk}
 
 \begin{Schunk}
 \begin{Sinput}
 R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
-+      fun = raisedcosine(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", 
-+      y = "") + theme(legend.position = "none")
++      fun = raisedcosine(0, 0.5, 1)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
++      theme(legend.position = "none")
 \end{Sinput}
 \end{Schunk}
 
 \begin{Schunk}
 \begin{Sinput}
 R> ggplot(data = data.frame(x = 0), mapping = aes(x = x)) + stat_function(aes(color = "sm"), 
-+      fun = raisedcosine(0, 0.5, Inf)) + xlim(-0.2, 1.2) + labs(x = "", 
-+      y = "") + theme(legend.position = "none")
++      fun = raisedcosine(0, 0.5, Inf)) + xlim(-0.2, 1.2) + labs(x = "", y = "") + 
++      theme(legend.position = "none")
 \end{Sinput}
 \end{Schunk}
 
 \begin{Schunk}
 % --begin: "lcut.logical"
 \begin{Sinput}
-R> logvec <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+R> logvec <- c(TRUE, FALSE, TRUE, TRUE)
 R> lcut(logvec)
 \end{Sinput}
 \begin{Soutput}
      logvec not.logvec
 [1,]      1          0
 [2,]      0          1
-[3,]      0          1
+[3,]      1          0
 [4,]      1          0
-[5,]      1          0
 \end{Soutput}
 \begin{Sinput}
 R> lcut(logvec, name = "employed")
@@ -672,9 +644,8 @@ R> lcut(logvec, name = "employed")
      employed not.employed
 [1,]        1            0
 [2,]        0            1
-[3,]        0            1
+[3,]        1            0
 [4,]        1            0
-[5,]        1            0
 \end{Soutput}
 %
 % --end: "lcut.logical"
@@ -683,7 +654,7 @@ R> lcut(logvec, name = "employed")
 \begin{Schunk}
 % --begin: "lcut.factor"
 \begin{Sinput}
-R> position <- factor(c("worker", "manager", "worker", "worker", "accountant"))
+R> position <- factor(c("worker", "manager", "worker", "accountant"))
 R> lcut(position)
 \end{Sinput}
 \begin{Soutput}
@@ -691,8 +662,7 @@ R> lcut(position)
 [1,]                   0                0               1
 [2,]                   0                1               0
 [3,]                   0                0               1
-[4,]                   0                0               1
-[5,]                   1                0               0
+[4,]                   1                0               0
 \end{Soutput}
 %
 % --end: "lcut.factor"
@@ -701,11 +671,11 @@ R> lcut(position)
 \begin{Schunk}
 % --begin: "lcut.numeric"
 \begin{Sinput}
-R> age <- round(runif(n = 5, min = 18, max = 65))
+R> age <- round(runif(n = 4, min = 18, max = 65))
 R> print(age)
 \end{Sinput}
 \begin{Soutput}
-[1] 55 32 41 52 51
+[1] 55 32 41 52
 \end{Soutput}
 \begin{Sinput}
 R> lcut(age, context = ctx3(low = 0, high = 100))
@@ -716,25 +686,21 @@ R> lcut(age, context = ctx3(low = 0, high = 100))
 [2,]         0         0         0      0         0         0
 [3,]         0         0         0      0         0         0
 [4,]         0         0         0      0         0         0
-[5,]         0         0         0      0         0         0
-     qr.sm.age vr.sm.age  ty.me.age    me.age ml.me.age
-[1,] 0.0000000 0.0000000 0.04761905 1.0000000 1.0000000
-[2,] 0.1315789 0.9475480 0.00000000 0.3914128 0.7993319
-[3,] 0.0000000 0.1993769 0.00000000 0.9859853 1.0000000
-[4,] 0.0000000 0.0000000 0.73333333 1.0000000 1.0000000
-[5,] 0.0000000 0.0000000 0.93333333 1.0000000 1.0000000
-     ro.me.age qr.me.age vr.me.age ex.bi.age si.bi.age ve.bi.age
-[1,]         1         1         1         0         0         0
-[2,]         1         1         1         0         0         0
-[3,]         1         1         1         0         0         0
-[4,]         1         1         1         0         0         0
-[5,]         1         1         1         0         0         0
-     bi.age ml.bi.age ro.bi.age qr.bi.age vr.bi.age
-[1,]      0         0         0         0         0
-[2,]      0         0         0         0         0
-[3,]      0         0         0         0         0
-[4,]      0         0         0         0         0
-[5,]      0         0         0         0         0
+     qr.sm.age vr.sm.age  ty.me.age    me.age ml.me.age ro.me.age
+[1,] 0.0000000 0.0000000 0.04761905 1.0000000 1.0000000         1
+[2,] 0.1315789 0.9475480 0.00000000 0.3914128 0.7993319         1
+[3,] 0.0000000 0.1993769 0.00000000 0.9859853 1.0000000         1
+[4,] 0.0000000 0.0000000 0.73333333 1.0000000 1.0000000         1
+     qr.me.age vr.me.age ex.bi.age si.bi.age ve.bi.age bi.age
+[1,]         1         1         0         0         0      0
+[2,]         1         1         0         0         0      0
+[3,]         1         1         0         0         0      0
+[4,]         1         1         0         0         0      0
+     ml.bi.age ro.bi.age qr.bi.age vr.bi.age
+[1,]         0         0         0         0
+[2,]         0         0         0         0
+[3,]         0         0         0         0
+[4,]         0         0         0         0
 \end{Soutput}
 %
 % --end: "lcut.numeric"
@@ -752,36 +718,22 @@ R> print(data)
     position age employed
 1     worker  55     TRUE
 2    manager  32    FALSE
-3     worker  41    FALSE
-4     worker  52     TRUE
-5 accountant  51     TRUE
+3     worker  41     TRUE
+4 accountant  52     TRUE
 \end{Soutput}
 \begin{Sinput}
 R> employees <- lcut(data,
 +       context=ctx3(low=0, high=100),
 +       atomic=c("sm", "me", "bi"),
 +       hedges=c("ve", "-", "ro"))
-R> print(employees)
+R> print(colnames(employees))
 \end{Sinput}
 \begin{Soutput}
-     position=accountant position=manager position=worker
-[1,]                   0                0               1
-[2,]                   0                1               0
-[3,]                   0                0               1
-[4,]                   0                0               1
-[5,]                   1                0               0
-     ve.sm.age sm.age ro.sm.age    me.age ro.me.age ve.bi.age
-[1,]         0      0         0 1.0000000         1         0
-[2,]         0      0         0 0.3914128         1         0
-[3,]         0      0         0 0.9859853         1         0
-[4,]         0      0         0 1.0000000         1         0
-[5,]         0      0         0 1.0000000         1         0
-     bi.age ro.bi.age employed not.employed
-[1,]      0         0        1            0
-[2,]      0         0        0            1
-[3,]      0         0        0            1
-[4,]      0         0        1            0
-[5,]      0         0        1            0
+ [1] "position=accountant" "position=manager"    "position=worker"    
+ [4] "ve.sm.age"           "sm.age"              "ro.sm.age"          
+ [7] "me.age"              "ro.me.age"           "ve.bi.age"          
+[10] "bi.age"              "ro.bi.age"           "employed"           
+[13] "not.employed"       
 \end{Soutput}
 %
 % --end: "lcut.data.frame"
@@ -790,16 +742,15 @@ R> print(employees)
 \begin{Schunk}
 % --begin: "lcut.data.frame2"
 \begin{Sinput}
-R> data$salary <- round(runif(n=5, min=1000, max=20000))
+R> data$salary <- round(runif(n=4, min=1000, max=20000))
 R> print(data)
 \end{Sinput}
 \begin{Soutput}
     position age employed salary
-1     worker  55     TRUE   7728
-2    manager  32    FALSE  16279
-3     worker  41    FALSE  15044
-4     worker  52     TRUE   6226
-5 accountant  51     TRUE   1838
+1     worker  55     TRUE  14191
+2    manager  32    FALSE   7728
+3     worker  41     TRUE  16279
+4 accountant  52     TRUE  15044
 \end{Soutput}
 \begin{Sinput}
 R> employees <- lcut(data,
@@ -808,39 +759,16 @@ R> employees <- lcut(data,
 +                    atomic=list(salary=c("sm", "bi")), # age is default
 +                    hedges=list(age=c("ve", "-", "ro"),
 +                                salary=c("ex", "ve", "-", "ro")))
-R> print(employees)
+R> print(colnames(employees))
 \end{Sinput}
 \begin{Soutput}
-     position=accountant position=manager position=worker
-[1,]                   0                0               1
-[2,]                   0                1               0
-[3,]                   0                0               1
-[4,]                   0                0               1
-[5,]                   1                0               0
-     ve.sm.age sm.age ro.sm.age    me.age ro.me.age ve.bi.age
-[1,]         0      0         0 1.0000000         1         0
-[2,]         0      0         0 0.3914128         1         0
-[3,]         0      0         0 0.9859853         1         0
-[4,]         0      0         0 1.0000000         1         0
-[5,]         0      0         0 1.0000000         1         0
-     bi.age ro.bi.age employed not.employed ex.sm.salary
-[1,]      0         0        1            0    0.0000000
-[2,]      0         0        0            1    0.0000000
-[3,]      0         0        0            1    0.0000000
-[4,]      0         0        1            0    0.0000000
-[5,]      0         0        1            0    0.9019527
-     ve.sm.salary sm.salary ro.sm.salary ex.bi.salary
-[1,]    0.0693853 0.7016150  1.000000000            0
-[2,]    0.0000000 0.0000000  0.000000000            0
-[3,]    0.0000000 0.0000000  0.005816572            0
-[4,]    0.3560801 0.9010937  1.000000000            0
-[5,]    1.0000000 1.0000000  1.000000000            0
-     ve.bi.salary bi.salary ro.bi.salary
-[1,]            0         0            0
-[2,]            0         0            0
-[3,]            0         0            0
-[4,]            0         0            0
-[5,]            0         0            0
+ [1] "position=accountant" "position=manager"    "position=worker"    
+ [4] "ve.sm.age"           "sm.age"              "ro.sm.age"          
+ [7] "me.age"              "ro.me.age"           "ve.bi.age"          
+[10] "bi.age"              "ro.bi.age"           "employed"           
+[13] "not.employed"        "ex.sm.salary"        "ve.sm.salary"       
+[16] "sm.salary"           "ro.sm.salary"        "ex.bi.salary"       
+[19] "ve.bi.salary"        "bi.salary"           "ro.bi.salary"       
 \end{Soutput}
 %
 % --end: "lcut.data.frame2"
@@ -852,11 +780,10 @@ R> print(employees)
 R> vars(employees)
 \end{Sinput}
 \begin{Soutput}
- [1] "position" "position" "position" "age"      "age"     
- [6] "age"      "age"      "age"      "age"      "age"     
-[11] "age"      "employed" "employed" "salary"   "salary"  
-[16] "salary"   "salary"   "salary"   "salary"   "salary"  
-[21] "salary"  
+ [1] "position" "position" "position" "age"      "age"      "age"     
+ [7] "age"      "age"      "age"      "age"      "age"      "employed"
+[13] "employed" "salary"   "salary"   "salary"   "salary"   "salary"  
+[19] "salary"   "salary"   "salary"  
 \end{Soutput}
 %
 % --end: "lcut.vars"
@@ -883,23 +810,21 @@ R> specs(employees)[1:6, 1:6]
 \begin{Schunk}
 % --begin: "fcut.logfact"
 \begin{Sinput}
-R> logvec <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
-R> position <- factor(c("worker", "manager", "worker", "worker", "accountant"))
+R> logvec <- c(TRUE, FALSE, TRUE, TRUE)
+R> position <- factor(c("worker", "manager", "worker", "accountant"))
 R> fcut(data.frame(employed = logvec, position = position))
 \end{Sinput}
 \begin{Soutput}
      employed not.employed position=accountant position=manager
 [1,]        1            0                   0                0
 [2,]        0            1                   0                1
-[3,]        0            1                   0                0
-[4,]        1            0                   0                0
-[5,]        1            0                   1                0
+[3,]        1            0                   0                0
+[4,]        1            0                   1                0
      position=worker
 [1,]               1
 [2,]               0
 [3,]               1
-[4,]               1
-[5,]               0
+[4,]               0
 \end{Soutput}
 %
 % --end: "fcut.logfact"
@@ -1015,26 +940,26 @@ R> fcut(numvec,
 +       type="triangle")
 \end{Sinput}
 \begin{Soutput}
-      numvec=1 numvec=2 numvec=3 numvec=1|numvec=2
- [1,]      0.0      0.0      0.0               0.0
- [2,]      0.5      0.0      0.0               0.5
- [3,]      1.0      0.0      0.0               1.0
- [4,]      0.5      0.5      0.0               1.0
- [5,]      0.0      1.0      0.0               1.0
- [6,]      0.0      0.5      0.5               0.5
- [7,]      0.0      0.0      1.0               0.0
- [8,]      0.0      0.0      0.5               0.0
- [9,]      0.0      0.0      0.0               0.0
-      numvec=2|numvec=3 numvec=1|numvec=2|numvec=3
- [1,]               0.0                        0.0
- [2,]               0.0                        0.5
- [3,]               0.0                        1.0
- [4,]               0.5                        1.0
- [5,]               1.0                        1.0
- [6,]               1.0                        1.0
- [7,]               1.0                        1.0
- [8,]               0.5                        0.5
- [9,]               0.0                        0.0
+      numvec=1 numvec=2 numvec=3 numvec=1|numvec=2 numvec=2|numvec=3
+ [1,]      0.0      0.0      0.0               0.0               0.0
+ [2,]      0.5      0.0      0.0               0.5               0.0
+ [3,]      1.0      0.0      0.0               1.0               0.0
+ [4,]      0.5      0.5      0.0               1.0               0.5
+ [5,]      0.0      1.0      0.0               1.0               1.0
+ [6,]      0.0      0.5      0.5               0.5               1.0
+ [7,]      0.0      0.0      1.0               0.0               1.0
+ [8,]      0.0      0.0      0.5               0.0               0.5
+ [9,]      0.0      0.0      0.0               0.0               0.0
+      numvec=1|numvec=2|numvec=3
+ [1,]                        0.0
+ [2,]                        0.5
+ [3,]                        1.0
+ [4,]                        1.0
+ [5,]                        1.0
+ [6,]                        1.0
+ [7,]                        1.0
+ [8,]                        0.5
+ [9,]                        0.0
 \end{Soutput}
 %
 % --end: "fcut.merge2"
@@ -1106,8 +1031,8 @@ R> mrg2 <- function(f1, f2, f3) {
 +          plukas.tconorm(f1(x), f2(x), f3(x))
 +      }
 +  }
-R> l <- list(`numvec=1|numvec=2|numvec=3` = mrg2(triangular(1, 3, 5), 
-+      triangular(3, 5, 7), triangular(5, 7, 9)))
+R> l <- list(`numvec=1|numvec=2|numvec=3` = mrg2(triangular(1, 3, 5), triangular(3, 
++      5, 7), triangular(5, 7, 9)))
 R> createPlot(l, xlims = c(0, 10), legendName = "", legendBottom = TRUE)
 \end{Sinput}
 \end{Schunk}
@@ -1238,36 +1163,18 @@ R> rb <- searchrules(employees,
 R> print(rb)
 \end{Sinput}
 \begin{Soutput}
-                                       support lhsSupport
-sm.salary => me.age                  0.5205418  0.5205418
- => ro.me.age                        1.0000000  1.0000000
-employed => me.age                   0.6000000  0.6000000
-employed => ro.sm.salary             0.6000000  0.6000000
-sm.salary => employed                0.5205418  0.5205418
-ro.sm.salary => me.age               0.6011633  0.6011633
-me.age & ro.sm.salary => employed    0.6000000  0.6011633
-ro.sm.salary => employed             0.6000000  0.6011633
-ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633
-position=worker => me.age            0.5971971  0.6000000
- => me.age                           0.8754796  1.0000000
-ro.me.age & employed => sm.salary    0.5205418  0.6000000
-me.age & employed => sm.salary       0.5205418  0.6000000
-employed => sm.salary                0.5205418  0.6000000
-                                     rhsSupport confidence
-sm.salary => me.age                   0.8754796  1.0000000
- => ro.me.age                         1.0000000  1.0000000
-employed => me.age                    0.8754796  1.0000000
-employed => ro.sm.salary              0.6011633  1.0000000
-sm.salary => employed                 0.6000000  1.0000000
-ro.sm.salary => me.age                0.8754796  1.0000000
-me.age & ro.sm.salary => employed     0.6000000  0.9980650
-ro.sm.salary => employed              0.6000000  0.9980650
-ro.me.age & ro.sm.salary => employed  0.6000000  0.9980650
-position=worker => me.age             0.8754796  0.9953284
- => me.age                            0.8754796  0.8754796
-ro.me.age & employed => sm.salary     0.5205418  0.8675696
-me.age & employed => sm.salary        0.5205418  0.8675696
-employed => sm.salary                 0.5205418  0.8675696
+                              support lhsSupport rhsSupport
+position=worker => employed 0.5000000  0.5000000  0.7500000
+ => ro.me.age               1.0000000  1.0000000  1.0000000
+employed => me.age          0.7464963  0.7500000  0.8443495
+me.age => employed          0.7464963  0.8443495  0.7500000
+ => me.age                  0.8443495  1.0000000  0.8443495
+                            confidence
+position=worker => employed  1.0000000
+ => ro.me.age                1.0000000
+employed => me.age           0.9953284
+me.age => employed           0.8841082
+ => me.age                   0.8443495
 \end{Soutput}
 %
 % --end: "searchrules"
@@ -1280,22 +1187,13 @@ R> str(rb)
 \end{Sinput}
 \begin{Soutput}
 List of 2
- $ rules     :List of 14
-  ..$ : chr [1:2] "me.age" "sm.salary"
+ $ rules     :List of 5
+  ..$ : chr [1:2] "employed" "position=worker"
   ..$ : chr "ro.me.age"
   ..$ : chr [1:2] "me.age" "employed"
-  ..$ : chr [1:2] "ro.sm.salary" "employed"
-  ..$ : chr [1:2] "employed" "sm.salary"
-  ..$ : chr [1:2] "me.age" "ro.sm.salary"
-  ..$ : chr [1:3] "employed" "me.age" "ro.sm.salary"
-  ..$ : chr [1:2] "employed" "ro.sm.salary"
-  ..$ : chr [1:3] "employed" "ro.me.age" "ro.sm.salary"
-  ..$ : chr [1:2] "me.age" "position=worker"
+  ..$ : chr [1:2] "employed" "me.age"
   ..$ : chr "me.age"
-  ..$ : chr [1:3] "sm.salary" "ro.me.age" "employed"
-  ..$ : chr [1:3] "sm.salary" "me.age" "employed"
-  ..$ : chr [1:2] "sm.salary" "employed"
- $ statistics: num [1:14, 1:4] 0.521 1 0.6 0.6 0.521 ...
+ $ statistics: num [1:5, 1:4] 0.5 1 0.746 0.746 0.844 ...
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : NULL
   .. ..$ : chr [1:4] "support" "lhsSupport" "rhsSupport" "confidence"
@@ -1311,36 +1209,18 @@ List of 2
 R> as.data.frame(rb)
 \end{Sinput}
 \begin{Soutput}
-                                       support lhsSupport
-sm.salary => me.age                  0.5205418  0.5205418
- => ro.me.age                        1.0000000  1.0000000
-employed => me.age                   0.6000000  0.6000000
-employed => ro.sm.salary             0.6000000  0.6000000
-sm.salary => employed                0.5205418  0.5205418
-ro.sm.salary => me.age               0.6011633  0.6011633
-me.age & ro.sm.salary => employed    0.6000000  0.6011633
-ro.sm.salary => employed             0.6000000  0.6011633
-ro.me.age & ro.sm.salary => employed 0.6000000  0.6011633
-position=worker => me.age            0.5971971  0.6000000
- => me.age                           0.8754796  1.0000000
-ro.me.age & employed => sm.salary    0.5205418  0.6000000
-me.age & employed => sm.salary       0.5205418  0.6000000
-employed => sm.salary                0.5205418  0.6000000
-                                     rhsSupport confidence
-sm.salary => me.age                   0.8754796  1.0000000
- => ro.me.age                         1.0000000  1.0000000
-employed => me.age                    0.8754796  1.0000000
-employed => ro.sm.salary              0.6011633  1.0000000
-sm.salary => employed                 0.6000000  1.0000000
-ro.sm.salary => me.age                0.8754796  1.0000000
-me.age & ro.sm.salary => employed     0.6000000  0.9980650
-ro.sm.salary => employed              0.6000000  0.9980650
-ro.me.age & ro.sm.salary => employed  0.6000000  0.9980650
-position=worker => me.age             0.8754796  0.9953284
- => me.age                            0.8754796  0.8754796
-ro.me.age & employed => sm.salary     0.5205418  0.8675696
-me.age & employed => sm.salary        0.5205418  0.8675696
-employed => sm.salary                 0.5205418  0.8675696
+                              support lhsSupport rhsSupport
+position=worker => employed 0.5000000  0.5000000  0.7500000
+ => ro.me.age               1.0000000  1.0000000  1.0000000
+employed => me.age          0.7464963  0.7500000  0.8443495
+me.age => employed          0.7464963  0.8443495  0.7500000
+ => me.age                  0.8443495  1.0000000  0.8443495
+                            confidence
+position=worker => employed  1.0000000
+ => ro.me.age                1.0000000
+employed => me.age           0.9953284
+me.age => employed           0.8841082
+ => me.age                   0.8443495
 \end{Soutput}
 %
 % --end: "searchrules3"
@@ -1353,7 +1233,7 @@ R> antecedents(rb)[1:3]
 \end{Sinput}
 \begin{Soutput}
 [[1]]
-[1] "sm.salary"
+[1] "position=worker"
 
 [[2]]
 character(0)
@@ -1366,7 +1246,7 @@ R> consequents(rb)[1:3]
 \end{Sinput}
 \begin{Soutput}
 [[1]]
-[1] "me.age"
+[1] "employed"
 
 [[2]]
 [1] "ro.me.age"
@@ -1386,14 +1266,14 @@ R> rb <- searchrules(employees, lhs = 1:13, rhs = 14:21, minSupport = 0.2,
 R> nrow(as.data.frame(rb))
 \end{Sinput}
 \begin{Soutput}
-[1] 14
+[1] 2
 \end{Soutput}
 \begin{Sinput}
 R> reduced <- reduce(employees, rb, 0.9)
 R> nrow(as.data.frame(reduced))
 \end{Sinput}
 \begin{Soutput}
-[1] 3
+[1] 1
 \end{Soutput}
 %
 % --end: "reduce"
@@ -1468,7 +1348,7 @@ R> testingIndices <- sort(sample(seq_len(nrow(d)), 10))
 R> print(testingIndices)
 \end{Sinput}
 \begin{Soutput}
- [1]  8 32 44 46 51 61 67 78 81 84
+ [1]  8 44 46 51 61 67 73 78 80 83
 \end{Soutput}
 \begin{Sinput}
 R> training <- d[-testingIndices, ]
@@ -1504,41 +1384,34 @@ R> head(v)
 R> head(p)
 \end{Sinput}
 \begin{Soutput}
-     ex.sm.uptake si.sm.uptake ve.sm.uptake sm.uptake
-[1,]            1            1            1         1
-[2,]            1            1            1         1
-[3,]            1            1            1         1
-[4,]            1            1            1         1
-[5,]            1            1            1         1
-[6,]            1            1            1         1
-     ml.sm.uptake ro.sm.uptake qr.sm.uptake vr.sm.uptake
-[1,]            1            1            1            1
-[2,]            1            1            1            1
-[3,]            1            1            1            1
-[4,]            1            1            1            1
-[5,]            1            1            1            1
-[6,]            1            1            1            1
-     ty.me.uptake me.uptake ml.me.uptake ro.me.uptake
-[1,]            0         0            0            0
-[2,]            0         0            0            0
-[3,]            0         0            0            0
-[4,]            0         0            0            0
-[5,]            0         0            0            0
-[6,]            0         0            0            0
-     qr.me.uptake vr.me.uptake ex.bi.uptake si.bi.uptake
-[1,]            0            0            0            0
-[2,]            0            0            0            0
-[3,]            0            0            0            0
-[4,]            0            0            0            0
-[5,]            0            0            0            0
-[6,]            0            0            0            0
-     ve.bi.uptake bi.uptake ml.bi.uptake ro.bi.uptake
-[1,]            0         0            0            0
-[2,]            0         0            0            0
-[3,]            0         0            0            0
-[4,]            0         0            0            0
-[5,]            0         0            0            0
-[6,]            0         0            0            0
+     ex.sm.uptake si.sm.uptake ve.sm.uptake sm.uptake ml.sm.uptake
+[1,]            1            1            1         1            1
+[2,]            1            1            1         1            1
+[3,]            1            1            1         1            1
+[4,]            1            1            1         1            1
+[5,]            1            1            1         1            1
+[6,]            1            1            1         1            1
+     ro.sm.uptake qr.sm.uptake vr.sm.uptake ty.me.uptake me.uptake
+[1,]            1            1            1            0         0
+[2,]            1            1            1            0         0
+[3,]            1            1            1            0         0
+[4,]            1            1            1            0         0
+[5,]            1            1            1            0         0
+[6,]            1            1            1            0         0
+     ml.me.uptake ro.me.uptake qr.me.uptake vr.me.uptake ex.bi.uptake
+[1,]            0            0            0            0            0
+[2,]            0            0            0            0            0
+[3,]            0            0            0            0            0
+[4,]            0            0            0            0            0
+[5,]            0            0            0            0            0
+[6,]            0            0            0            0            0
+     si.bi.uptake ve.bi.uptake bi.uptake ml.bi.uptake ro.bi.uptake
+[1,]            0            0         0            0            0
+[2,]            0            0         0            0            0
+[3,]            0            0         0            0            0
+[4,]            0            0         0            0            0
+[5,]            0            0         0            0            0
+[6,]            0            0         0            0            0
      qr.bi.uptake vr.bi.uptake
 [1,]            0            0
 [2,]            0            0
@@ -1557,8 +1430,8 @@ R> head(p)
 R> pbld(testing, rb, p, v, type = "global")
 \end{Sinput}
 \begin{Soutput}
- [1] 27.26126  7.00000 22.22523  7.00000 22.22523  7.00000
- [7] 21.79580 15.43243 19.29730 19.29730
+ [1] 27.26126 22.22523  7.00000 22.22523  7.00000 21.79580 19.29730
+ [8] 17.63814 27.26126 27.26126
 \end{Soutput}
 %
 % --end: "pbld6"
@@ -1573,8 +1446,8 @@ R> rules <- list(c("me.uptake", "Plant=Mc1", "sm.conc"),
 R> pbld(testing, rules, p, v)
 \end{Sinput}
 \begin{Soutput}
- [1]  7.00000  7.00000 10.16216 10.16216 10.16216  7.00000
- [7] 10.16216 10.16216 10.16216 10.16216
+ [1]  7.00000 10.16216 10.16216 10.16216  7.00000 10.16216 10.16216
+ [8] 10.16216 10.16216 10.16216
 \end{Soutput}
 %
 % --end: "pbld_custom"
@@ -1623,8 +1496,8 @@ R> fit <- frbe(myts, h=10)
 R> fit$mean
 \end{Sinput}
 \begin{Soutput}
- [1] 100.6985 101.5266 102.4545 103.3453 104.0120 105.0145
- [7] 105.8917 106.7647 107.6654 108.4846
+ [1] 100.5002 101.4108 102.3139 103.2133 104.0460 104.9274 105.7708
+ [8] 106.6504 107.5235 108.3899
 \end{Soutput}
 %
 % --end: "frbe"

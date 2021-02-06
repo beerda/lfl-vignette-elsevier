@@ -1,16 +1,16 @@
 \begin{Schunk}
 % --begin: "reduce"
 \begin{Sinput}
-R> rb <- searchrules(employees, lhs = 1:13, rhs = 14:21, minSupport = 0.2, minConfidence = 0.6, 
-+      maxLength = 3)
-R> nrow(as.data.frame(rb))
+ rb <- searchrules(employees, lhs = 1:13, rhs = 14:21, minSupport = 0.2, minConfidence = 0.6, 
+     maxLength = 3)
+ nrow(as.data.frame(rb))
 \end{Sinput}
 \begin{Soutput}
 [1] 2
 \end{Soutput}
 \begin{Sinput}
-R> reduced <- reduce(employees, rb, 0.9)
-R> nrow(as.data.frame(reduced))
+ reduced <- reduce(employees, rb, 0.9)
+ nrow(as.data.frame(reduced))
 \end{Sinput}
 \begin{Soutput}
 [1] 1

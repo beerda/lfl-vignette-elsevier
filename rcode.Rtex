@@ -3,7 +3,7 @@
 
 \begin{document}
 <<setup, include=FALSE>>=
-  options(prompt='R> ', continue='+  ', width=72)
+  options(prompt=' ', continue=' ', width=72)
   knitr::opts_chunk$set(tidy=TRUE,
                         tidy.opts = list(width.cutoff = 72),
                         comment='',

@@ -1,14 +1,14 @@
 \begin{Schunk}
 % --begin: "comp.quant.atleast"
 \begin{Sinput}
-R> qatleast <- sugeno(measure=function(x) as.numeric(x >= 2),
-+                     relative=FALSE,
-+                     strong=TRUE,
-+                     alg="goedel")
-R> qRS <- mult(R, S, function(r, s) {
-+    qatleast(a$pt(r, s))
-+  })
-R> print(qRS)
+ qatleast <- sugeno(measure=function(x) as.numeric(x >= 2),
+                    relative=FALSE,
+                    strong=TRUE,
+                    alg="goedel")
+ qRS <- mult(R, S, function(r, s) {
+   qatleast(a$pt(r, s))
+ })
+ print(qRS)
 \end{Sinput}
 \begin{Soutput}
          pulm.hyp sleep.sick malaria hangover influenza

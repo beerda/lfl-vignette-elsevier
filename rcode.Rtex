@@ -71,8 +71,8 @@ S <- matrix(c(1, 0.9, 0, 1,
               0.1, 0.9, 0, 0.7,
               0.9, 0, 1, 0.1,
               0, 1, 1, 0.9), nrow=4)
-colnames(S) <- c('pulm.hypertens', 'sleeping.sickn', 'malaria', 'hangover', 'influenza')
-rownames(S) <- c('tiredness', 'cough', 'fever', 'blurred.vision')
+colnames(S) <- c('pulm.hyp', 'sleep.sick', 'malaria', 'hangover', 'influenza')
+rownames(S) <- c('tired', 'cough', 'fever', 'blur.vis')
 
 R <- matrix(c(0.9, 0, 0, 0,
               1, 0.9, 0.8, 0,

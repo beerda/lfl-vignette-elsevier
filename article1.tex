@@ -1192,11 +1192,7 @@ Besides the \code{fsets} data object (see Section~\ref{sec:lcut}), the \code{sea
 
 
 
-Internally, the rule base produced by the \code{searchrules()} function is an instance of the \code{farules} class. It is a list of two elements, \code{rules} and \code{statistics}, where \code{rules} is a list of character vectors of rule predicate names. The first element of these vectors is a consequent of the rule, the rest is the antecedent. The \code{statistics} element is a matrix that assigns some quality measures to each rule:
-%
-\input{chunks/chunk-searchrules2}
-%
-The \code{as.data.frame()} function converts the \code{farules} object to a usual data frame:
+Internally, the rule base produced by the \code{searchrules()} function is an instance of the \code{farules} class. It is a list of two elements, \code{rules} and \code{statistics}, where \code{rules} is a list of character vectors of rule predicate names. The first element of these vectors is a consequent of the rule, the rest is the antecedent. The \code{statistics} element is a matrix that assigns some quality measures to each rule. The \code{as.data.frame()} function converts the \code{farules} object to a usual data frame:
 %
 \input{chunks/chunk-searchrules3}
 %

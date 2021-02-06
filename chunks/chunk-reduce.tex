@@ -1,19 +1,13 @@
 \begin{Schunk}
 % --begin: "reduce"
 \begin{Sinput}
-R> rb <- searchrules(employees, lhs = 1:13, rhs = 14:21, minSupport = 0.2, minConfidence = 0.6, 
-       maxLength = 3)
-R> nrow(as.data.frame(rb))
+R> reduce(employees, rb, 0.9)
 \end{Sinput}
 \begin{Soutput}
-[1] 2
-\end{Soutput}
-\begin{Sinput}
-R> reduced <- reduce(employees, rb, 0.9)
-R> nrow(as.data.frame(reduced))
-\end{Sinput}
-\begin{Soutput}
-[1] 1
+                     support lhsSupport rhsSupport confidence
+ => me.age         0.8443495  1.0000000  0.8443495  0.8443495
+ => ro.me.age      1.0000000  1.0000000  1.0000000  1.0000000
+me.age => employed 0.7464963  0.8443495  0.7500000  0.8841082
 \end{Soutput}
 %
 % --end: "reduce"

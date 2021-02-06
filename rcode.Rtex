@@ -3,11 +3,11 @@
 
 \begin{document}
 <<setup, include=FALSE>>=
-  options(prompt='R> ', continue='+  ', width=70)
+  options(prompt='R> ', continue='+  ', width=72)
   knitr::opts_chunk$set(tidy=TRUE,
-                        tidy.opts = list(width.cutoff = 70),
+                        tidy.opts = list(width.cutoff = 72),
                         comment='',
-                        prompt=TRUE,
+                        prompt=FALSE,
                         highlight=FALSE)
 
   knit_hooks$set(export = function(before, options, envir) {

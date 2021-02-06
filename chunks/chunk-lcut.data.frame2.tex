@@ -1,8 +1,8 @@
 \begin{Schunk}
 % --begin: "lcut.data.frame2"
 \begin{Sinput}
- data$salary <- round(runif(n=4, min=1000, max=20000))
- print(data)
+R> data$salary <- round(runif(n=4, min=1000, max=20000))
+R> print(data)
 \end{Sinput}
 \begin{Soutput}
     position age employed salary
@@ -12,13 +12,13 @@
 4 accountant  52     TRUE  15044
 \end{Soutput}
 \begin{Sinput}
- employees <- lcut(data,
-                   context=list(age=ctx3(low=0, high=100),
-                                salary=ctx3(low=500, high=50000)),
-                   atomic=list(salary=c("sm", "bi")),
-                   hedges=list(age=c("ve", "-", "ro"),
-                               salary=c("ex", "ve", "-", "ro")))
- print(colnames(employees))
+R> employees <- lcut(data,
+                     context=list(age=ctx3(low=0, high=100),
+                                  salary=ctx3(low=500, high=50000)),
+                     atomic=list(salary=c("sm", "bi")),
+                     hedges=list(age=c("ve", "-", "ro"),
+                                 salary=c("ex", "ve", "-", "ro")))
+R> print(colnames(employees))
 \end{Sinput}
 \begin{Soutput}
  [1] "position=accountant" "position=manager"    "position=worker"    

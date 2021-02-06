@@ -1,13 +1,13 @@
 \begin{Schunk}
 % --begin: "searchrules"
 \begin{Sinput}
- rb <- searchrules(employees,
-                   lhs=seq_len(ncol(employees)),
-                   rhs=seq_len(ncol(employees)),
-                   minSupport=0.5,
-                   minConfidence=0.8,
-                   maxLength=3)
- print(rb)
+R> rb <- searchrules(employees,
+                     lhs=seq_len(ncol(employees)),
+                     rhs=seq_len(ncol(employees)),
+                     minSupport=0.5,
+                     minConfidence=0.8,
+                     maxLength=3)
+R> print(rb)
 \end{Sinput}
 \begin{Soutput}
                               support lhsSupport rhsSupport confidence

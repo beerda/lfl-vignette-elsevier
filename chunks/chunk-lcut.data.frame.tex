@@ -1,10 +1,10 @@
 \begin{Schunk}
 % --begin: "lcut.data.frame"
 \begin{Sinput}
- data <- data.frame(position=position,
-                    age=age,
-                    employed=logvec)
- print(data)
+R> data <- data.frame(position=position,
+                      age=age,
+                      employed=logvec)
+R> print(data)
 \end{Sinput}
 \begin{Soutput}
     position age employed
@@ -14,11 +14,11 @@
 4 accountant  52     TRUE
 \end{Soutput}
 \begin{Sinput}
- employees <- lcut(data,
-      context=ctx3(low=0, high=100),
-      atomic=c("sm", "me", "bi"),
-      hedges=c("ve", "-", "ro"))
- print(colnames(employees))
+R> employees <- lcut(data,
+        context=ctx3(low=0, high=100),
+        atomic=c("sm", "me", "bi"),
+        hedges=c("ve", "-", "ro"))
+R> print(colnames(employees))
 \end{Sinput}
 \begin{Soutput}
  [1] "position=accountant" "position=manager"    "position=worker"    

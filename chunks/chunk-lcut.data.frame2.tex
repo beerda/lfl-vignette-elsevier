@@ -15,7 +15,7 @@ R> print(data)
 R> employees <- lcut(data,
 +                    context=list(age=ctx3(low=0, high=100),
 +                                 salary=ctx3(low=500, high=50000)),
-+                    atomic=list(salary=c("sm", "bi")), # age is default
++                    atomic=list(salary=c("sm", "bi")),
 +                    hedges=list(age=c("ve", "-", "ro"),
 +                                salary=c("ex", "ve", "-", "ro")))
 R> print(colnames(employees))

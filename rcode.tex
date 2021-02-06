@@ -756,7 +756,7 @@ R> print(data)
 R> employees <- lcut(data,
 +                    context=list(age=ctx3(low=0, high=100),
 +                                 salary=ctx3(low=500, high=50000)),
-+                    atomic=list(salary=c("sm", "bi")), # age is default
++                    atomic=list(salary=c("sm", "bi")),
 +                    hedges=list(age=c("ve", "-", "ro"),
 +                                salary=c("ex", "ve", "-", "ro")))
 R> print(colnames(employees))
@@ -792,16 +792,15 @@ R> vars(employees)
 \begin{Schunk}
 % --begin: "lcut.specs"
 \begin{Sinput}
-R> specs(employees)[1:6, 1:6]
+R> specs(employees)[1:5, 1:5]
 \end{Sinput}
 \begin{Soutput}
-     [,1] [,2] [,3] [,4] [,5] [,6]
-[1,]    0    0    0    0    0    0
-[2,]    0    0    0    0    0    0
-[3,]    0    0    0    0    0    0
-[4,]    0    0    0    0    1    1
-[5,]    0    0    0    0    0    1
-[6,]    0    0    0    0    0    0
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    0    0    0    0    0
+[2,]    0    0    0    0    0
+[3,]    0    0    0    0    0
+[4,]    0    0    0    0    1
+[5,]    0    0    0    0    0
 \end{Soutput}
 %
 % --end: "lcut.specs"
@@ -834,9 +833,7 @@ R> fcut(data.frame(employed = logvec, position = position))
 % --begin: "fcut.numeric1"
 \begin{Sinput}
 R> numvec <- 1:9
-R> fcut(numvec,
-+       breaks=c(1, 5, 9),
-+       type="triangle")
+R> fcut(numvec, breaks = c(1, 5, 9), type = "triangle")
 \end{Sinput}
 \begin{Soutput}
       numvec=1
@@ -869,9 +866,7 @@ R> triangular(1, 5, 9)(numvec)
 \begin{Schunk}
 % --begin: "fcut.numeric2"
 \begin{Sinput}
-R> fcut(numvec,
-+       breaks=c(1, 3, 5, 7, 9),
-+       type="triangle")
+R> fcut(numvec, breaks = c(1, 3, 5, 7, 9), type = "triangle")
 \end{Sinput}
 \begin{Soutput}
       numvec=1 numvec=2 numvec=3
@@ -892,10 +887,7 @@ R> fcut(numvec,
 \begin{Schunk}
 % --begin: "fcut.merge"
 \begin{Sinput}
-R> fcut(numvec,
-+       breaks=c(1, 3, 5, 7, 9),
-+       merge=2,
-+       type="triangle")
+R> fcut(numvec, breaks = c(1, 3, 5, 7, 9), merge = 2, type = "triangle")
 \end{Sinput}
 \begin{Soutput}
       numvec=1|numvec=2 numvec=2|numvec=3
@@ -910,10 +902,7 @@ R> fcut(numvec,
  [9,]               0.0               0.0
 \end{Soutput}
 \begin{Sinput}
-R> fcut(numvec,
-+       breaks=c(1, 3, 5, 7, 9),
-+       merge=3,
-+       type="triangle")
+R> fcut(numvec, breaks = c(1, 3, 5, 7, 9), merge = 3, type = "triangle")
 \end{Sinput}
 \begin{Soutput}
       numvec=1|numvec=2|numvec=3
@@ -934,32 +923,13 @@ R> fcut(numvec,
 \begin{Schunk}
 % --begin: "fcut.merge2"
 \begin{Sinput}
-R> fcut(numvec,
-+       breaks=c(1, 3, 5, 7, 9),
-+       merge=c(1, 2, 3),
-+       type="triangle")
+R> fd <- fcut(numvec, breaks = c(1, 3, 5, 7, 9), merge = c(1, 2, 3), type = "triangle")
+R> print(colnames(fd))
 \end{Sinput}
 \begin{Soutput}
-      numvec=1 numvec=2 numvec=3 numvec=1|numvec=2 numvec=2|numvec=3
- [1,]      0.0      0.0      0.0               0.0               0.0
- [2,]      0.5      0.0      0.0               0.5               0.0
- [3,]      1.0      0.0      0.0               1.0               0.0
- [4,]      0.5      0.5      0.0               1.0               0.5
- [5,]      0.0      1.0      0.0               1.0               1.0
- [6,]      0.0      0.5      0.5               0.5               1.0
- [7,]      0.0      0.0      1.0               0.0               1.0
- [8,]      0.0      0.0      0.5               0.0               0.5
- [9,]      0.0      0.0      0.0               0.0               0.0
-      numvec=1|numvec=2|numvec=3
- [1,]                        0.0
- [2,]                        0.5
- [3,]                        1.0
- [4,]                        1.0
- [5,]                        1.0
- [6,]                        1.0
- [7,]                        1.0
- [8,]                        0.5
- [9,]                        0.0
+[1] "numvec=1"                   "numvec=2"                  
+[3] "numvec=3"                   "numvec=1|numvec=2"         
+[5] "numvec=2|numvec=3"          "numvec=1|numvec=2|numvec=3"
 \end{Soutput}
 %
 % --end: "fcut.merge2"
@@ -967,18 +937,6 @@ R> fcut(numvec,
 
 \begin{Schunk}
 % --begin: "fcut.varsspecs"
-\begin{Sinput}
-R> fd <- fcut(numvec,
-+             breaks=c(1, 3, 5, 7, 9),
-+             merge=c(1, 2, 3),
-+             type="triangle")
-R> colnames(fd)
-\end{Sinput}
-\begin{Soutput}
-[1] "numvec=1"                   "numvec=2"                  
-[3] "numvec=3"                   "numvec=1|numvec=2"         
-[5] "numvec=2|numvec=3"          "numvec=1|numvec=2|numvec=3"
-\end{Soutput}
 \begin{Sinput}
 R> vars(fd)
 \end{Sinput}

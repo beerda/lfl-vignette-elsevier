@@ -335,7 +335,7 @@ print(data)
 employees <- lcut(data,
                   context=list(age=ctx3(low=0, high=100),
                                salary=ctx3(low=500, high=50000)),
-                  atomic=list(salary=c("sm", "bi")), # age is default
+                  atomic=list(salary=c("sm", "bi")),
                   hedges=list(age=c("ve", "-", "ro"),
                               salary=c("ex", "ve", "-", "ro")))
 print(colnames(employees))
@@ -346,7 +346,7 @@ vars(employees)
 @
 
 <<export='lcut.specs'>>=
-specs(employees)[1:6, 1:6]
+specs(employees)[1:5, 1:5]
 @
 
 <<export='fcut.logfact'>>=
@@ -355,7 +355,7 @@ position <- factor(c('worker', 'manager', 'worker', 'accountant'))
 fcut(data.frame(employed=logvec, position=position))
 @
 
-<<export='fcut.numeric1', tidy=FALSE>>=
+<<export='fcut.numeric1', tidy=TRUE>>=
 numvec <- 1:9
 fcut(numvec,
      breaks=c(1, 5, 9),
@@ -366,13 +366,13 @@ fcut(numvec,
 triangular(1, 5, 9)(numvec)
 @
 
-<<export='fcut.numeric2', tidy=FALSE>>=
+<<export='fcut.numeric2', tidy=TRUE>>=
 fcut(numvec,
      breaks=c(1, 3, 5, 7, 9),
      type="triangle")
 @
 
-<<export='fcut.merge', tidy=FALSE>>=
+<<export='fcut.merge', tidy=TRUE>>=
 fcut(numvec,
      breaks=c(1, 3, 5, 7, 9),
      merge=2,
@@ -383,19 +383,15 @@ fcut(numvec,
      type="triangle")
 @
 
-<<export='fcut.merge2', tidy=FALSE>>=
-fcut(numvec,
-     breaks=c(1, 3, 5, 7, 9),
-     merge=c(1, 2, 3),
-     type="triangle")
-@
-
-<<export='fcut.varsspecs', tidy=FALSE>>=
+<<export='fcut.merge2', tidy=TRUE>>=
 fd <- fcut(numvec,
            breaks=c(1, 3, 5, 7, 9),
            merge=c(1, 2, 3),
            type="triangle")
-colnames(fd)
+print(colnames(fd))
+@
+
+<<export='fcut.varsspecs', tidy=TRUE>>=
 vars(fd)
 specs(fd)
 @

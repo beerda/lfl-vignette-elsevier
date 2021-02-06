@@ -351,50 +351,6 @@ R> qatleast <- sugeno(measure=function(x) as.numeric(x >= 2),
 R> qRS <- mult(R, S, function(r, s) {
 +    qatleast(a$pt(r, s))
 +  })
-\end{Sinput}
-\begin{Soutput}
-[1] 0.9 0.9 0.0 0.0
-[1] 0 1 1 1
-[1] 0.9 0.8 0.2 0.0
-[1] 0 1 1 1
-[1] 0.9 0.0 0.0 0.0
-[1] 0 1 1 1
-[1] 0.8 0.8 0.0 0.0
-[1] 0 1 1 1
-[1] 1.0 0.8 0.0 0.0
-[1] 0 1 1 1
-[1] 0.8 0.1 0.0 0.0
-[1] 0 1 1 1
-[1] 0.8 0.1 0.0 0.0
-[1] 0 1 1 1
-[1] 0.8 0.0 0.0 0.0
-[1] 0 1 1 1
-[1] 0.8 0.0 0.0 0.0
-[1] 0 1 1 1
-[1] 0.9 0.8 0.0 0.0
-[1] 0 1 1 1
-[1] 0.7 0.0 0.0 0.0
-[1] 0 1 1 1
-[1] 0.9 0.0 0.0 0.0
-[1] 0 1 1 1
-[1] 0.7 0.0 0.0 0.0
-[1] 0 1 1 1
-[1] 0.9 0.0 0.0 0.0
-[1] 0 1 1 1
-[1] 0.9 0.8 0.0 0.0
-[1] 0 1 1 1
-[1] 0.9 0.0 0.0 0.0
-[1] 0 1 1 1
-[1] 1 0 0 0
-[1] 0 1 1 1
-[1] 0.6 0.0 0.0 0.0
-[1] 0 1 1 1
-[1] 1 0 0 0
-[1] 0 1 1 1
-[1] 1.0 0.8 0.0 0.0
-[1] 0 1 1 1
-\end{Soutput}
-\begin{Sinput}
 R> print(qRS)
 \end{Sinput}
 \begin{Soutput}
@@ -407,6 +363,7 @@ patient4      0.0        0.0       0      0.0       0.8
 %
 % --end: "comp.quant.atleast"
 \end{Schunk}
+
 
 \begin{Schunk}
 % --begin: "comp.quant.combined"
@@ -1178,10 +1135,6 @@ R> A <- c(1, 0.8, 1, 1, 1, 0)
 R> atLeast5(A)
 \end{Sinput}
 \begin{Soutput}
-[1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 0 0 0 0 1 1
-\end{Soutput}
-\begin{Soutput}
 [1] 0.8
 \end{Soutput}
 %
@@ -1195,10 +1148,6 @@ R> B <- c(0.5, 1, 1, 1, 0.9, 1)
 R> atLeast5(lukas.residuum(B, A))
 \end{Sinput}
 \begin{Soutput}
-[1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 0 0 0 0 1 1
-\end{Soutput}
-\begin{Soutput}
 [1] 0.8
 \end{Soutput}
 %
@@ -1210,10 +1159,6 @@ R> atLeast5(lukas.residuum(B, A))
 \begin{Sinput}
 R> atLeast5(lukas.residuum(B, A), w = B)
 \end{Sinput}
-\begin{Soutput}
-[1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 0 0 0 0 0 1
-\end{Soutput}
 \begin{Soutput}
 [1] 0
 \end{Soutput}
@@ -1230,30 +1175,17 @@ R> many <- quantifier("many")
 R> almost(A)
 \end{Sinput}
 \begin{Soutput}
-[1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 0 0 0 0 0 1
-\end{Soutput}
-\begin{Soutput}
 [1] 0
 \end{Soutput}
 \begin{Sinput}
 R> most(A)
 \end{Sinput}
 \begin{Soutput}
-[1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 0.000000000 0.000000000 0.000000000 0.000000000 0.001340707
-[6] 1.000000000
-\end{Soutput}
-\begin{Soutput}
 [1] 0.001340707
 \end{Soutput}
 \begin{Sinput}
 R> many(A)
 \end{Sinput}
-\begin{Soutput}
-[1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 0.4910068 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
-\end{Soutput}
 \begin{Soutput}
 [1] 1
 \end{Soutput}
@@ -1269,19 +1201,11 @@ R> some <- quantifier("some")
 R> allq(A)
 \end{Sinput}
 \begin{Soutput}
-[1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 0 0 0 0 0 1
-\end{Soutput}
-\begin{Soutput}
 [1] 0
 \end{Soutput}
 \begin{Sinput}
 R> some(A)
 \end{Sinput}
-\begin{Soutput}
-[1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 1 1 1 1 1 1
-\end{Soutput}
 \begin{Soutput}
 [1] 1
 \end{Soutput}
@@ -1295,10 +1219,6 @@ R> some(A)
 R> atLeast4 <- quantifier("at.least", n = 4)
 R> atLeast4(A)
 \end{Sinput}
-\begin{Soutput}
-[1] 1.0 1.0 1.0 1.0 0.8 0.0
-[1] 0 0 0 1 1 1
-\end{Soutput}
 \begin{Soutput}
 [1] 1
 \end{Soutput}

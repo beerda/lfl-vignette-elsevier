@@ -982,15 +982,12 @@ The \code{specs} attribute returns a matrix that encodes a sort of \emph{specifi
 As can be seen, the 4th fuzzy set (\code{ve.sm.age}) is more specific than 5th (\code{sm.age}), which is more specific than the 6th fuzzy set (\code{ro.sm.age}).
 
 
-The \code{fcut()} function works identically to \code{lcut()} for logical and factor input:
-%
-\input{chunks/chunk-fcut.logfact}
-%
-Numerical values are transformed with the \code{fcut()} function to triangular or raised-cosine membership degrees (depending on the \code{type} argument which has to be either \code{"triangle"} or \code{"raisedcos"}):
+The \code{fcut()} function works identically to \code{lcut()} for logical and factor input. However,
+numerical values are transformed with the \code{fcut()} function to triangular or raised-cosine membership degrees (depending on the \code{type} argument which has to be either \code{"triangle"} or \code{"raisedcos"}):
 %
 \input{chunks/chunk-fcut.numeric1}
 %
-The preceding example is identical to the call of the \code{triangular()} function:
+This is identical to the call of the \code{triangular()} function:
 %
 \input{chunks/chunk-fcut.triangular}
 %

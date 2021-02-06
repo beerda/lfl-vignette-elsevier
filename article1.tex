@@ -154,7 +154,6 @@ fuzzy sets \sep fuzzy natural logic \sep linguistic fuzzy logic \sep association
 
 \linenumbers
 
-\Martin{Utekly mi obrazky pod reference na konec clanku - nevim proc. \\ Premyslim nad tim delenim clanku na part I a Part II. Mozna pri zkraceni tech prikladu se to vejde do jednoho clanku. Porad totiz tapu, kde tu delici mezeru udelat a jak se v te druhe casti neopakovat. }
 
 \section{Introduction} \label{sec:intro}
 
@@ -165,13 +164,7 @@ applications. The package provides implemented tools for using the results of or
 \cite{Novak08, Novak:PbLD, DvoStep:PbLD2015, StepBurda:FRBE_FSS}, and others, and it provides
 executable routines that are not freely available anywhere else.
 
-Indeed, there already exist several packages for \R{} that are focused on vagueness and fuzziness. For
-instance, the \pkg{sets}
-package \citep{setsPkg} introduces many basic operations on fuzzy sets, the \pkg{FuzzyNumbers}
-package \citep{FuzzyNumbersPkg} provides classes and methods to deal with fuzzy numbers,
-the \pkg{SAFD} package \citep{safdPkg} contains tools for elementary statistics on fuzzy data, and
-the \pkg{fclust} \citep{fclustPkg} brings the fuzzy K-Means clustering technique to the environment of
-the \R{} system.
+Indeed, there already exist several packages for \R{} that are focused on vagueness and fuzziness. For instance, the \pkg{sets} package \citep{setsPkg} introduces many basic operations on fuzzy sets, the \pkg{FuzzyNumbers} package \citep{FuzzyNumbersPkg} provides classes and methods to deal with fuzzy numbers, the \pkg{SAFD} package \citep{safdPkg} contains tools for elementary statistics on fuzzy data, and the \pkg{fclust} \citep{fclustPkg} brings the fuzzy K-Means clustering technique to the environment of the \R{} system.
 
 The \pkg{lfl} package described in this paper focuses on creation of systems based on fuzzy logic and their
 usage in classification and prediction. A similar task is performed also by the \pkg{fugeR}
@@ -827,7 +820,7 @@ The latter case of fuzzy numbers is in the \pkg{lfl} package modelled with help 
 %
 where the abbreviations stand for \emph{``extremely''}, \emph{``significantly''}, \emph{``very''}, \emph{``more or less''}, \emph{``roughly''}, \emph{``quite roughly''}, and \emph{``very roughly''}, respectively. Note that not all hedges have to be necessarily used and some redundancy analysis results are valid only under assumptions that, e.g., require to omit the hedge VR.
 
-\begin{figure}[tbp]
+\begin{figure}[ht]
 	\centering
 	\includegraphics[scale=0.3]{DEE.png}
 	\caption{Visual sketch of fuzzy sets representing some particular evaluative linguistic expressions. Specific defuzzification DEE is charted too.}\label{fig_dee}
@@ -873,7 +866,7 @@ The atomic expressions, e.g., \emph{``small''}, \emph{``medium''} or \emph{``big
 \input{chunks/chunk-horizon}
 %
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{figure/horizon-1.pdf}
     \caption{Horizons for the atomic expressions \emph{small}, \emph{medium} and \emph{big} in the unilateral trichotomy (\code{ctx3(0, 0.5, 1)})}
@@ -898,7 +891,7 @@ or equivalently:
 %
 Figure~\ref{fig:lingexpr} shows all linguistic expressions of the unilateral trichotomy context (\code{ctx3}).
 
-\begin{figure}[h]
+\begin{figure}[htp]
     \centering
     \includegraphics[scale=0.59]{figure/lingexpr1-1.pdf}
     \\
@@ -918,26 +911,26 @@ For the sake of completeness, the \pkg{lfl} package provides tools for the creat
 %
 \input{chunks/chunk-triangular}
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[scale=0.80]{figure/triangular1-1.pdf}
+        \includegraphics[scale=0.79]{figure/triangular1-1.pdf}
         \caption{\code{triangular(0, 0.5, 1)}}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[scale=0.80]{figure/triangular2-1.pdf}
+        \includegraphics[scale=0.79]{figure/triangular2-1.pdf}
         \caption{\code{triangular(-Inf, 0.5, 1)}}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[scale=0.80]{figure/raisedcos1-1.pdf}
+        \includegraphics[scale=0.79]{figure/raisedcos1-1.pdf}
         \caption{\code{raisedcosinal(0, 0.5, 1)}}
     \end{subfigure}
     \begin{subfigure}[b]{0.49\textwidth}
         \centering
-        \includegraphics[scale=0.80]{figure/raisedcos2-1.pdf}
+        \includegraphics[scale=0.79]{figure/raisedcos2-1.pdf}
         \caption{\code{raisedcosinal(0, 0.5, Inf)}}
     \end{subfigure}
     \caption{Triangular and raised-cosinal functions}
@@ -1002,7 +995,7 @@ For instance, the following command produces three triangular fuzzy sets with pa
 Let us consider the $i$-th fuzzy set. The values smaller than the $i$-th break and greater than $(i+2)$-th break result in the zero membership degree, values equal to $(i+1)$-th break result in the membership degree equal 1, and values between them result in a membership degree between 0 and 1 accordingly to the specified \code{type} (\code{"triangle"} or \code{"raisedcos"}).
 Names of resulting fuzzy sets are created from the name of the original data variable (\code{numvec} in this case), the symbol of equality (\code{=}) and a number $i$.
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \newsavebox{\largestimage}
     \savebox{\largestimage}{\includegraphics[width=0.4\textwidth]{figure/fcut_plot1-1.pdf}}
@@ -1196,9 +1189,9 @@ Internally, the rule base produced by the \code{searchrules()} function is an in
 %
 \input{chunks/chunk-searchrules3}
 %
-The \code{antecedent()} or \code{consequent()} functions create a list of antecedents or consequents from the \code{farules} object:
+The \code{antecedent()} or \code{consequent()} functions create a list of antecedents or consequents from the \code{farules} object.
 %
-\input{chunks/chunk-searchrules4}
+%\input{chunks/chunk-searchrules4}
 
 
 \subsection{Reduction of rule bases}

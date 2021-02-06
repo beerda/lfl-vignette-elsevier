@@ -527,8 +527,6 @@ rb <- searchrules(training,
 <<export='pbld5'>>=
 v <- seq(uptakeContext[1], uptakeContext[3], length.out=1000)
 p <- lcut(v, name='uptake', context=uptakeContext)
-head(v)
-head(p)
 @
 
 <<export='pbld6'>>=

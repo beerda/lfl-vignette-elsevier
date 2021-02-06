@@ -49,7 +49,7 @@
 % \bibliographystyle{elsarticle-harv}\biboptions{authoryear}
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\newenvironment{Schunk}{}{}
+\newenvironment{Schunk}{\bgroup\linespread{1}}{\egroup}
 \newenvironment{Sinput}{\endgraf\verbatim}{\endverbatim}
 \newenvironment{Soutput}{\endgraf\verbatim}{\endverbatim}
 \newcommand{\pkg}[1]{\textbf{#1}}
@@ -130,11 +130,11 @@
 
 \begin{frontmatter}
 
-\title{lfl: Linguistic Fuzzy Logic in \R{}}
+\title{lfl: Linguistic Fuzzy Logic in \R{} -- Part II}
 
 %% Group authors per affiliation:
 \author{Michal Burda\corref{corr}}\ead{Michal.Burda@osu.cz}
-\author{Martin \v{S}t\v{e}pni\v{c}ka}
+\author{Martin \v{S}t\v{e}pni\v{c}ka}\ead{Martin.Stepnicka@osu.cz}
 \cortext[corr]{Corresponding author. Tel.: +420 59 709 1450; fax: +420 596 120 478.}
 \address{Institute for Research and Applications of Fuzzy Modeling, University of Ostrava, CE~IT4Innovations, 30.~dubna 22, 701 03 Ostrava, Czech Republic}
 

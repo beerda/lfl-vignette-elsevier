@@ -3,11 +3,16 @@
 
 \begin{document}
 <<setup, include=FALSE>>=
-  options(prompt='R> ', continue='   ', width=75)
+  library(knitr)
+  library(ggplot2)
+
+  render_sweave()
+
+  options(width=75)
   knitr::opts_chunk$set(tidy=TRUE,
                         tidy.opts = list(width.cutoff = 70),
-                        comment='',
-                        prompt=TRUE,
+                        comment='##',
+                        prompt=FALSE,
                         highlight=FALSE)
 
   knit_hooks$set(export = function(before, options, envir) {
@@ -18,9 +23,6 @@
     }
   })
 
-  library(ggplot2)
-
-  render_sweave()
   set.seed(3243)
 @
 
@@ -35,7 +37,7 @@ devtools::install_github('beerda/lfl')
 @
 
 <<export='load.lfl', message=FALSE>>=
-library(lfl)
+library('lfl')
 @
 
 <<export='goedel.algebra'>>=

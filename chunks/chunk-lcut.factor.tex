@@ -1,15 +1,15 @@
 \begin{Schunk}
 % --begin: "lcut.factor"
 \begin{Sinput}
-R> position <- factor(c("worker", "manager", "worker", "accountant"))
-R> lcut(position)
+position <- factor(c("worker", "manager", "worker", "accountant"))
+lcut(position)
 \end{Sinput}
 \begin{Soutput}
-     position=accountant position=manager position=worker
-[1,]                   0                0               1
-[2,]                   0                1               0
-[3,]                   0                0               1
-[4,]                   1                0               0
+##      position=accountant position=manager position=worker
+## [1,]                   0                0               1
+## [2,]                   0                1               0
+## [3,]                   0                0               1
+## [4,]                   1                0               0
 \end{Soutput}
 %
 % --end: "lcut.factor"

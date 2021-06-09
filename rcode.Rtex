@@ -563,7 +563,7 @@ summary(iris)
 @
 
 <<export='casestudy-assoc-lcut', tidy=FALSE>>=
-ldata <- lcut(data)
+ldata <- lcut(iris)
 colnames(ldata)
 @
 

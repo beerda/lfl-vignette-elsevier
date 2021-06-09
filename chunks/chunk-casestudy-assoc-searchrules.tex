@@ -5,19 +5,24 @@ lrules <- searchrules(ldata,
                       lhs=grep('^Species=', colnames(ldata), invert=TRUE),
                       rhs=grep('^Species=', colnames(ldata)),
                       minSupport=0.05)
-\end{Sinput}
-\begin{Soutput}
-## Warning in min(rhs): no non-missing arguments to min; returning Inf
-\end{Soutput}
-\begin{Soutput}
-## Warning in max(rhs): no non-missing arguments to max; returning -Inf
-\end{Soutput}
-\begin{Sinput}
 ldf <- as.data.frame(lrules)
 head(ldf[order(ldf$support, decreasing=TRUE), ])
 \end{Sinput}
 \begin{Soutput}
-## Error in order(ldf$support, decreasing = TRUE): argument 1 is not a vector
+##                                        support lhsSupport rhsSupport
+## qr.sm.Petal.Width => Species=setosa  0.3333333  0.3333333  0.3333333
+## ro.sm.Petal.Length => Species=setosa 0.3333333  0.3333333  0.3333333
+## ml.sm.Petal.Length => Species=setosa 0.3329695  0.3329695  0.3333333
+## ro.sm.Petal.Width => Species=setosa  0.3329422  0.3329422  0.3333333
+## ml.sm.Petal.Width => Species=setosa  0.3291277  0.3291277  0.3333333
+## sm.Petal.Length => Species=setosa    0.3230208  0.3230208  0.3333333
+##                                      confidence
+## qr.sm.Petal.Width => Species=setosa           1
+## ro.sm.Petal.Length => Species=setosa          1
+## ml.sm.Petal.Length => Species=setosa          1
+## ro.sm.Petal.Width => Species=setosa           1
+## ml.sm.Petal.Width => Species=setosa           1
+## sm.Petal.Length => Species=setosa             1
 \end{Soutput}
 %
 % --end: "casestudy-assoc-searchrules"

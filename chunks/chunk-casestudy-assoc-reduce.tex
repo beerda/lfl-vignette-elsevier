@@ -4,7 +4,50 @@
 reduce(ldata, rules=lrules, ratio=1)
 \end{Sinput}
 \begin{Soutput}
-## Empty rule base
+##                                                                                      support
+## qr.sm.Petal.Width => Species=setosa                                               0.33333334
+## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                          0.26911455
+## ve.sm.Sepal.Length => Species=setosa                                              0.06378584
+## ro.me.Sepal.Length & ml.me.Petal.Length & ty.me.Petal.Width => Species=versicolor 0.09947090
+## ty.me.Petal.Length => Species=versicolor                                          0.07089734
+## ro.bi.Petal.Length => Species=virginica                                           0.17762597
+## ml.bi.Petal.Width => Species=virginica                                            0.17133440
+## vr.sm.Sepal.Width & ro.bi.Petal.Width => Species=virginica                        0.06244373
+## qr.bi.Petal.Length & ro.bi.Petal.Width => Species=virginica                       0.16844945
+## vr.bi.Sepal.Length & ro.bi.Petal.Width => Species=virginica                       0.12503819
+##                                                                                   lhsSupport
+## qr.sm.Petal.Width => Species=setosa                                               0.33333334
+## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                          0.26918504
+## ve.sm.Sepal.Length => Species=setosa                                              0.06380372
+## ro.me.Sepal.Length & ml.me.Petal.Length & ty.me.Petal.Width => Species=versicolor 0.09948596
+## ty.me.Petal.Length => Species=versicolor                                          0.07089734
+## ro.bi.Petal.Length => Species=virginica                                           0.17762597
+## ml.bi.Petal.Width => Species=virginica                                            0.17133440
+## vr.sm.Sepal.Width & ro.bi.Petal.Width => Species=virginica                        0.06244373
+## qr.bi.Petal.Length & ro.bi.Petal.Width => Species=virginica                       0.16844945
+## vr.bi.Sepal.Length & ro.bi.Petal.Width => Species=virginica                       0.12503819
+##                                                                                   rhsSupport
+## qr.sm.Petal.Width => Species=setosa                                                0.3333333
+## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                           0.3333333
+## ve.sm.Sepal.Length => Species=setosa                                               0.3333333
+## ro.me.Sepal.Length & ml.me.Petal.Length & ty.me.Petal.Width => Species=versicolor  0.3333333
+## ty.me.Petal.Length => Species=versicolor                                           0.3333333
+## ro.bi.Petal.Length => Species=virginica                                            0.3333333
+## ml.bi.Petal.Width => Species=virginica                                             0.3333333
+## vr.sm.Sepal.Width & ro.bi.Petal.Width => Species=virginica                         0.3333333
+## qr.bi.Petal.Length & ro.bi.Petal.Width => Species=virginica                        0.3333333
+## vr.bi.Sepal.Length & ro.bi.Petal.Width => Species=virginica                        0.3333333
+##                                                                                   confidence
+## qr.sm.Petal.Width => Species=setosa                                                1.0000000
+## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                           0.9997382
+## ve.sm.Sepal.Length => Species=setosa                                               0.9997197
+## ro.me.Sepal.Length & ml.me.Petal.Length & ty.me.Petal.Width => Species=versicolor  0.9998486
+## ty.me.Petal.Length => Species=versicolor                                           1.0000000
+## ro.bi.Petal.Length => Species=virginica                                            1.0000000
+## ml.bi.Petal.Width => Species=virginica                                             1.0000000
+## vr.sm.Sepal.Width & ro.bi.Petal.Width => Species=virginica                         1.0000000
+## qr.bi.Petal.Length & ro.bi.Petal.Width => Species=virginica                        1.0000000
+## vr.bi.Sepal.Length & ro.bi.Petal.Width => Species=virginica                        1.0000000
 \end{Soutput}
 %
 % --end: "casestudy-assoc-reduce"

@@ -158,7 +158,7 @@ fuzzy sets \sep fuzzy natural logic \sep linguistic fuzzy logic \sep association
 \section{Introduction} \label{sec:intro}
 
 
-The aim of this paper is to present a new package for the \R{} statistical environment \citep{R2020, Rintro} that enables the use of the linguistic fuzzy logic in data processing applications. The package provides implemented tools for using the results of original work of \cite{Novak08, Novak:PbLD, DvoStep:PbLD2015, StepBurda:FRBE_FSS}, and others, and it provides executable routines that are not freely available anywhere else.
+The aim of this paper is to present particular package for the \R{} statistical environment \citep{R2020, Rintro} named {\bf lfl} that enables the use of the linguistic fuzzy logic in data processing applications. The package provides implemented tools for using the results of original work of \cite{Novak08, Novak:PbLD, DvoStep:PbLD2015, StepBurda:FRBE_FSS}, and others, and it provides executable routines that are not freely available anywhere else.
 
 Indeed, there already exist several packages for \R{} that are focused on vagueness and fuzziness. For instance, the \pkg{sets} package \citep{setsPkg} introduces many basic operations on fuzzy sets, the \pkg{FuzzyNumbers} package \citep{FuzzyNumbersPkg} provides classes and methods to deal with fuzzy numbers, the \pkg{SAFD} package \citep{safdPkg} contains tools for elementary statistics on fuzzy data, and the \pkg{fclust} \citep{fclustPkg,Ferraro_R-toolbox_FSS2015} brings the fuzzy K-Means clustering technique to the environment of the \R{} system. For an exhaustive study on existing software implementations of fuzzy methods we refer to the recent survey by \cite{AlcalAlonso:fuzzySW_IEEETFS16}.
 
@@ -201,13 +201,15 @@ application. We refer to \cite{Novak:PbLD,DvoStep:PbLD2015} for all the details 
 
 The \pkg{lfl} package also provides functions for searching for \emph{fuzzy association rules} \citep{srikant95}. Together
 with PbLD, they can be used as a machine learning tool for classification or regression problems, see \cite{KupkaRusnok:Regression_ESWA_INS17}.
-The package also includes the \emph{Fuzzy Rule-based Ensemble}, a tool for time series forecasting
+The package also includes the \emph{Fuzzy Rule-based Ensemble} (FRBE), a tool for time series forecasting
 \citep{StepBurda:FRBE_FSS}, which is built on top of the fuzzy association rules search algorithm and PbLD.
 
 Alternatively to machine learning, classification tasks may be solved based on human expert knowledge
 by using the technique of \emph{compositions of fuzzy relations}, see \cite{Cao2017b,Cao2017,Step_etal:Unavoidable_KNOSYS2020}. Such an approach is especially useful when lacking a large amount of data needed for automated predictor construction.
 
+\Martin{checkni prosím tento odstavec po faktografické stránce}
 
+It is important to note that {\bf lfl} package was firstly issued in {\color{red}2014} and described in \cite{Burda_lfl:FUZZ15}. The differences are, however, essential. Indeed, many of the above-mentioned results that are implemented in the current version of {\bf lfl} were not even published and thus, could hardly be incorporated in the original version. In particular, e.g., algebras for partial fuzzy logics including the novel structures such as Dragonfly algebras or lower estimation algebras; fuzzy relational calculus including the extensions such as the use of generalized quantifiers, excluding features, or unavoidable features. Furthermore, apart from these latest results, it newly includes even fundamental foundations such as the basic  fuzzy relational compositions that allow to employ the extensions and also to deal with fuzzy inputs when incorporating fuzzy rule-based systems, and regarding the latter notion, the standard fuzzy relational models (Mamdani-Assilian and the implicative one) have been added as well including the related defuzzification techniques. This changes the original nature of {\bf lfl} package from an R-package implementation of the linguistic control software LFLC, see \cite{dvo:lflc} with a few extensions (associations rules and FRBE), to a brand new complex package that can be used for distinct purposes and for building more complex tools due to the presence of sound mathematical foundations of fuzzy modeling techniques. 
 
 
 \subsection{Overview of the paper}
@@ -237,6 +239,7 @@ causes loading of the package into the working space so that the user can start 
 %
 \input{chunks/chunk-load.lfl}
 
+The \pkg{lfl} package is distributed under the terms of the GNU General Public License (GPL), which guarantees the user the freedom to use it, study, share and modify.
 
 
 
@@ -1382,6 +1385,81 @@ To perform the FRBE forecast, a proper time series object has to be created with
 \input{chunks/chunk-frbe}
 %
 The returned list contains a lot of values related to the forecast such as forecasts of the particular methods and weights. The \code{mean} element is a list with predicted values.
+
+
+\section{Applicability}
+\label{sec:applicability}
+
+This section places the \pkg{lfl} package into the perspective of the others from the practical applicability point of view. Firstly, we briefly recall the other tools and packages, secondly, we present a real case-study problem. 
+
+\subsection{Other related packages}
+
+As mentioned above, \pkg{lfl} is by far not the only SW or even R-package related to the fuzzy methods. An exhaustive study on SW related to fuzzy techniques can be found in \cite{AlcalAlonso:fuzzySW_IEEETFS16}. Staying in the environment of R-packages, the above-mentioned \pkg{frbs} \citep{frbsPkg,FRBS:jstatsoft14} is, according to the subjective opinion of the authors, topically the closest one and it seems to be also developed to the widest applicable potential. 
+
+Other packages that deal with fuzzy rules are, for instance, \pkg{FisPro} \citep{fisproPkg}, \pkg{FuzzyToolkitUoN} \citep{FuzzyToolkitUoNPkg} or \pkg{FuzzyR} \citep{FuzzyRPkg} where the first two ones focuse on Mamdani-Assilian and Takagi-Sugeno systems which makes them closer to \pkg{frbs} while the latter one focuses mainly on the well-known neurofuzzy system ANFIS. 
+
+The portfolio of problems possibly solvable by existing R-packages with fuzzy techniques is, indeed, much wider. We may find, for example, packages for fuzzy linear regression, AHP, fuzzy statistics, or fuzzy decision trees and random forests \citep{fuzzyforestPkg,fuzzyforestJSS}.
+
+If we intend to compare the \pkg{lfl} package with the most related ones from the area/technique coverage point of view, we find the following differences and similarities.  
+
+Due to the specific character of the PbLd inference and the related necessity of the use of evaluative linguistic expressions \citep{Novak:ELE_FSS} based on the basic trichotomy, none of the existing packages contains these structures. Neither the predefined fuzzy sets modeling expressions created by the application of linguistic hedges to the basic triplet, nor the related implication-based inference based on a sort of ``pre-selection'' of rules. This fact that is not that surprising, however, up to the best knowledge of the authors, none of the existing packages contains fuzzy relational model of implicative rules. Having in mind its importance, this contribution of {\bf lfl} to the existing tools is essential. 
+
+
+For the sake of the completeness of the \pkg{lfl} package and for the sake of the consistency of the implementation with the implicative rules, \pkg{lfl} contains also Mamdani-Assilian model of fuzzy rules. However, here we have to note that this approach is already employed in several packages, e.g., in \pkg{FisPro}, \pkg{FuzzyToolkitUoN}, and mainly in \pkg{frbs}. We are also emphasizing  distinct efficient and effective modifications and learning techniques, e.g., neural-network based fuzzy inference system ANFIS employed in \pkg{FuzzyR} and in \pkg{frbs}. In the latter package, ANFIS is  supplemented by DENFIS, hybrid neural approach HYFIS, or distinct genetic (evolutionary) approaches, e.g. by genetic fuzzy systems based on Thrift and MOGUL methods. This, jointly with other inferences (Takagi-Sugeno-Kang or Ishibuchi's method) make \pkg{frbs} a powerfull and a rich package for distinct purposes, such as regression, data-driven classification, control, or decision-making.
+
+Owing to mention other differences, \pkg{lfl} contains complete and very recent group of fuzzy relational composition calculus including the most recent techniques \citep{CaoStep:ExcludfeatureESWA,Step_etal:Unavoidable_KNOSYS2020}. These structures can be used in the inference processing fuzzy inputs as well as in distinct, e.g., expert-driven, classification or decision-making tasks. We also emphasize that the implementation allows to compose partial fuzzy relations \citep{Step_etal_Dragon_IJAR2019}. 
+
+Generally, the incorporation of algebraic structures is different in \pkg{lfl}, it contains the main three residuated structures that are used as parameters \Martin{je to tak, uvádí se to tak anglicky, že jsou ty agebry "parametry"?}. Furthermore, for the sake of the ability to deal with partial fuzzy logics, it contains six partial algebraic structures that can be combined with any of the three basic underlying residuated structures. 
+
+The \pkg{lfl} package also contains fuzzy association rules mining algorithm that generates linguistic rules to which the PbLD inference is tailored. The mining algorithm works with genuine approach that reflects membership degrees and that was used for the generation of the fuzzy rule base ensemble technique for time series forecasting \citep{StepBurda:FRBE_FSS}. This ensemble is also employed in \pkg{lfl}. 
+
+Association rules have rich history, before they got their name in \citep{Agrawal:assoc_rules}, they were propoed as so-called GUHA method already in \citep{Hajek:GUHA}. However, we are not aware of fuzzy associations rule mining algorithm implemented in any existing R-package that would be any reflecting membership degrees. We may recall, e.g., \pkg{arules} package, however, it deals with the crisp variant of associations rule mining only. 
+
+The survey provided above brings a comparison of the R-packages that are topic-closest to \pkg{lfl} however, its goal is not to compare them from the superiority point of view. This is probably even impossible. The goal is to compare them from the area and technique coverage point of view, to show the similarities and differences. The fact is that the packages have rather complementary positions not duplicating each other. Out of the existing packages, we would like to once more emphasize the \pkg{frbs} package that provides the richest set of methods for distinct purposes (control, regression, classification) -- many of them not even attempted in \pkg{lfl}. The \pkg{lfl} package is closer to more mathematically oriented foundations in providing algebraic backgrounds and tools from the fuzzy relational calculus that may be useful for distinct purposes. In the area of  inference systems, it complements existing packages with fundamental implicative rule bases and specific PbLD method, that is even followed by associations mining and FRBE for time series forecasts. 
+
+
+
+
+\subsection{Case study I -- expert classification of amphibians}
+
+This section briefly describes the application of fuzzy relational compositions to the expert classification of animal species, namely of amphibians. It nicely demonstrates the power of chaining distinct composition blocks to their extensions. We avoid the details and the experimental comparison with classical data-driven classifiers as this can be found int he very recent source \cite{Step_etal:Unavoidable_KNOSYS2020} and we concentrate on the use of the R-package. 
+
+The problem setting is as follows. We are given 79427 training data samples (animal records) which constitutes the set $X$. Each data sample is a vector containing 29 values -- the features constituting the set $Y$. These are, e.g., Boolean descriptors or  distinct colors from the top or from the bottom of an animal. The task is to classify each animal into one of the 21 species -- which constitute the set of classes $Z$.
+
+Expert knowledge is then encoded in the matrix $S$ declaring the ``supportive'' features for given species; in the matrix $E$ declaring the excluding features for particular classes; and in matrix $U$ declaring the unavoidable features for given classes. All these matrices (mathematically fuzzy relations on $Y\times Z$) are naturally of the dimension $29\times 23$ and were determined by a biologist. Note, that for the testing reasons, other 79418 data samples were used in \cite{Step_etal:Unavoidable_KNOSYS2020}.
+
+The results of chosen compositions for a fixed row from matrix $R$, i.e., for a particular animal record, are vectors of 23 values -- each value expressing a membership degree to a particular species. However, it is important to note that it is not a membership degree of the given animal to the given species as each animal belongs to a single species only. 
+
+For example, if we use the command:
+\begin{Sinput}
+a <- algebra("lukasiewicz")
+compose(R, S, alg = a, type = "basic")
+\end{Sinput}
+we get $(R\circ S)(x,z)$ which is the truth degree of the statement \emph{``there exists at least a single feature that is carried by animal record $x$ and it belongs to the features related supporting the suspicion for species $z$''}. As we can see from \cite{Step_etal:Unavoidable_KNOSYS2020}, this composition would lead to 100\% accuracy (sensitivity) in a sense of true positive cases however, very lows accuracy (specificity) in a sense of false positive cases. Indeed, on average over the whole testing set, there were 18 vector values equal to 1 and so, 18 species were found suspicious on average.  
+
+Right for the reasons of increasing the true negative accuracy and thus, narrowing the set of suspicious species, the other extensions may be used. For example, adding the commands:
+\begin{Sinput}
+RE <- compose(R, E, alg = a, type = "basic")
+a$pt(RS, a$n(RE))
+\end{Sinput}
+leads to $(R\circ S^{\backprime}E )(x,z)$ which is the truth degree of the statement \emph{``there exists at least a single feature that is carried by animal record $x$ and it belongs to the features related supporting the suspicion for species $z$ and at the same time, $x$ carries no feature that would be excluding for the species $z$''}. Such an extension directly reduces the number of suspicious species to 3.41 on average while it keeps the 100\% accuracy in the true positive cases point of view, see \cite{Step_etal:Unavoidable_KNOSYS2020}.
+
+Furthermore, we can involve also the unavoidable features:
+\begin{Sinput}
+RU <- compose(R, U, alg = a, type = "super")
+a$pt(RS, a$n(RE), RU)
+\end{Sinput}
+
+bla bla bla
+
+
+
+\subsection{Case study II -- fuzzy associations rules from the Iris data}
+
+
+\Martin{zatim nemam co psat, dokud nebudou obrysy experimentu}
+
+The second case study will work with the famous Iris dataset \citep{iris1, iris2}:
 
 \section{Conclusion}
 \label{sec:conclusion}

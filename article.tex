@@ -1449,9 +1449,9 @@ Furthermore, we can involve also the unavoidable features:
 RU <- compose(R, U, alg = a, type = "super")
 a$pt(RS, a$n(RE), RU)
 \end{Sinput}
+which gives back values $(R\circ S^{\backprime}E )^{\rhd U}(x,z)$ with the meaning \emph{``there exists at least a single feature that is carried by animal record $x$ and it belongs to the features related supporting the suspicion for species $z$ and at the same time, $x$ carries no feature that would be excluding for the species $z$, and at the same time all unavoidable features for species $z$ are present in the record $x$''}. This operations reduces the number of suspicious species to 1.36 on average while still keeping the 100\% accuracy in the true positive cases point of view, see \cite{Step_etal:Unavoidable_KNOSYS2020}.
 
-bla bla bla
-
+Of course, using distinct quantifiers may lead to even narrower set of suspicion species but, it can easily lower the accuracy. For this particular case but also for the case of Dragonfly classification, we again refer to \cite{Step_etal:Unavoidable_KNOSYS2020} where the readers can find also comparison with data-driven techniques applied to the same data and other accuracy measures. The details can be found again in the referred source but it is probably worth mentioning that some techniques, nnet and rpart in particular, were more efficient in narrowing the set of suspicion species to values 1.13 and 1.12., respectively. However, the price for that was that the true positive cases accuracy dropped to 90.17\% and to 90.19\%, respectively. 
 
 
 \subsection{Case study II -- fuzzy associations rules from the Iris data}

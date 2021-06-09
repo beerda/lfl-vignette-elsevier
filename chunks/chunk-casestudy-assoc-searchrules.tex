@@ -1,0 +1,24 @@
+\begin{Schunk}
+% --begin: "casestudy-assoc-searchrules"
+\begin{Sinput}
+lrules <- searchrules(ldata,
+                      lhs=grep('^Species=', colnames(ldata), invert=TRUE),
+                      rhs=grep('^Species=', colnames(ldata)),
+                      minSupport=0.05)
+\end{Sinput}
+\begin{Soutput}
+## Warning in min(rhs): no non-missing arguments to min; returning Inf
+\end{Soutput}
+\begin{Soutput}
+## Warning in max(rhs): no non-missing arguments to max; returning -Inf
+\end{Soutput}
+\begin{Sinput}
+ldf <- as.data.frame(lrules)
+head(ldf[order(ldf$support, decreasing=TRUE), ])
+\end{Sinput}
+\begin{Soutput}
+## Error in order(ldf$support, decreasing = TRUE): argument 1 is not a vector
+\end{Soutput}
+%
+% --end: "casestudy-assoc-searchrules"
+\end{Schunk}

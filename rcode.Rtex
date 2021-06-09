@@ -562,6 +562,25 @@ fit$mean
 summary(iris)
 @
 
+<<export='casestudy-assoc-lcut', tidy=FALSE>>=
+ldata <- lcut(data)
+colnames(ldata)
+@
+
+<<export='casestudy-assoc-searchrules', tidy=FALSE>>=
+lrules <- searchrules(ldata,
+                      lhs=grep('^Species=', colnames(ldata), invert=TRUE),
+                      rhs=grep('^Species=', colnames(ldata)),
+                      minSupport=0.05)
+ldf <- as.data.frame(lrules)
+head(ldf[order(ldf$support, decreasing=TRUE), ])
+@
+
+<<export='casestudy-assoc-reduce', tidy=FALSE>>=
+reduce(ldata, rules=lrules, ratio=1)
+@
+
+
 <<>>=
 sessionInfo()
 @

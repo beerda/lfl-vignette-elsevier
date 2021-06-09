@@ -1542,23 +1542,14 @@ library(arules)
 \end{Soutput}
 \begin{Sinput}
 adata <- data.frame(
-  Sepal.Length=cut(data$Sepal.Length, 5),
-  Sepal.Width=cut(data$Sepal.Width, 5),
-  Petal.Length=cut(data$Petal.Length, 5),
-  Petal.Width=cut(data$Petal.Width, 5),
-  Species=data$Species
+  Sepal.Length=cut(iris$Sepal.Length, 5),
+  Sepal.Width=cut(iris$Sepal.Width, 5),
+  Petal.Length=cut(iris$Petal.Length, 5),
+  Petal.Width=cut(iris$Petal.Width, 5),
+  Species=iris$Species
 )
-\end{Sinput}
-\begin{Soutput}
-## Error in cut.default(data$Sepal.Length, 5): 'x' must be numeric
-\end{Soutput}
-\begin{Sinput}
+
 tdata <- transactions(adata)
-\end{Sinput}
-\begin{Soutput}
-## Error in .class1(object): object 'adata' not found
-\end{Soutput}
-\begin{Sinput}
 rules <- apriori(tdata, 
                  parameter=list(support=0.05,
                                 target='rules'),
@@ -1566,13 +1557,49 @@ rules <- apriori(tdata,
                                  rhs=grep('Species=', itemLabels(tdata), value=TRUE)))
 \end{Sinput}
 \begin{Soutput}
-## Error in .class1(object): object 'tdata' not found
+## Apriori
+## 
+## Parameter specification:
+##  confidence minval smax arem  aval originalSupport maxtime support minlen
+##         0.8    0.1    1 none FALSE            TRUE       5    0.05      1
+##  maxlen target  ext
+##      10  rules TRUE
+## 
+## Algorithmic control:
+##  filter tree heap memopt load sort verbose
+##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
+## 
+## Absolute minimum support count: 7 
+## 
+## set item appearances ...[23 item(s)] done [0.00s].
+## set transactions ...[23 item(s), 150 transaction(s)] done [0.00s].
+## sorting and recoding items ... [21 item(s)] done [0.00s].
+## creating transaction tree ... done [0.00s].
+## checking subsets of size 1 2 3 4 5 done [0.00s].
+## writing ... [64 rule(s)] done [0.00s].
+## creating S4 object  ... done [0.00s].
 \end{Soutput}
 \begin{Sinput}
 inspect(head(rules, by='support', n=10))
 \end{Sinput}
 \begin{Soutput}
-## Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'inspect' for signature '"list"'
+##      lhs                            rhs                    support confidence  coverage     lift count
+## [1]  {Petal.Length=(0.994,2.18]} => {Species=setosa}     0.3333333  1.0000000 0.3333333 3.000000    50
+## [2]  {Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
+## [3]  {Petal.Length=(0.994,2.18],                                                                      
+##       Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
+## [4]  {Petal.Width=(1.06,1.54]}   => {Species=versicolor} 0.2533333  0.9268293 0.2733333 2.780488    38
+## [5]  {Petal.Length=(3.36,4.54]}  => {Species=versicolor} 0.2200000  0.9705882 0.2266667 2.911765    33
+## [6]  {Sepal.Length=(4.3,5.02]}   => {Species=setosa}     0.1866667  0.8750000 0.2133333 2.625000    28
+## [7]  {Sepal.Length=(4.3,5.02],                                                                        
+##       Petal.Length=(0.994,2.18]} => {Species=setosa}     0.1866667  1.0000000 0.1866667 3.000000    28
+## [8]  {Sepal.Length=(4.3,5.02],                                                                        
+##       Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.1800000  1.0000000 0.1800000 3.000000    27
+## [9]  {Petal.Length=(3.36,4.54],                                                                       
+##       Petal.Width=(1.06,1.54]}   => {Species=versicolor} 0.1800000  1.0000000 0.1800000 3.000000    27
+## [10] {Sepal.Length=(4.3,5.02],                                                                        
+##       Petal.Length=(0.994,2.18],                                                                      
+##       Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.1800000  1.0000000 0.1800000 3.000000    27
 \end{Soutput}
 %
 % --end: "casestudy-assoc-arules"

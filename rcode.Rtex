@@ -585,11 +585,11 @@ rownames(as.data.frame(r))
 library(arules)
 
 adata <- data.frame(
-  Sepal.Length=cut(data$Sepal.Length, 5),
-  Sepal.Width=cut(data$Sepal.Width, 5),
-  Petal.Length=cut(data$Petal.Length, 5),
-  Petal.Width=cut(data$Petal.Width, 5),
-  Species=data$Species
+  Sepal.Length=cut(iris$Sepal.Length, 5),
+  Sepal.Width=cut(iris$Sepal.Width, 5),
+  Petal.Length=cut(iris$Petal.Length, 5),
+  Petal.Width=cut(iris$Petal.Width, 5),
+  Species=iris$Species
 )
 
 tdata <- transactions(adata)

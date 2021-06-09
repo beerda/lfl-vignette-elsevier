@@ -11,7 +11,7 @@
   options(width=75)
   knitr::opts_chunk$set(tidy=TRUE,
                         tidy.opts = list(width.cutoff = 70),
-                        comment='##',
+                        comment="##",
                         prompt=FALSE,
                         highlight=FALSE)
 
@@ -28,20 +28,20 @@
 
 
 <<export='cran.lfl', eval=FALSE>>=
-install.packages('lfl')
+install.packages("lfl")
 @
 
 <<export='git.lfl', eval=FALSE>>=
-install.packages('devtools')
-devtools::install_github('beerda/lfl')
+install.packages("devtools")
+devtools::install_github("beerda/lfl")
 @
 
 <<export='load.lfl', message=FALSE>>=
-library('lfl')
+library("lfl")
 @
 
 <<export='goedel.algebra'>>=
-a <- algebra('goedel')
+a <- algebra("goedel")
 @
 
 <<export='goedel.algebra.examples'>>=
@@ -53,15 +53,15 @@ a$r(c(0.8, 0.3), c(0.2, 1))
 @
 
 <<export='goguen.algebra'>>=
-a <- algebra('goguen')
+a <- algebra("goguen")
 @
 
 <<export='lukasiewicz.algebra'>>=
-a <- algebra('lukasiewicz')
+a <- algebra("lukasiewicz")
 @
 
 <<export='na.algebra'>>=
-a <- algebra('goedel')
+a <- algebra("goedel")
 a2 <- sobocinski(a)
 a$t(NA, 0.3)
 a2$t(NA, 0.3)
@@ -73,15 +73,15 @@ S <- matrix(c(1, 0.9, 0, 1,
               0.1, 0.9, 0, 0.7,
               0.9, 0, 1, 0.1,
               0, 1, 1, 0.9), nrow=4)
-colnames(S) <- c('pulm.hyp', 'sleep.sick', 'malaria', 'hangover', 'influenza')
-rownames(S) <- c('tired', 'cough', 'fever', 'blur.vis')
+colnames(S) <- c("pulm.hyp", "sleep.sick", "malaria", "hangover", "influenza")
+rownames(S) <- c("tired", "cough", "fever", "blur.vis")
 
 R <- matrix(c(0.9, 0, 0, 0,
               1, 0.9, 0.8, 0,
               0.8, 0.8, 0.9, 1,
               0, 0.1, 0, 0.9), nrow=4)
 colnames(R) <- rownames(S)
-rownames(R) <- paste0('patient', 1:4)
+rownames(R) <- paste0("patient", 1:4)
 @
 
 <<export='comp.data'>>=
@@ -90,8 +90,8 @@ print(S)
 @
 
 <<export='comp.basic'>>=
-a <- algebra('lukasiewicz')
-compose(R, S, alg=a, type='basic')
+a <- algebra("lukasiewicz")
+compose(R, S, alg=a, type="basic")
 @
 
 <<export='comp.mult'>>=
@@ -101,9 +101,9 @@ mult(R, S, function(r, s) {
 @
 
 <<export='comp.subsupsquare'>>=
-compose(R, S, alg='lukasiewicz', type='sub')
-compose(R, S, alg='lukasiewicz', type='super')
-compose(R, S, alg='lukasiewicz', type='square')
+compose(R, S, alg="lukasiewicz", type="sub")
+compose(R, S, alg="lukasiewicz", type="super")
+compose(R, S, alg="lukasiewicz", type="square")
 @
 
 <<>>=
@@ -133,14 +133,14 @@ print(U)
 @
 
 <<export='comp.circ.excl'>>=
-a <- algebra('lukasiewicz')
-RS <- compose(R, S, alg=a, type='basic')
-RE <- compose(R, E, alg=a, type='basic')
+a <- algebra("lukasiewicz")
+RS <- compose(R, S, alg=a, type="basic")
+RE <- compose(R, E, alg=a, type="basic")
 a$pt(RS, a$n(RE))
 @
 
 <<export='comp.circ.unavoid'>>=
-RU <- compose(R, U, alg=a, type='super')
+RU <- compose(R, U, alg=a, type="super")
 a$pt(RS, RU)
 @
 
@@ -172,63 +172,63 @@ ctx3(high=100)
 <<export='minmax'>>=
 data <- runif(n=100, min=20, max=5000)
 summary(data)
-minmax(data, type='ctx3')
+minmax(data, type="ctx3")
 @
 
 <<export='minmax2'>>=
-minmax(data, type='ctx3', center=1000)
+minmax(data, type="ctx3", center=1000)
 @
 
 <<export='horizon'>>=
 ctx <- ctx3()
-smHoriz <- horizon(ctx, atomic='sm')
+smHoriz <- horizon(ctx, atomic="sm")
 smHoriz(seq(from=0, to=1, by=0.2))
 @
 
-<<horizon, fig.width=6, fig.height=2, fig.show='hide'>>=
-meHoriz <- horizon(ctx, atomic='me')
-biHoriz <- horizon(ctx, atomic='bi')
+<<horizon, fig.width=6, fig.height=2, fig.show="hide">>=
+meHoriz <- horizon(ctx, atomic="me")
+biHoriz <- horizon(ctx, atomic="bi")
 ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  stat_function(aes(color='sm'), fun = smHoriz) +
-  stat_function(aes(color='me'), fun = meHoriz) +
-  stat_function(aes(color='bi'), fun = biHoriz) +
+  stat_function(aes(color="sm"), fun = smHoriz) +
+  stat_function(aes(color="me"), fun = meHoriz) +
+  stat_function(aes(color="bi"), fun = biHoriz) +
   xlim(-0.5, 1.5) +
-  labs(x='', y='', colour='atomic\nexpression')
+  labs(x="", y="", colour="atomic\nexpression")
 @
 
 <<export='hedge'>>=
-veHedge <- hedge('ve')
+veHedge <- hedge("ve")
 ve.sm <- function(x) veHedge(smHoriz(x))
 ve.sm(seq(from=0, to=0.5, by=0.1))
 @
 
 
 <<export='lingexpr'>>=
-ve.sm2 <- lingexpr(ctx, atomic='sm', hedge='ve')
+ve.sm2 <- lingexpr(ctx, atomic="sm", hedge="ve")
 ve.sm2(seq(from=0, to=0.5, by=0.1))
 @
 
 <<export='emptyhedge1'>>=
-emptyHedge <- hedge('-')
+emptyHedge <- hedge("-")
 sm <- function(x) emptyHedge(smHoriz(x))
 sm(seq(from=0, to=0.5, by=0.1))
 @
 
 <<export='emptyhedge2'>>=
-sm2 <- lingexpr(ctx, atomic='sm', hedge='-')
+sm2 <- lingexpr(ctx, atomic="sm", hedge="-")
 sm2(seq(from=0, to=0.5, by=0.1))
 @
 
-<<lingexpr1, fig.width=6, fig.height=3, fig.show='hide'>>=
+<<lingexpr1, fig.width=6, fig.height=3, fig.show="hide">>=
 createListOfExpressions <- function(context, atomic, hedges) {
   res <- lapply(hedges, function(h) {
     lingexpr(context, atomic=atomic, hedge=h)
   })
-  names(res) <- paste(hedges, atomic, sep='.')
+  names(res) <- paste(hedges, atomic, sep=".")
   res
 }
 
-createPlot <- function(l, xlims=c(0, 1), legendName='expression', legendBottom=FALSE) {
+createPlot <- function(l, xlims=c(0, 1), legendName="expression", legendBottom=FALSE) {
   g <- ggplot(data = data.frame(x = 0), mapping = aes(x = x))
   for (n in names(l)) {
     f <- l[[n]]
@@ -236,29 +236,29 @@ createPlot <- function(l, xlims=c(0, 1), legendName='expression', legendBottom=F
   }
   g <- g +
     xlim(xlims[1], xlims[2]) +
-    labs(x='', y='', colour=legendName)
+    labs(x="", y="", colour=legendName)
   if (legendBottom) {
-    g <- g + theme(legend.position='bottom', legend.direction='vertical')
+    g <- g + theme(legend.position="bottom", legend.direction="vertical")
   }
   g
 }
 
 ctx <- ctx3()
-smList <- createListOfExpressions(ctx,  'sm',
+smList <- createListOfExpressions(ctx,  "sm",
                                   c("ex", "si", "ve", "-", "ml", "ro", "qr", "vr"))
-meList <- createListOfExpressions(ctx,  'me',
+meList <- createListOfExpressions(ctx,  "me",
                                   c("ty", "-", "ml", "ro", "qr", "vr"))
-biList <- createListOfExpressions(ctx,  'bi',
+biList <- createListOfExpressions(ctx,  "bi",
                                   c("ex", "si", "ve", "-", "ml", "ro", "qr", "vr"))
 
 createPlot(smList)
 @
 
-<<lingexpr2, fig.width=6, fig.height=3, fig.show='hide'>>=
+<<lingexpr2, fig.width=6, fig.height=3, fig.show="hide">>=
 createPlot(meList)
 @
 
-<<lingexpr3, fig.width=6, fig.height=3, fig.show='hide'>>=
+<<lingexpr3, fig.width=6, fig.height=3, fig.show="hide">>=
 createPlot(biList)
 @
 
@@ -269,46 +269,46 @@ rcos <- raisedcosine(0, 0.5, 1)
 rcos(seq(from = 0, to = 1, by = 0.2))
 @
 
-<<triangular1, fig.width=3, fig.height=2, fig.show='hide'>>=
+<<triangular1, fig.width=3, fig.height=2, fig.show="hide">>=
 ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  stat_function(aes(color='sm'), fun = triangular(0, 0.5, 1)) +
+  stat_function(aes(color="sm"), fun = triangular(0, 0.5, 1)) +
   xlim(-0.2, 1.2) +
-  labs(x='', y='') +
-  theme(legend.position = 'none')
+  labs(x="", y="") +
+  theme(legend.position = "none")
 @
 
-<<triangular2, fig.width=3, fig.height=2, fig.show='hide'>>=
+<<triangular2, fig.width=3, fig.height=2, fig.show="hide">>=
 ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  stat_function(aes(color='sm'), fun = triangular(-Inf, 0.5, 1)) +
+  stat_function(aes(color="sm"), fun = triangular(-Inf, 0.5, 1)) +
   xlim(-0.2, 1.2) +
-  labs(x='', y='') +
-  theme(legend.position = 'none')
+  labs(x="", y="") +
+  theme(legend.position = "none")
 @
 
-<<raisedcos1, fig.width=3, fig.height=2, fig.show='hide'>>=
+<<raisedcos1, fig.width=3, fig.height=2, fig.show="hide">>=
 ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  stat_function(aes(color='sm'), fun = raisedcosine(0, 0.5, 1)) +
+  stat_function(aes(color="sm"), fun = raisedcosine(0, 0.5, 1)) +
   xlim(-0.2, 1.2) +
-  labs(x='', y='') +
-  theme(legend.position = 'none')
+  labs(x="", y="") +
+  theme(legend.position = "none")
 @
 
-<<raisedcos2, fig.width=3, fig.height=2, fig.show='hide'>>=
+<<raisedcos2, fig.width=3, fig.height=2, fig.show="hide">>=
 ggplot(data = data.frame(x = 0), mapping = aes(x = x)) +
-  stat_function(aes(color='sm'), fun = raisedcosine(0, 0.5, Inf)) +
+  stat_function(aes(color="sm"), fun = raisedcosine(0, 0.5, Inf)) +
   xlim(-0.2, 1.2) +
-  labs(x='', y='') +
-  theme(legend.position = 'none')
+  labs(x="", y="") +
+  theme(legend.position = "none")
 @
 
 <<export='lcut.logical'>>=
 logvec <- c(TRUE, FALSE, TRUE, TRUE)
 lcut(logvec)
-lcut(logvec, name='employed')
+lcut(logvec, name="employed")
 @
 
 <<export='lcut.factor'>>=
-position <- factor(c('worker', 'manager', 'worker', 'accountant'))
+position <- factor(c("worker", "manager", "worker", "accountant"))
 lcut(position)
 @
 
@@ -353,7 +353,7 @@ specs(employees)[1:5, 1:5]
 
 <<export='fcut.logfact'>>=
 logvec <- c(TRUE, FALSE, TRUE, TRUE)
-position <- factor(c('worker', 'manager', 'worker', 'accountant'))
+position <- factor(c("worker", "manager", "worker", "accountant"))
 fcut(data.frame(employed=logvec, position=position))
 @
 
@@ -405,7 +405,7 @@ l <- list(
   `numvec=2`=triangular(3, 5, 7),
   `numvec=3`=triangular(5, 7, 9)
 )
-createPlot(l, xlims=c(0, 10), legendName='', legendBottom=TRUE)
+createPlot(l, xlims=c(0, 10), legendName="", legendBottom=TRUE)
 @
 
 <<fcut_plot2, fig.width=3, fig.height=3, fig.show='hide'>>=
@@ -418,7 +418,7 @@ l <- list(
   `numvec=1|numvec=2`=mrg(triangular(1, 3, 5), triangular(3, 5, 7)),
   `numvec=2|numvec=3`=mrg(triangular(3, 5, 7), triangular(5, 7, 9))
 )
-createPlot(l, xlims=c(0, 10), legendName='', legendBottom=TRUE)
+createPlot(l, xlims=c(0, 10), legendName="", legendBottom=TRUE)
 @
 
 <<fcut_plot3, fig.width=3, fig.height=2, fig.show='hide'>>=
@@ -430,7 +430,7 @@ mrg2 <- function(f1, f2, f3) {
 l <- list(
   `numvec=1|numvec=2|numvec=3`=mrg2(triangular(1, 3, 5), triangular(3, 5, 7), triangular(5, 7, 9))
 )
-createPlot(l, xlims=c(0, 10), legendName='', legendBottom=TRUE)
+createPlot(l, xlims=c(0, 10), legendName="", legendBottom=TRUE)
 @
 
 <<export='quant1', tidy=FALSE>>=
@@ -455,23 +455,23 @@ atLeast5(lukas.residuum(B, A), w=B)
 @
 
 <<export='quant5'>>=
-almost <- quantifier('almost.all')
-most <- quantifier('most')
-many <- quantifier('many')
+almost <- quantifier("almost.all")
+most <- quantifier("most")
+many <- quantifier("many")
 almost(A)
 most(A)
 many(A)
 @
 
 <<export='quant6'>>=
-allq <- quantifier('all')
-some <- quantifier('some')
+allq <- quantifier("all")
+some <- quantifier("some")
 allq(A)
 some(A)
 @
 
 <<export='quant7'>>=
-atLeast4 <- quantifier('at.least', n=4)
+atLeast4 <- quantifier("at.least", n=4)
 atLeast4(A)
 @
 
@@ -527,11 +527,11 @@ rb <- searchrules(training,
 
 <<export='pbld5'>>=
 v <- seq(uptakeContext[1], uptakeContext[3], length.out=1000)
-p <- lcut(v, name='uptake', context=uptakeContext)
+p <- lcut(v, name="uptake", context=uptakeContext)
 @
 
 <<export='pbld6'>>=
-pbld(testing, rb, p, v, type='global')
+pbld(testing, rb, p, v, type="global")
 @
 
 <<export='pbld_custom', tidy=FALSE>>=

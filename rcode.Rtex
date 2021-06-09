@@ -568,11 +568,12 @@ ldata <- lcut(iris)
 
 <<export='casestudy-assoc-searchrules', tidy=FALSE>>=
 lrules <- searchrules(ldata,
-                      lhs=grep('^Species=', colnames(ldata), invert=TRUE),
-                      rhs=grep('^Species=', colnames(ldata)),
-                      minSupport=0.05)
+                      lhs=grep("^Species=", colnames(ldata), invert=TRUE),
+                      rhs=grep("^Species=", colnames(ldata)),
+                      minSupport=0.05,
+                      minConfidence=0.8)
 ldf <- as.data.frame(lrules)
-head(ldf[order(ldf$support, decreasing=TRUE), ])
+head(ldf[order(ldf$support, decreasing=TRUE), ], n=10)
 @
 
 <<export='casestudy-assoc-reduce', tidy=FALSE>>=
@@ -580,6 +581,26 @@ r <- reduce(ldata, rules=lrules, ratio=1)
 rownames(as.data.frame(r))
 @
 
+<<export='casestudy-assoc-arules', tidy=FALSE>>=
+library(arules)
+
+adata <- data.frame(
+  Sepal.Length=cut(data$Sepal.Length, 5),
+  Sepal.Width=cut(data$Sepal.Width, 5),
+  Petal.Length=cut(data$Petal.Length, 5),
+  Petal.Width=cut(data$Petal.Width, 5),
+  Species=data$Species
+)
+
+tdata <- transactions(adata)
+rules <- apriori(tdata, 
+                 parameter=list(support=0.05,
+                                target='rules'),
+                 appearance=list(lhs=grep('Species=', itemLabels(tdata), invert=TRUE, value=TRUE),
+                                 rhs=grep('Species=', itemLabels(tdata), value=TRUE)))
+
+inspect(head(rules, by='support', n=10))
+@
 
 <<>>=
 sessionInfo()

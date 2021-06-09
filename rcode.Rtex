@@ -564,7 +564,6 @@ summary(iris)
 
 <<export='casestudy-assoc-lcut', tidy=FALSE>>=
 ldata <- lcut(iris)
-colnames(ldata)
 @
 
 <<export='casestudy-assoc-searchrules', tidy=FALSE>>=
@@ -577,7 +576,8 @@ head(ldf[order(ldf$support, decreasing=TRUE), ])
 @
 
 <<export='casestudy-assoc-reduce', tidy=FALSE>>=
-reduce(ldata, rules=lrules, ratio=1)
+r <- reduce(ldata, rules=lrules, ratio=1)
+rownames(as.data.frame(r))
 @
 
 

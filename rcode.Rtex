@@ -558,6 +558,10 @@ fit <- frbe(myts, h=10)
 fit$mean
 @
 
+<<export='casestudy-assoc-iris', tidy=FALSE>>=
+summary(iris)
+@
+
 <<>>=
 sessionInfo()
 @

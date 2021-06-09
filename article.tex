@@ -1459,17 +1459,23 @@ bla bla bla
 
 \Martin{zatim nemam co psat, dokud nebudou obrysy experimentu}
 
-The second case study will work with the famous Iris dataset \citep{iris1, iris2}:
+The second case study will work with the famous Iris dataset \citep{iris1, iris2}, which is also available in \R{} as a built-in data frame:
 %
 \input{chunks/chunk-casestudy-assoc-iris}
 %
 We are going to search for association rules in that database: first by using the \lfl{} package and next with the \pkg{arules} package. After that, we will compare the results.
 
-First of all, we transform the \texttt{iris} data frame into fuzzy sets:
-
+First of all, we transform the \texttt{iris} data frame into fuzzy sets.
+%
 \input{chunks/chunk-casestudy-assoc-lcut}
+%
+This creates a data frame with each column representing linguistic expressions on original Iris data attributes.
 
+We can search for association rules, convert the result into a \texttt{data.frame} and print first 6 rules as follows:
+%
 \input{chunks/chunk-casestudy-assoc-searchrules}
+%
+
 \input{chunks/chunk-casestudy-assoc-reduce}
 
 

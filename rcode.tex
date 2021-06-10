@@ -1534,11 +1534,12 @@ adata <- data.frame(
 % --begin: "casestudy-assoc-arules-search"
 \begin{Sinput}
 tdata <- transactions(adata)
-rules <- apriori(tdata, 
-                 parameter=list(support=0.05,
-                                target='rules'),
-                 appearance=list(lhs=grep('Species=', itemLabels(tdata), invert=TRUE, value=TRUE),
-                                 rhs=grep('Species=', itemLabels(tdata), value=TRUE)))
+arules <- apriori(tdata, 
+                  parameter=list(support=0.05,
+                                 confidence=0.8,
+                                 target='rules'),
+                  appearance=list(lhs=grep('Species=', itemLabels(tdata), invert=TRUE, value=TRUE),
+                                  rhs=grep('Species=', itemLabels(tdata), value=TRUE)))
 \end{Sinput}
 \begin{Soutput}
 ## Apriori
@@ -1570,21 +1571,21 @@ rules <- apriori(tdata,
 \begin{Schunk}
 % --begin: "casestudy-assoc-arules-view"
 \begin{Sinput}
-inspect(head(rules, by='support', n=8))
+inspect(head(arules, by='confidence', n=8))
 \end{Sinput}
 \begin{Soutput}
-##     lhs                            rhs                    support confidence  coverage     lift count
-## [1] {Petal.Length=(0.994,2.18]} => {Species=setosa}     0.3333333  1.0000000 0.3333333 3.000000    50
-## [2] {Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
-## [3] {Petal.Length=(0.994,2.18],                                                                      
-##      Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
-## [4] {Petal.Width=(1.06,1.54]}   => {Species=versicolor} 0.2533333  0.9268293 0.2733333 2.780488    38
-## [5] {Petal.Length=(3.36,4.54]}  => {Species=versicolor} 0.2200000  0.9705882 0.2266667 2.911765    33
-## [6] {Sepal.Length=(4.3,5.02]}   => {Species=setosa}     0.1866667  0.8750000 0.2133333 2.625000    28
-## [7] {Sepal.Length=(4.3,5.02],                                                                        
-##      Petal.Length=(0.994,2.18]} => {Species=setosa}     0.1866667  1.0000000 0.1866667 3.000000    28
-## [8] {Sepal.Length=(4.3,5.02],                                                                        
-##      Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.1800000  1.0000000 0.1800000 3.000000    27
+##     lhs                            rhs                    support confidence   coverage lift count
+## [1] {Sepal.Length=(7.18,7.9]}   => {Species=virginica} 0.07333333          1 0.07333333    3    11
+## [2] {Petal.Length=(5.72,6.91]}  => {Species=virginica} 0.10666667          1 0.10666667    3    16
+## [3] {Petal.Width=(2.02,2.5]}    => {Species=virginica} 0.15333333          1 0.15333333    3    23
+## [4] {Petal.Width=(0.0976,0.58]} => {Species=setosa}    0.32666667          1 0.32666667    3    49
+## [5] {Petal.Length=(0.994,2.18]} => {Species=setosa}    0.33333333          1 0.33333333    3    50
+## [6] {Sepal.Length=(7.18,7.9],                                                                     
+##      Petal.Length=(5.72,6.91]}  => {Species=virginica} 0.07333333          1 0.07333333    3    11
+## [7] {Petal.Length=(5.72,6.91],                                                                    
+##      Petal.Width=(2.02,2.5]}    => {Species=virginica} 0.06000000          1 0.06000000    3     9
+## [8] {Sepal.Width=(2.96,3.44],                                                                     
+##      Petal.Length=(5.72,6.91]}  => {Species=virginica} 0.05333333          1 0.05333333    3     8
 \end{Soutput}
 %
 % --end: "casestudy-assoc-arules-view"

@@ -1469,7 +1469,9 @@ First of all, we transform the \texttt{iris} data frame into fuzzy sets:
 %
 \input{chunks/chunk-casestudy-assoc-lcut}
 %
-This creates a data frame with each column representing linguistic expressions on original Iris data attributes. We have opted for pentachotomical contexts, which cause each numeric variable to be transformed using 5 atomic linguistic expressions ``small'' (sm), ``lower medium'' (lm), ``medium'' (me), ``upper medium'' (um), and ``big'' (bi). The \texttt{hedges="-"} argument disables all linguistic hedges. The resulting \texttt{fsets} object contains 23 fuzzy sets: five for each of four original numeric variables (sepal/petal length/width) and three dichotomic fuzzy sets for species categories.
+This creates a data frame with each column representing linguistic expressions on original Iris data attributes. We have opted for pentachotomical contexts, which cause each numeric variable to be transformed using 5 atomic linguistic expressions ``small'' (sm), ``lower medium'' (lm), ``medium'' (me), ``upper medium'' (um), and ``big'' (bi). The \texttt{hedges="-"} argument disables all linguistic hedges. (Such setting is comparable to categorization of numeric variables needed in order to run \pkg{arules} later on.)
+
+The resulting \texttt{fsets} object contains 23 fuzzy sets: five for each of four original numeric variables (sepal/petal length/width) and three dichotomic fuzzy sets for species categories.
 
 All association rules with species in consequent and the rest of variables in antecedent can be found by executing the following command:
 %
@@ -1477,12 +1479,11 @@ All association rules with species in consequent and the rest of variables in an
 %
 The minimum support threshold of a rule was set to 0.05 while the minimum confidence is required to be at least 0.8. Such settings result in 50 association rules in total. Let us now print 8 rules with the greatest confidence:
 %
-%\input{chunks/chunk-casestudy-assoc-viewrules}
+\input{chunks/chunk-casestudy-assoc-viewrules}
 %
+%\input{chunks/chunk-casestudy-assoc-reduce}
 
-\input{chunks/chunk-casestudy-assoc-reduce}
-
-In \pkg{arules}, the process could be as follows:
+In \pkg{arules}, the process is as follows. First of all, the numeric data have to be transformed into categories. The standard \R{}'s \texttt{cut()} function can be used for that. The following command transforms the numeric variables into five equidistant interval categories:
 %
 \input{chunks/chunk-casestudy-assoc-arules}
 %

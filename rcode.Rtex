@@ -579,8 +579,7 @@ lrules <- searchrules(ldata,
 @
 
 <<>>=
-saveRDS(lrules, 'casestudy-assoc-lrules.rds')
-ldf <- as.data.frame(lrules)
+#ldf <- as.data.frame(lrules)
 #ggplot(ldf) +
   #geom_point(aes(x=support, y=confidence))
 #head(ldf[order(ldf$support, decreasing=TRUE), ], n=10)
@@ -609,7 +608,7 @@ adata <- data.frame(
 )
 @
 
-<<export='casestudy-assoc-arules-search', tidy=FALSE, message=FALSE>>=
+<<export='casestudy-assoc-arules-search', tidy=FALSE, message=FALSE, results=FALSE>>=
 tdata <- transactions(adata)
 arules <- apriori(tdata, 
                   parameter=list(support=0.05,
@@ -620,7 +619,9 @@ arules <- apriori(tdata,
 @
 
 <<export='casestudy-assoc-arules-view', tidy=FALSE, message=FALSE>>=
-inspect(head(arules, by='confidence', n=8))
+adf <- as(arules, 'data.frame')
+adf <- adf[order(adf$confidence, decreasing=TRUE), ]
+head(adf[, c('rules', 'support', 'confidence')], n=8)
 @
 
 <<>>=

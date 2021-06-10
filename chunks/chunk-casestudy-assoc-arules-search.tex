@@ -9,29 +9,6 @@ arules <- apriori(tdata,
                   appearance=list(lhs=grep('Species=', itemLabels(tdata), invert=TRUE, value=TRUE),
                                   rhs=grep('Species=', itemLabels(tdata), value=TRUE)))
 \end{Sinput}
-\begin{Soutput}
-## Apriori
-## 
-## Parameter specification:
-##  confidence minval smax arem  aval originalSupport maxtime support minlen
-##         0.8    0.1    1 none FALSE            TRUE       5    0.05      1
-##  maxlen target  ext
-##      10  rules TRUE
-## 
-## Algorithmic control:
-##  filter tree heap memopt load sort verbose
-##     0.1 TRUE TRUE  FALSE TRUE    2    TRUE
-## 
-## Absolute minimum support count: 7 
-## 
-## set item appearances ...[23 item(s)] done [0.00s].
-## set transactions ...[23 item(s), 150 transaction(s)] done [0.00s].
-## sorting and recoding items ... [21 item(s)] done [0.00s].
-## creating transaction tree ... done [0.00s].
-## checking subsets of size 1 2 3 4 5 done [0.00s].
-## writing ... [64 rule(s)] done [0.00s].
-## creating S4 object  ... done [0.00s].
-\end{Soutput}
 %
 % --end: "casestudy-assoc-arules-search"
 \end{Schunk}

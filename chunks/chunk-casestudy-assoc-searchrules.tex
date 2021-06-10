@@ -6,7 +6,7 @@ lrules <- searchrules(ldata,
                       rhs=grep("^Species=", colnames(ldata)),
                       minSupport=0.05,
                       minConfidence=0.8,
-                      n=0, # search for all rules
+                      n=0,                         # search for all rules
                       maxLength=5)
 \end{Sinput}
 %

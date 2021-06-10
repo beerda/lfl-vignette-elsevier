@@ -1,0 +1,21 @@
+\begin{Schunk}
+% --begin: "casestudy-assoc-viewrules"
+\begin{Sinput}
+ldf <- as.data.frame(lrules)
+ldf <- ldf[order(ldf$confidence, decreasing=TRUE), ]
+head(ldf[, c('support', 'confidence')], n=8)
+\end{Sinput}
+\begin{Soutput}
+##                                                         support confidence
+## bi.Petal.Length => Species=virginica                 0.08827589  1.0000000
+## bi.Petal.Width => Species=virginica                  0.13908872  1.0000000
+## sm.Petal.Width => Species=setosa                     0.31752357  1.0000000
+## sm.Petal.Length => Species=setosa                    0.32302085  1.0000000
+## lm.Sepal.Length & um.Sepal.Width => Species=setosa   0.05976040  1.0000000
+## sm.Sepal.Length & me.Sepal.Width => Species=setosa   0.11999249  0.9984963
+## lm.Sepal.Width & um.Petal.Width => Species=virginica 0.06735610  0.9973243
+## bi.Sepal.Length => Species=virginica                 0.05485138  0.9967164
+\end{Soutput}
+%
+% --end: "casestudy-assoc-viewrules"
+\end{Schunk}

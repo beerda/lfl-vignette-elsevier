@@ -574,16 +574,22 @@ lrules <- searchrules(ldata,
                       rhs=grep("^Species=", colnames(ldata)),
                       minSupport=0.05,
                       minConfidence=0.8,
-                      n=0, # search for all rules
+                      n=0,                         # search for all rules
                       maxLength=5)
 @
 
 <<>>=
 saveRDS(lrules, 'casestudy-assoc-lrules.rds')
 ldf <- as.data.frame(lrules)
-ggplot(ldf) +
-  geom_point(aes(x=support, y=confidence))
+#ggplot(ldf) +
+  #geom_point(aes(x=support, y=confidence))
 #head(ldf[order(ldf$support, decreasing=TRUE), ], n=10)
+@
+
+<<export='casestudy-assoc-viewrules', tidy=FALSE>>=
+ldf <- as.data.frame(lrules)
+ldf <- ldf[order(ldf$confidence, decreasing=TRUE), ]
+head(ldf[, c('support', 'confidence')], n=8)
 @
 
 <<export='casestudy-assoc-reduce', tidy=FALSE>>=

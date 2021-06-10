@@ -1,7 +1,9 @@
 \begin{Schunk}
 % --begin: "casestudy-assoc-lcut"
 \begin{Sinput}
-ldata <- lcut(iris)
+ldata <- lcut(iris,
+              context=function(x) minmax(x, type="ctx5"),
+              hedges="-")
 \end{Sinput}
 %
 % --end: "casestudy-assoc-lcut"

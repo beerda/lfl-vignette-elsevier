@@ -1434,7 +1434,9 @@ summary(iris)
 \begin{Schunk}
 % --begin: "casestudy-assoc-lcut"
 \begin{Sinput}
-ldata <- lcut(iris)
+ldata <- lcut(iris,
+              context=function(x) minmax(x, type="ctx5"),
+              hedges="-")
 \end{Sinput}
 %
 % --end: "casestudy-assoc-lcut"
@@ -1447,58 +1449,25 @@ lrules <- searchrules(ldata,
                       lhs=grep("^Species=", colnames(ldata), invert=TRUE),
                       rhs=grep("^Species=", colnames(ldata)),
                       minSupport=0.05,
-                      minConfidence=0.8)
-ldf <- as.data.frame(lrules)
-head(ldf[order(ldf$support, decreasing=TRUE), ], n=10)
+                      minConfidence=0.8,
+                      n=0, # search for all rules
+                      maxLength=5)
 \end{Sinput}
-\begin{Soutput}
-##                                                                                support
-## ro.sm.Petal.Length => Species=setosa                                         0.3333333
-## qr.sm.Petal.Width => Species=setosa                                          0.3333333
-## ml.sm.Petal.Length => Species=setosa                                         0.3329695
-## ro.sm.Petal.Width => Species=setosa                                          0.3329422
-## ml.sm.Petal.Width => Species=setosa                                          0.3291277
-## sm.Petal.Length => Species=setosa                                            0.3230208
-## sm.Petal.Width => Species=setosa                                             0.3175236
-## ve.sm.Petal.Width => Species=setosa                                          0.2749806
-## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                     0.2691146
-## ro.me.Sepal.Width & qr.sm.Petal.Length & vr.sm.Petal.Width => Species=setosa 0.2691146
-##                                                                              lhsSupport
-## ro.sm.Petal.Length => Species=setosa                                          0.3333333
-## qr.sm.Petal.Width => Species=setosa                                           0.3333333
-## ml.sm.Petal.Length => Species=setosa                                          0.3329695
-## ro.sm.Petal.Width => Species=setosa                                           0.3329422
-## ml.sm.Petal.Width => Species=setosa                                           0.3291277
-## sm.Petal.Length => Species=setosa                                             0.3230208
-## sm.Petal.Width => Species=setosa                                              0.3175236
-## ve.sm.Petal.Width => Species=setosa                                           0.2749806
-## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                      0.2691850
-## ro.me.Sepal.Width & qr.sm.Petal.Length & vr.sm.Petal.Width => Species=setosa  0.2691850
-##                                                                              rhsSupport
-## ro.sm.Petal.Length => Species=setosa                                          0.3333333
-## qr.sm.Petal.Width => Species=setosa                                           0.3333333
-## ml.sm.Petal.Length => Species=setosa                                          0.3333333
-## ro.sm.Petal.Width => Species=setosa                                           0.3333333
-## ml.sm.Petal.Width => Species=setosa                                           0.3333333
-## sm.Petal.Length => Species=setosa                                             0.3333333
-## sm.Petal.Width => Species=setosa                                              0.3333333
-## ve.sm.Petal.Width => Species=setosa                                           0.3333333
-## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                      0.3333333
-## ro.me.Sepal.Width & qr.sm.Petal.Length & vr.sm.Petal.Width => Species=setosa  0.3333333
-##                                                                              confidence
-## ro.sm.Petal.Length => Species=setosa                                          1.0000000
-## qr.sm.Petal.Width => Species=setosa                                           1.0000000
-## ml.sm.Petal.Length => Species=setosa                                          1.0000000
-## ro.sm.Petal.Width => Species=setosa                                           1.0000000
-## ml.sm.Petal.Width => Species=setosa                                           1.0000000
-## sm.Petal.Length => Species=setosa                                             1.0000000
-## sm.Petal.Width => Species=setosa                                              1.0000000
-## ve.sm.Petal.Width => Species=setosa                                           1.0000000
-## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                      0.9997382
-## ro.me.Sepal.Width & qr.sm.Petal.Length & vr.sm.Petal.Width => Species=setosa  0.9997382
-\end{Soutput}
 %
 % --end: "casestudy-assoc-searchrules"
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+saveRDS(lrules, 'casestudy-assoc-lrules.rds')
+ldf <- as.data.frame(lrules)
+ggplot(ldf) +
+  geom_point(aes(x=support, y=confidence))
+\end{Sinput}
+
+\includegraphics[width=\maxwidth]{figure/unnamed-chunk-69-1} \begin{Sinput}
+#head(ldf[order(ldf$support, decreasing=TRUE), ], n=10)
+\end{Sinput}
 \end{Schunk}
 
 \begin{Schunk}
@@ -1508,16 +1477,18 @@ r <- reduce(ldata, rules=lrules, ratio=1)
 rownames(as.data.frame(r))
 \end{Sinput}
 \begin{Soutput}
-##  [1] "ro.sm.Petal.Length => Species=setosa"                                             
-##  [2] "ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa"                         
-##  [3] "ve.sm.Sepal.Length => Species=setosa"                                             
-##  [4] "ro.me.Sepal.Length & ml.me.Petal.Length & ty.me.Petal.Width => Species=versicolor"
-##  [5] "ty.me.Petal.Length => Species=versicolor"                                         
-##  [6] "ro.bi.Petal.Length => Species=virginica"                                          
-##  [7] "ml.bi.Petal.Width => Species=virginica"                                           
-##  [8] "vr.sm.Sepal.Width & ro.bi.Petal.Width => Species=virginica"                       
-##  [9] "qr.bi.Petal.Length & ro.bi.Petal.Width => Species=virginica"                      
-## [10] "vr.bi.Sepal.Length & ro.bi.Petal.Width => Species=virginica"
+##  [1] "sm.Petal.Length => Species=setosa"                 
+##  [2] "um.Sepal.Width => Species=setosa"                  
+##  [3] "lm.Sepal.Length & me.Sepal.Width => Species=setosa"
+##  [4] "sm.Sepal.Length => Species=setosa"                 
+##  [5] "sm.Petal.Width => Species=setosa"                  
+##  [6] "me.Petal.Width => Species=versicolor"              
+##  [7] "me.Petal.Length => Species=versicolor"             
+##  [8] "um.Petal.Length => Species=virginica"              
+##  [9] "um.Petal.Width => Species=virginica"               
+## [10] "bi.Petal.Width => Species=virginica"               
+## [11] "bi.Sepal.Length => Species=virginica"              
+## [12] "bi.Petal.Length => Species=virginica"
 \end{Soutput}
 %
 % --end: "casestudy-assoc-reduce"
@@ -1636,19 +1607,19 @@ sessionInfo()
 ##  [1] zoo_1.8-9         tidyselect_1.1.1  xfun_0.23        
 ##  [4] purrr_0.3.4       urca_1.3-0        lattice_0.20-44  
 ##  [7] colorspace_2.0-1  vctrs_0.3.8       generics_0.1.0   
-## [10] utf8_1.2.1        rlang_0.4.11      e1071_1.7-6      
+## [10] utf8_1.2.1        rlang_0.4.11      e1071_1.7-7      
 ## [13] pillar_1.6.1      glue_1.4.2        withr_2.4.2      
-## [16] DBI_1.1.1         forecast_8.14     TTR_0.24.2       
+## [16] DBI_1.1.1         forecast_8.15     TTR_0.24.2       
 ## [19] foreach_1.5.1     lifecycle_1.0.0   plyr_1.8.6       
 ## [22] quantmod_0.4.18   stringr_1.4.0     timeDate_3043.102
 ## [25] munsell_0.5.0     gtable_0.3.0      codetools_0.2-18 
 ## [28] evaluate_0.14     labeling_0.4.2    tseries_0.10-48  
 ## [31] lmtest_0.9-38     parallel_4.1.0    curl_4.3.1       
-## [34] class_7.3-19      fansi_0.4.2       xts_0.12.1       
+## [34] class_7.3-19      fansi_0.5.0       xts_0.12.1       
 ## [37] Rcpp_1.0.6        scales_1.1.1      farver_2.1.0     
 ## [40] fracdiff_1.5-1    digest_0.6.27     stringi_1.6.2    
 ## [43] dplyr_1.0.6       grid_4.1.0        quadprog_1.5-8   
-## [46] tools_4.1.0       magrittr_2.0.1    proxy_0.4-25     
+## [46] tools_4.1.0       magrittr_2.0.1    proxy_0.4-26     
 ## [49] tibble_3.1.2      crayon_1.4.1      pkgconfig_2.0.3  
 ## [52] ellipsis_0.3.2    assertthat_0.2.1  iterators_1.0.13 
 ## [55] R6_2.5.0          nnet_7.3-16       nlme_3.1-152     

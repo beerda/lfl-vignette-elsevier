@@ -563,17 +563,27 @@ summary(iris)
 @
 
 <<export='casestudy-assoc-lcut', tidy=FALSE>>=
-ldata <- lcut(iris)
+ldata <- lcut(iris,
+              context=function(x) minmax(x, type="ctx5"),
+              hedges="-")
 @
 
-<<export='casestudy-assoc-searchrules', tidy=FALSE>>=
+<<export='casestudy-assoc-searchrules', tidy=FALSE, results=FALSE>>=
 lrules <- searchrules(ldata,
                       lhs=grep("^Species=", colnames(ldata), invert=TRUE),
                       rhs=grep("^Species=", colnames(ldata)),
                       minSupport=0.05,
-                      minConfidence=0.8)
+                      minConfidence=0.8,
+                      n=0, # search for all rules
+                      maxLength=5)
+@
+
+<<>>=
+saveRDS(lrules, 'casestudy-assoc-lrules.rds')
 ldf <- as.data.frame(lrules)
-head(ldf[order(ldf$support, decreasing=TRUE), ], n=10)
+ggplot(ldf) +
+  geom_point(aes(x=support, y=confidence))
+#head(ldf[order(ldf$support, decreasing=TRUE), ], n=10)
 @
 
 <<export='casestudy-assoc-reduce', tidy=FALSE>>=

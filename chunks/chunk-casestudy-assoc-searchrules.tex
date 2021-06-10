@@ -5,56 +5,10 @@ lrules <- searchrules(ldata,
                       lhs=grep("^Species=", colnames(ldata), invert=TRUE),
                       rhs=grep("^Species=", colnames(ldata)),
                       minSupport=0.05,
-                      minConfidence=0.8)
-ldf <- as.data.frame(lrules)
-head(ldf[order(ldf$support, decreasing=TRUE), ], n=10)
+                      minConfidence=0.8,
+                      n=0, # search for all rules
+                      maxLength=5)
 \end{Sinput}
-\begin{Soutput}
-##                                                                                support
-## ro.sm.Petal.Length => Species=setosa                                         0.3333333
-## qr.sm.Petal.Width => Species=setosa                                          0.3333333
-## ml.sm.Petal.Length => Species=setosa                                         0.3329695
-## ro.sm.Petal.Width => Species=setosa                                          0.3329422
-## ml.sm.Petal.Width => Species=setosa                                          0.3291277
-## sm.Petal.Length => Species=setosa                                            0.3230208
-## sm.Petal.Width => Species=setosa                                             0.3175236
-## ve.sm.Petal.Width => Species=setosa                                          0.2749806
-## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                     0.2691146
-## ro.me.Sepal.Width & qr.sm.Petal.Length & vr.sm.Petal.Width => Species=setosa 0.2691146
-##                                                                              lhsSupport
-## ro.sm.Petal.Length => Species=setosa                                          0.3333333
-## qr.sm.Petal.Width => Species=setosa                                           0.3333333
-## ml.sm.Petal.Length => Species=setosa                                          0.3329695
-## ro.sm.Petal.Width => Species=setosa                                           0.3329422
-## ml.sm.Petal.Width => Species=setosa                                           0.3291277
-## sm.Petal.Length => Species=setosa                                             0.3230208
-## sm.Petal.Width => Species=setosa                                              0.3175236
-## ve.sm.Petal.Width => Species=setosa                                           0.2749806
-## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                      0.2691850
-## ro.me.Sepal.Width & qr.sm.Petal.Length & vr.sm.Petal.Width => Species=setosa  0.2691850
-##                                                                              rhsSupport
-## ro.sm.Petal.Length => Species=setosa                                          0.3333333
-## qr.sm.Petal.Width => Species=setosa                                           0.3333333
-## ml.sm.Petal.Length => Species=setosa                                          0.3333333
-## ro.sm.Petal.Width => Species=setosa                                           0.3333333
-## ml.sm.Petal.Width => Species=setosa                                           0.3333333
-## sm.Petal.Length => Species=setosa                                             0.3333333
-## sm.Petal.Width => Species=setosa                                              0.3333333
-## ve.sm.Petal.Width => Species=setosa                                           0.3333333
-## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                      0.3333333
-## ro.me.Sepal.Width & qr.sm.Petal.Length & vr.sm.Petal.Width => Species=setosa  0.3333333
-##                                                                              confidence
-## ro.sm.Petal.Length => Species=setosa                                          1.0000000
-## qr.sm.Petal.Width => Species=setosa                                           1.0000000
-## ml.sm.Petal.Length => Species=setosa                                          1.0000000
-## ro.sm.Petal.Width => Species=setosa                                           1.0000000
-## ml.sm.Petal.Width => Species=setosa                                           1.0000000
-## sm.Petal.Length => Species=setosa                                             1.0000000
-## sm.Petal.Width => Species=setosa                                              1.0000000
-## ve.sm.Petal.Width => Species=setosa                                           1.0000000
-## ro.me.Sepal.Width & qr.sm.Petal.Length => Species=setosa                      0.9997382
-## ro.me.Sepal.Width & qr.sm.Petal.Length & vr.sm.Petal.Width => Species=setosa  0.9997382
-\end{Soutput}
 %
 % --end: "casestudy-assoc-searchrules"
 \end{Schunk}

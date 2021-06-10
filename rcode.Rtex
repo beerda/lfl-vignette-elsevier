@@ -597,7 +597,7 @@ r <- reduce(ldata, rules=lrules, ratio=1)
 rownames(as.data.frame(r))
 @
 
-<<export='casestudy-assoc-arules', tidy=FALSE>>=
+<<export='casestudy-assoc-arules', tidy=FALSE, message=FALSE>>=
 library(arules)
 
 adata <- data.frame(
@@ -607,15 +607,19 @@ adata <- data.frame(
   Petal.Width=cut(iris$Petal.Width, 5),
   Species=iris$Species
 )
+@
 
+<<export='casestudy-assoc-arules-search', tidy=FALSE, message=FALSE>>=
 tdata <- transactions(adata)
 rules <- apriori(tdata, 
                  parameter=list(support=0.05,
                                 target='rules'),
                  appearance=list(lhs=grep('Species=', itemLabels(tdata), invert=TRUE, value=TRUE),
                                  rhs=grep('Species=', itemLabels(tdata), value=TRUE)))
+@
 
-inspect(head(rules, by='support', n=10))
+<<export='casestudy-assoc-arules-view', tidy=FALSE, message=FALSE>>=
+inspect(head(rules, by='support', n=8))
 @
 
 <<>>=

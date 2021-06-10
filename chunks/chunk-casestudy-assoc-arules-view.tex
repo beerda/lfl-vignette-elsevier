@@ -1,0 +1,22 @@
+\begin{Schunk}
+% --begin: "casestudy-assoc-arules-view"
+\begin{Sinput}
+inspect(head(rules, by='support', n=8))
+\end{Sinput}
+\begin{Soutput}
+##     lhs                            rhs                    support confidence  coverage     lift count
+## [1] {Petal.Length=(0.994,2.18]} => {Species=setosa}     0.3333333  1.0000000 0.3333333 3.000000    50
+## [2] {Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
+## [3] {Petal.Length=(0.994,2.18],                                                                      
+##      Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
+## [4] {Petal.Width=(1.06,1.54]}   => {Species=versicolor} 0.2533333  0.9268293 0.2733333 2.780488    38
+## [5] {Petal.Length=(3.36,4.54]}  => {Species=versicolor} 0.2200000  0.9705882 0.2266667 2.911765    33
+## [6] {Sepal.Length=(4.3,5.02]}   => {Species=setosa}     0.1866667  0.8750000 0.2133333 2.625000    28
+## [7] {Sepal.Length=(4.3,5.02],                                                                        
+##      Petal.Length=(0.994,2.18]} => {Species=setosa}     0.1866667  1.0000000 0.1866667 3.000000    28
+## [8] {Sepal.Length=(4.3,5.02],                                                                        
+##      Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.1800000  1.0000000 0.1800000 3.000000    27
+\end{Soutput}
+%
+% --end: "casestudy-assoc-arules-view"
+\end{Schunk}

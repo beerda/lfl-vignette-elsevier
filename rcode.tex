@@ -1517,20 +1517,7 @@ rownames(as.data.frame(r))
 % --begin: "casestudy-assoc-arules"
 \begin{Sinput}
 library(arules)
-\end{Sinput}
-\begin{Soutput}
-## Loading required package: Matrix
-\end{Soutput}
-\begin{Soutput}
-## 
-## Attaching package: 'arules'
-\end{Soutput}
-\begin{Soutput}
-## The following objects are masked from 'package:base':
-## 
-##     abbreviate, write
-\end{Soutput}
-\begin{Sinput}
+
 adata <- data.frame(
   Sepal.Length=cut(iris$Sepal.Length, 5),
   Sepal.Width=cut(iris$Sepal.Width, 5),
@@ -1538,7 +1525,14 @@ adata <- data.frame(
   Petal.Width=cut(iris$Petal.Width, 5),
   Species=iris$Species
 )
+\end{Sinput}
+%
+% --end: "casestudy-assoc-arules"
+\end{Schunk}
 
+\begin{Schunk}
+% --begin: "casestudy-assoc-arules-search"
+\begin{Sinput}
 tdata <- transactions(adata)
 rules <- apriori(tdata, 
                  parameter=list(support=0.05,
@@ -1569,30 +1563,31 @@ rules <- apriori(tdata,
 ## writing ... [64 rule(s)] done [0.00s].
 ## creating S4 object  ... done [0.00s].
 \end{Soutput}
+%
+% --end: "casestudy-assoc-arules-search"
+\end{Schunk}
+
+\begin{Schunk}
+% --begin: "casestudy-assoc-arules-view"
 \begin{Sinput}
-inspect(head(rules, by='support', n=10))
+inspect(head(rules, by='support', n=8))
 \end{Sinput}
 \begin{Soutput}
-##      lhs                            rhs                    support confidence  coverage     lift count
-## [1]  {Petal.Length=(0.994,2.18]} => {Species=setosa}     0.3333333  1.0000000 0.3333333 3.000000    50
-## [2]  {Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
-## [3]  {Petal.Length=(0.994,2.18],                                                                      
-##       Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
-## [4]  {Petal.Width=(1.06,1.54]}   => {Species=versicolor} 0.2533333  0.9268293 0.2733333 2.780488    38
-## [5]  {Petal.Length=(3.36,4.54]}  => {Species=versicolor} 0.2200000  0.9705882 0.2266667 2.911765    33
-## [6]  {Sepal.Length=(4.3,5.02]}   => {Species=setosa}     0.1866667  0.8750000 0.2133333 2.625000    28
-## [7]  {Sepal.Length=(4.3,5.02],                                                                        
-##       Petal.Length=(0.994,2.18]} => {Species=setosa}     0.1866667  1.0000000 0.1866667 3.000000    28
-## [8]  {Sepal.Length=(4.3,5.02],                                                                        
-##       Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.1800000  1.0000000 0.1800000 3.000000    27
-## [9]  {Petal.Length=(3.36,4.54],                                                                       
-##       Petal.Width=(1.06,1.54]}   => {Species=versicolor} 0.1800000  1.0000000 0.1800000 3.000000    27
-## [10] {Sepal.Length=(4.3,5.02],                                                                        
-##       Petal.Length=(0.994,2.18],                                                                      
-##       Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.1800000  1.0000000 0.1800000 3.000000    27
+##     lhs                            rhs                    support confidence  coverage     lift count
+## [1] {Petal.Length=(0.994,2.18]} => {Species=setosa}     0.3333333  1.0000000 0.3333333 3.000000    50
+## [2] {Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
+## [3] {Petal.Length=(0.994,2.18],                                                                      
+##      Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.3266667  1.0000000 0.3266667 3.000000    49
+## [4] {Petal.Width=(1.06,1.54]}   => {Species=versicolor} 0.2533333  0.9268293 0.2733333 2.780488    38
+## [5] {Petal.Length=(3.36,4.54]}  => {Species=versicolor} 0.2200000  0.9705882 0.2266667 2.911765    33
+## [6] {Sepal.Length=(4.3,5.02]}   => {Species=setosa}     0.1866667  0.8750000 0.2133333 2.625000    28
+## [7] {Sepal.Length=(4.3,5.02],                                                                        
+##      Petal.Length=(0.994,2.18]} => {Species=setosa}     0.1866667  1.0000000 0.1866667 3.000000    28
+## [8] {Sepal.Length=(4.3,5.02],                                                                        
+##      Petal.Width=(0.0976,0.58]} => {Species=setosa}     0.1800000  1.0000000 0.1800000 3.000000    27
 \end{Soutput}
 %
-% --end: "casestudy-assoc-arules"
+% --end: "casestudy-assoc-arules-view"
 \end{Schunk}
 
 \begin{Schunk}

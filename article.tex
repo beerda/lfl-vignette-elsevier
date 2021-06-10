@@ -1465,16 +1465,17 @@ The second case study will work with the famous Iris dataset \citep{iris1, iris2
 %
 We are going to search for association rules in that database: first by using the \lfl{} package and next with the \pkg{arules} package. After that, we will compare the results.
 
-First of all, we transform the \texttt{iris} data frame into fuzzy sets.
+First of all, we transform the \texttt{iris} data frame into fuzzy sets:
 %
 \input{chunks/chunk-casestudy-assoc-lcut}
 %
-This creates a data frame with each column representing linguistic expressions on original Iris data attributes.
+This creates a data frame with each column representing linguistic expressions on original Iris data attributes. We have opted for pentachotomical contexts, which cause each numeric variable to be transformed using 5 atomic linguistic expressions ``small'' (sm), ``lower medium'' (lm), ``medium'' (me), ``upper medium'' (um), and ``big'' (bi). The \texttt{hedges="-"} argument disables all linguistic hedges. The resulting \texttt{fsets} object contains 23 fuzzy sets: five for each of four original numeric variables (sepal/petal length/width) and three dichotomic fuzzy sets for species categories.
 
-We can search for association rules, convert the result into a \texttt{data.frame} and print first 6 rules as follows:
+All association rules with species in consequent and the rest of variables in antecedent can be found by executing the following command:
 %
 \input{chunks/chunk-casestudy-assoc-searchrules}
 %
+The minimum support threshold of a rule was set to 0.05 while the minimum confidence is required to be at least 0.8. Such settings result in
 
 \input{chunks/chunk-casestudy-assoc-reduce}
 

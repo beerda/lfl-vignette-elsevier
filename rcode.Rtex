@@ -585,7 +585,7 @@ lrules <- searchrules(ldata,
 #head(ldf[order(ldf$support, decreasing=TRUE), ], n=10)
 @
 
-<<export='casestudy-assoc-viewrules', tidy=FALSE>>=
+<<export='casestudy-assoc-viewrules', tidy=FALSE, results='hide'>>=
 ldf <- as.data.frame(lrules)
 ldf <- ldf[order(ldf$confidence, decreasing=TRUE), ]
 head(ldf[, c('support', 'confidence')], n=8)
@@ -618,7 +618,7 @@ arules <- apriori(tdata,
                                   rhs=grep('Species=', itemLabels(tdata), value=TRUE)))
 @
 
-<<export='casestudy-assoc-arules-view', tidy=FALSE, message=FALSE>>=
+<<export='casestudy-assoc-arules-view', tidy=FALSE, message=FALSE, results='hide'>>=
 adf <- as(arules, 'data.frame')
 adf <- adf[order(adf$confidence, decreasing=TRUE), ]
 head(adf[, c('rules', 'support', 'confidence')], n=8)

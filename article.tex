@@ -158,7 +158,7 @@ fuzzy sets \sep fuzzy natural logic \sep linguistic fuzzy logic \sep association
 \section{Introduction} \label{sec:intro}
 
 
-The aim of this paper is to present particular package for the \R{} statistical environment \citep{R2020, Rintro} named {\bf lfl} that enables the use of the linguistic fuzzy logic in data processing applications. The package provides implemented tools for using the results of original work of \cite{Novak08, Novak:PbLD, DvoStep:PbLD2015, StepBurda:FRBE_FSS}, and others, and it provides executable routines that are not freely available anywhere else.
+The aim of this paper is to present particular package for the \R{} statistical environment \citep{R2020, Rintro} named \pkg{lfl} that enables the use of the linguistic fuzzy logic in data processing applications. The package provides implemented tools for using the results of original work of \cite{Novak08, Novak:PbLD, DvoStep:PbLD2015, StepBurda:FRBE_FSS}, and others, and it provides executable routines that are not freely available anywhere else.
 
 Indeed, there already exist several packages for \R{} that are focused on vagueness and fuzziness. For instance, the \pkg{sets} package \citep{setsPkg} introduces many basic operations on fuzzy sets, the \pkg{FuzzyNumbers} package \citep{FuzzyNumbersPkg} provides classes and methods to deal with fuzzy numbers, the \pkg{SAFD} package \citep{safdPkg} contains tools for elementary statistics on fuzzy data, and the \pkg{fclust} \citep{fclustPkg,Ferraro_R-toolbox_FSS2015} brings the fuzzy K-Means clustering technique to the environment of the \R{} system. For an exhaustive study on existing software implementations of fuzzy methods we refer to the recent survey by \cite{AlcalAlonso:fuzzySW_IEEETFS16}.
 
@@ -1505,7 +1505,7 @@ The \pkg{arules} package has found 64 rules, from which the 8 rules with the gre
 %
 See Table~\ref{tab:arules8rules} for a list of the resulting rules.
 
-\begin{table}[]
+\begin{table}[t]
     \centering
     \begin{tabular}{l|rr}
         rule & support & confidence \\
@@ -1524,7 +1524,6 @@ See Table~\ref{tab:arules8rules} for a list of the resulting rules.
 \end{table}
 
 As can be seen, both packages provide comparable  results. For \pkg{arules}, the numeric data have to be categorized into crisp intervals. The \lfl{} package allows to work with linguistic expressions modelled with fuzzy sets, which enables non-sharp borders between categories. The interpretability as well as the lower number of rules play in favor of \pkg{lfl} however, we do not dare to generalize too much from the latter observation as each case study could lead to a different result and the impact of the a proper categorization is essential. 
-\Martin{pridal jsem posledni vetu, kouukni na ni. Jinak jsem to nove opet cele prosel a mistz opravil nebo upravil. Nevim, zda jeste hodlas menit ta pravidla do tabulky, jinak jsem ready submitovat.}
 
 \section{Conclusion}
 \label{sec:conclusion}

@@ -207,9 +207,7 @@ The package also includes the \emph{Fuzzy Rule-based Ensemble} (FRBE), a tool fo
 Alternatively to machine learning, classification tasks may be solved based on human expert knowledge
 by using the technique of \emph{compositions of fuzzy relations}, see \cite{Cao2017b,Cao2017,Step_etal:Unavoidable_KNOSYS2020}. Such an approach is especially useful when lacking a large amount of data needed for automated predictor construction.
 
-\Martin{checkni prosím tento odstavec po faktografické stránce}
-
-It is important to note that {\bf lfl} package was firstly issued in {\color{red}2014} and described in \cite{Burda_lfl:FUZZ15}. The differences are, however, essential. Indeed, many of the above-mentioned results that are implemented in the current version of {\bf lfl} were not even published and thus, could hardly be incorporated in the original version. In particular, e.g., algebras for partial fuzzy logics including the novel structures such as Dragonfly algebras or lower estimation algebras; fuzzy relational calculus including the extensions such as the use of generalized quantifiers, excluding features, or unavoidable features. Furthermore, apart from these latest results, it newly includes even fundamental foundations such as the basic  fuzzy relational compositions that allow to employ the extensions and also to deal with fuzzy inputs when incorporating fuzzy rule-based systems, and regarding the latter notion, the standard fuzzy relational models (Mamdani-Assilian and the implicative one) have been added as well including the related defuzzification techniques. This changes the original nature of {\bf lfl} package from an R-package implementation of the linguistic control software LFLC, see \cite{dvo:lflc} with a few extensions (associations rules and FRBE), to a brand new complex package that can be used for distinct purposes and for building more complex tools due to the presence of sound mathematical foundations of fuzzy modeling techniques. 
+It is important to note that {\bf lfl} package was firstly released in 2015 and described in \cite{Burda_lfl:FUZZ15}. The differences are, however, essential. Indeed, many of the above-mentioned results that are implemented in the current version of {\bf lfl} were not even published and thus, could hardly be incorporated in the original version. In particular, e.g., algebras for partial fuzzy logics including the novel structures such as Dragonfly algebras or lower estimation algebras; fuzzy relational calculus including the extensions such as the use of generalized quantifiers, excluding features, or unavoidable features. Furthermore, apart from these latest results, it newly includes even fundamental foundations such as the basic  fuzzy relational compositions that allow to employ the extensions and also to deal with fuzzy inputs when incorporating fuzzy rule-based systems, and regarding the latter notion, the standard fuzzy relational models (Mamdani-Assilian and the implicative one) have been added as well including the related defuzzification techniques. This changes the original nature of {\bf lfl} package from an R-package implementation of the linguistic control software LFLC, see \cite{dvo:lflc} with a few extensions (associations rules and FRBE), to a brand new complex package that can be used for distinct purposes and for building more complex tools due to the presence of sound mathematical foundations of fuzzy modeling techniques. 
 
 
 \subsection{Overview of the paper}
@@ -1072,14 +1070,12 @@ whether the $i$-th object $o_i$ carries attribute $X_j$ or $Y_j$, respectively. 
 
 \begin{table}[ht]
   \centering
-\begin{tabular}{|l|ccc|ccr|}
-    \hline
+\begin{tabular}{l|ccc|ccr}
           & $X_1$ & $\ldots$ & $X_m$ & $Y_1$ &  $\ldots$ & $Y_q$\\
     \hline
     $o_1$ & $a_{11}$ & $\ldots$ & $a_{1m}$ & $b_{11}$ &  $\ldots$ & $b_{1q}$\\
     $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$\\
     $o_n$ & $a_{n1}$ & $\ldots$ & $a_{nm}$ & $b_{n1}$ &  $\ldots$ & $b_{nq}$\\
-    \hline
 \end{tabular}\caption{The table objects and attributes.} \label{Tab:guha_exampleI}
 \end{table}
 
@@ -1092,13 +1088,11 @@ B}$ is a predicate with variables $Y_k$, for $k$ taking values from 1 to $q$. In
 Table~\ref{Tab:4fold-guha} is constructed.
 \begin{table}[ht]
 \centering
-\begin{tabular}{|r|lc|}
-\hline
+\begin{tabular}{r|lc}
   & ${\tt B}$ & $\text{not}\; {\tt B}$ \\
     \hline
     ${\tt A}$ & $a$ & $b$\\
     $\text{not}\; {\tt A}$ & $c$ & $d$\\
-    \hline
 \end{tabular}
 \caption{Four-fold table for mining linguistic associations.} \label{Tab:4fold-guha}
 \end{table}
@@ -1123,8 +1117,7 @@ etc. that are defined by the fuzzy sets modeling  the particular evaluative expr
 
 \begin{table}[ht]
   \centering
-\begin{tabular}{|l| c c c |c c c|}
-    \hline
+\begin{tabular}{l| c c c |c c c}
           & $\mathrm{BMI}^{\mathrm{Ex
 Sm}}$ &  \ldots & $\mathrm{Chol}^{\mathrm{Ex Bi}}$ & $\mathrm{BP}^{\mathrm{Ex Sm}}$ & \ldots & $\mathrm{BP}^{\mathrm{Ex Bi}}$\\
     \hline
@@ -1135,7 +1128,6 @@ Sm}}$ &  \ldots & $\mathrm{Chol}^{\mathrm{Ex Bi}}$ & $\mathrm{BP}^{\mathrm{Ex Sm
     $o_5$ & 0.6  & \ldots & 0  & 1 & \ldots & 0\\
     $\vdots$  & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$& $\vdots$\\
     $o_n$ & 0 & \ldots & 0  & 0.5 & \ldots & 0 \\
-    \hline
 \end{tabular}
 \caption{An example of the table with fuzzy attributes for fuzzy associations mining, ref. \cite{StepBurda:FRBE_FSS}. } \label{Tab:FuzzyGuhaComplete}
 \end{table}
@@ -1394,7 +1386,7 @@ This section places the \pkg{lfl} package into the perspective of the others fro
 
 \subsection{Other related packages}
 
-As mentioned above, \pkg{lfl} is by far not the only SW or even R-package related to the fuzzy methods. An exhaustive study on SW related to fuzzy techniques can be found in \cite{AlcalAlonso:fuzzySW_IEEETFS16}. Staying in the environment of R-packages, the above-mentioned \pkg{frbs} \citep{frbsPkg,FRBS:jstatsoft14} is, according to the subjective opinion of the authors, topically the closest one and it seems to be also developed to the widest applicable potential. 
+As mentioned above, \pkg{lfl} is by far not the only SW or even R-package related to the fuzzy methods. An exhaustive study on SW related to fuzzy techniques can be found in \cite{AlcalAlonso:fuzzySW_IEEETFS16}. Staying in the environment of R-packages, the above-mentioned \pkg{frbs} \citep{frbsPkg,FRBS:jstatsoft14} is, according to the subjective opinion of the authors, topically the closest one and it seems to be also developed to the widest application potential. 
 
 Other packages that deal with fuzzy rules are, for instance, \pkg{FisPro} \citep{fisproPkg}, \pkg{FuzzyToolkitUoN} \citep{FuzzyToolkitUoNPkg} or \pkg{FuzzyR} \citep{FuzzyRPkg} where the first two ones focuse on Mamdani-Assilian and Takagi-Sugeno systems which makes them closer to \pkg{frbs} while the latter one focuses mainly on the well-known neurofuzzy system ANFIS. 
 
@@ -1405,17 +1397,17 @@ If we intend to compare the \pkg{lfl} package with the most related ones from th
 Due to the specific character of the PbLd inference and the related necessity of the use of evaluative linguistic expressions \citep{Novak:ELE_FSS} based on the basic trichotomy, none of the existing packages contains these structures. Neither the predefined fuzzy sets modeling expressions created by the application of linguistic hedges to the basic triplet, nor the related implication-based inference based on a sort of ``pre-selection'' of rules. This fact that is not that surprising, however, up to the best knowledge of the authors, none of the existing packages contains fuzzy relational model of implicative rules. Having in mind its importance, this contribution of {\bf lfl} to the existing tools is essential. 
 
 
-For the sake of the completeness of the \pkg{lfl} package and for the sake of the consistency of the implementation with the implicative rules, \pkg{lfl} contains also Mamdani-Assilian model of fuzzy rules. However, here we have to note that this approach is already employed in several packages, e.g., in \pkg{FisPro}, \pkg{FuzzyToolkitUoN}, and mainly in \pkg{frbs}. We are also emphasizing  distinct efficient and effective modifications and learning techniques, e.g., neural-network based fuzzy inference system ANFIS employed in \pkg{FuzzyR} and in \pkg{frbs}. In the latter package, ANFIS is  supplemented by DENFIS, hybrid neural approach HYFIS, or distinct genetic (evolutionary) approaches, e.g. by genetic fuzzy systems based on Thrift and MOGUL methods. This, jointly with other inferences (Takagi-Sugeno-Kang or Ishibuchi's method) make \pkg{frbs} a powerfull and a rich package for distinct purposes, such as regression, data-driven classification, control, or decision-making.
+For the sake of the completeness of the \pkg{lfl} package and for the sake of the consistency of the implementation with the implicative rules, \pkg{lfl} contains also Mamdani-Assilian model of fuzzy rules. However, here we have to note that this approach is already employed in several packages, e.g., in \pkg{FisPro}, \pkg{FuzzyToolkitUoN}, and mainly in \pkg{frbs}. We also emphasize  distinct efficient modifications and learning techniques, e.g., neural-network based fuzzy inference system ANFIS employed in \pkg{FuzzyR} and in \pkg{frbs}. In the latter package, ANFIS is  supplemented by DENFIS, hybrid neural approach HYFIS, or evolutionary approaches, e.g. by genetic fuzzy systems based on Thrift and MOGUL methods. This, jointly with other inferences (Takagi-Sugeno-Kang or Ishibuchi's method), makes \pkg{frbs} a powerfull and rich package for distinct purposes, such as regression, data-driven classification, control, or decision-making.
 
 Owing to mention other differences, \pkg{lfl} contains complete and very recent group of fuzzy relational composition calculus including the most recent techniques \citep{CaoStep:ExcludfeatureESWA,Step_etal:Unavoidable_KNOSYS2020}. These structures can be used in the inference processing fuzzy inputs as well as in distinct, e.g., expert-driven, classification or decision-making tasks. We also emphasize that the implementation allows to compose partial fuzzy relations \citep{Step_etal_Dragon_IJAR2019}. 
 
-Generally, the incorporation of algebraic structures is different in \pkg{lfl}, it contains the main three residuated structures that are used as parameters \Martin{je to tak, uvádí se to tak anglicky, že jsou ty agebry "parametry"?}. Furthermore, for the sake of the ability to deal with partial fuzzy logics, it contains six partial algebraic structures that can be combined with any of the three basic underlying residuated structures. 
+Generally, the incorporation of algebraic structures is different in \pkg{lfl}. It contains the main three residuated structures (G\"odel, Goguen, and \L ukasiewicz) that are used as parameters to some algorithms. Moreover, these main underlying residuated structures may be combined with six partial algebraic structures that determine the way handling of undefined or missing values.
 
-The \pkg{lfl} package also contains fuzzy association rules mining algorithm that generates linguistic rules to which the PbLD inference is tailored. The mining algorithm works with genuine approach that reflects membership degrees and that was used for the generation of the fuzzy rule base ensemble technique for time series forecasting \citep{StepBurda:FRBE_FSS}. This ensemble is also employed in \pkg{lfl}. 
+The \pkg{lfl} package also contains fuzzy association rules mining algorithm that generates linguistic rules to which the PbLD inference is tailored. The mining algorithm works with a genuine approach that reflects membership degrees and that was used for the generation of the fuzzy rule base ensemble technique for time series forecasting \citep{StepBurda:FRBE_FSS}. This ensemble is also employed in \pkg{lfl}. 
 
-Association rules have rich history, before they got their name in \citep{Agrawal:assoc_rules}, they were propoed as so-called GUHA method already in \citep{Hajek:GUHA}. However, we are not aware of fuzzy associations rule mining algorithm implemented in any existing R-package that would be any reflecting membership degrees. We may recall, e.g., \pkg{arules} package, however, it deals with the crisp variant of associations rule mining only. 
+Association rules have a rich history. Before they got their name in \citep{Agrawal:assoc_rules}, they were propoed as so-called GUHA method already in \citep{Hajek:GUHA}. However, we are not aware of fuzzy associations rule mining algorithm implemented in any existing R-package that would be any reflecting membership degrees. We may recall, e.g., \pkg{arules} package, however, it deals with crisp association rules only. 
 
-The survey provided above brings a comparison of the R-packages that are topic-closest to \pkg{lfl} however, its goal is not to compare them from the superiority point of view. This is probably even impossible. The goal is to compare them from the area and technique coverage point of view, to show the similarities and differences. The fact is that the packages have rather complementary positions not duplicating each other. Out of the existing packages, we would like to once more emphasize the \pkg{frbs} package that provides the richest set of methods for distinct purposes (control, regression, classification) -- many of them not even attempted in \pkg{lfl}. The \pkg{lfl} package is closer to more mathematically oriented foundations in providing algebraic backgrounds and tools from the fuzzy relational calculus that may be useful for distinct purposes. In the area of  inference systems, it complements existing packages with fundamental implicative rule bases and specific PbLD method, that is even followed by associations mining and FRBE for time series forecasts. 
+The survey provided above brings a comparison of the R-packages that are topic-closest to \pkg{lfl} however, its goal is not to compare them from the superiority point of view. This is probably even impossible. The goal is to compare them from the area and technique coverage point of view -- to show the similarities and differences. The fact is that the packages have rather complementary positions not duplicating each other. Out of the existing packages, we would like to once more emphasize the \pkg{frbs} package that provides the richest set of methods for distinct purposes (control, regression, classification) -- many of them not even attempted in \pkg{lfl}. The \pkg{lfl} package is closer to more mathematically oriented foundations in providing algebraic backgrounds and tools from the fuzzy relational calculus that may be useful for distinct purposes. In the area of  inference systems, it complements existing packages with fundamental implicative rule bases and specific PbLD method, that is even followed by associations mining and FRBE for time series forecasts. 
 
 
 
@@ -1457,19 +1449,17 @@ Of course, using distinct quantifiers may lead to even narrower set of suspicion
 \subsection{Case study II -- fuzzy associations rules from the Iris data}
 
 
-\Martin{zatim nemam co psat, dokud nebudou obrysy experimentu}
-
 The second case study will work with the famous Iris dataset \citep{iris1, iris2}, which is also available in \R{} as a built-in data frame:
 %
 \input{chunks/chunk-casestudy-assoc-iris}
 %
-We are going to search for association rules in that database: first by using the \lfl{} package and next with the \pkg{arules} package. After that, we will compare the results.
+We are going to search for association rules in that database: first by using the \lfl{} package and then with the \pkg{arules} package. After that, we will compare the results.
 
 First of all, we transform the \texttt{iris} data frame into fuzzy sets:
 %
 \input{chunks/chunk-casestudy-assoc-lcut}
 %
-This creates a data frame with each column representing linguistic expressions on original Iris data attributes. We have opted for pentachotomical contexts, which cause each numeric variable to be transformed using 5 atomic linguistic expressions ``small'' (sm), ``lower medium'' (lm), ``medium'' (me), ``upper medium'' (um), and ``big'' (bi). The \texttt{hedges="-"} argument disables all linguistic hedges. (Such setting is comparable to categorization of numeric variables needed in order to run \pkg{arules} later on.)
+This creates a data frame with each column representing linguistic expressions on original Iris data attributes. We have opted for pentachotomical contexts, which cause each numeric variable to be transformed using 5 atomic linguistic expressions ``small'' (\code{sm}), ``lower medium'' (\code{lm}), ``medium'' (\code{me}), ``upper medium'' (\code{um}), and ``big'' (\code{bi}). The \texttt{hedges="-"} argument disables all linguistic hedges. Note that such a setting is comparable to categorization of numeric variables needed in order to run \pkg{arules}, see below.
 
 The resulting \texttt{fsets} object contains 23 fuzzy sets: five for each of four original numeric variables (sepal/petal length/width) and three dichotomic fuzzy sets for species categories.
 
@@ -1477,11 +1467,29 @@ All association rules with species in consequent and the rest of variables in an
 %
 \input{chunks/chunk-casestudy-assoc-searchrules}
 %
-The minimum support threshold of a rule was set to 0.05 while the minimum confidence is required to be at least 0.8. Such settings result in 50 association rules in total. Let us now print 8 rules with the greatest confidence:
+The minimum support threshold of a rule was set to 0.05 while the minimum confidence is required to be at least 0.8\ . Such a setting resulted in 50 fuzzy association rules in total. Let us now print 8 rules with the greatest confidence:
 %
 \input{chunks/chunk-casestudy-assoc-viewrules}
 %
-%\input{chunks/chunk-casestudy-assoc-reduce}
+The resulting rules are listed in Table~\ref{tab:lfl8rules}.
+
+\begin{table}[t]
+    \centering
+    \begin{tabular}{l|rr}
+        rule & support & confidence \\
+        \hline
+         bi.Petal.Length $\Rightarrow$ Species=virginica                  & 0.088  &  1.000 \\
+         bi.Petal.Width $\Rightarrow$ Species=virginica                   & 0.139  &  1.000 \\
+         sm.Petal.Width $\Rightarrow$ Species=setosa                      & 0.317  &  1.000 \\
+         sm.Petal.Length $\Rightarrow$ Species=setosa                     & 0.323  &  1.000 \\
+         lm.Sepal.Length \& um.Sepal.Width $\Rightarrow$ Species=setosa   & 0.059  &  1.000 \\
+         sm.Sepal.Length \& me.Sepal.Width $\Rightarrow$ Species=setosa   & 0.119  &  0.998 \\
+         lm.Sepal.Width \& um.Petal.Width $\Rightarrow$ Species=virginica & 0.067  &  0.997 \\
+         bi.Sepal.Length $\Rightarrow$ Species=virginica                  & 0.054  &  0.996 \\
+    \end{tabular}
+    \caption{First 8 rules with the greatest confidence as found by the \lfl{} package.}
+    \label{tab:lfl8rules}
+\end{table}
 
 In \pkg{arules}, the process is as follows. First of all, the numeric data have to be transformed into categories. The standard \R{}'s \texttt{cut()} function can be used for that. The following command transforms the numeric variables into five equidistant interval categories:
 %
@@ -1495,8 +1503,28 @@ The \pkg{arules} package has found 64 rules, from which the 8 rules with the gre
 %
 \input{chunks/chunk-casestudy-assoc-arules-view}
 %
+See Table~\ref{tab:arules8rules} for a list of the resulting rules.
 
+\begin{table}[]
+    \centering
+    \begin{tabular}{l|rr}
+        rule & support & confidence \\
+        \hline
+                                 {Sepal.Length=(7.18,7.9]} $\Rightarrow$ {Species=virginica} & 0.073 & 1.000 \\
+                                {Petal.Length=(5.72,6.91]} $\Rightarrow$ {Species=virginica} & 0.107 & 1.000 \\
+                                  {Petal.Width=(2.02,2.5]} $\Rightarrow$ {Species=virginica} & 0.153 & 1.000 \\
+                                  {Petal.Width=(0.0976,0.58]} $\Rightarrow$ {Species=setosa} & 0.327 & 1.000 \\
+                                  {Petal.Length=(0.994,2.18]} $\Rightarrow$ {Species=setosa} & 0.333 & 1.000 \\
+        {Sepal.Length=(7.18,7.9] \& Petal.Length=(5.72,6.91]} $\Rightarrow$ {Species=virginica} & 0.073 & 1.000 \\
+         {Petal.Length=(5.72,6.91] \& Petal.Width=(2.02,2.5]} $\Rightarrow$ {Species=virginica} & 0.060 & 1.000 \\
+        {Sepal.Width=(2.96,3.44] \& Petal.Length=(5.72,6.91]} $\Rightarrow$ {Species=virginica} & 0.053 & 1.000 \\
+    \end{tabular}
+    \caption{First 8 rules with the greatest confidence as found by the \pkg{arules} package.}
+    \label{tab:arules8rules}
+\end{table}
 
+As can be seen, both packages provide comparable  results. For \pkg{arules}, the numeric data have to be categorized into crisp intervals. The \lfl{} package allows to work with linguistic expressions modelled with fuzzy sets, which enables non-sharp borders between categories. The interpretability as well as the lower number of rules play in favor of \pkg{lfl} however, we do not dare to generalize too much from the latter observation as each case study could lead to a different result and the impact of the a proper categorization is essential. 
+\Martin{pridal jsem posledni vetu, kouukni na ni. Jinak jsem to nove opet cele prosel a mistz opravil nebo upravil. Nevim, zda jeste hodlas menit ta pravidla do tabulky, jinak jsem ready submitovat.}
 
 \section{Conclusion}
 \label{sec:conclusion}
